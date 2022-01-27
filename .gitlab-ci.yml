@@ -1,0 +1,45 @@
+# 20210113 by Gresstant
+
+# You may need to set following CI variables in your GitLab project:
+# $FRONTEND_REPO_URL = schema://username:password@website.com/repo
+
+stages:
+  - build
+  - deploy
+
+variables:
+  IMAGE_REPO_PREFIX:        lotus_frontend  # $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG
+  IMAGE_VER:                $CI_COMMIT_SHORT_SHA
+  CONTAINER_NAME_PREFIX:    $IMAGE_REPO_PREFIX
+
+build:
+  stage: build
+  only:
+    - master
+    - dev01
+  script:
+    - chmod +x ./ci/build.sh
+    - . ci/build.sh
+  artifacts:
+    paths:
+      - frontend.tar.gz
+
+deploy-master:
+  stage: deploy
+  only:
+    - master
+  tags:
+    - for-deploy
+  script:
+    - chmod +x ./ci/deploy_master.sh
+    - . ci/deploy_master.sh
+
+deploy-dev01:
+  stage: deploy
+  only:
+    - dev01
+  tags:
+    - for-deploy
+  script:
+    - chmod +x ./ci/deploy_dev01.sh
+    - . ci/deploy_dev01.sh
