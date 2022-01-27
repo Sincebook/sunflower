@@ -1,5 +1,5 @@
 {
-    "name": "buiapp",
+    "name": "sunflower",
     "version": "1.0.0",
     "description": "",
     "projects": {},
@@ -12,8 +12,8 @@
         "package": "gulp package",
         "backup": "gulp backup"
     },
-    "author": "imouou@hotmail.com",
-    "homepage": "http://www.easybui.com",
+    "author": "since2014@qq.com",
+    "homepage": "http://www.since88.cn",
     "license": "MIT",
     "devDependencies": {
         "@babel/core": "^7.7.7",

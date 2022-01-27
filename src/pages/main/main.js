@@ -11,7 +11,9 @@ loader.define(function(require, exports, module) {
     pageview.init = function() {
 
     }
-
+    $("#btn").on("click",function(){
+     bui.load({ url: "pages/login/login.html", param: {} });
+    })
     // 初始化
     pageview.init();
 
