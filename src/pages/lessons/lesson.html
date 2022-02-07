@@ -1,0 +1,368 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>课程</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/buijs@latest/lib/latest/bui.css">
+        <link rel="shortcut icon" href="../../images/favicon.ico">
+		<script src="https://cdn.jsdelivr.net/npm/buijs@latest/lib/zepto.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/buijs@latest/lib/latest/bui.js"></script>
+		<style></style>
+	</head>
+	<body>
+	<style type="text/css">
+    .home-page .bui-bar {
+        background-color: #fff
+    }
+    
+    .home-page .bui-bar .area-btn {
+        padding: 0 .2rem 0 .1rem;
+        color: #666;
+        font-size: .24rem
+    }
+    
+    .home-page .bui-bar .bui-dropdown .bui-btn {
+        font-size: .24rem;
+        color: #666;
+    }
+    
+    .home-page .bui-bar .area-btn .icon-dropdown {
+        margin-left: .1rem
+    }
+    
+    .home-page .bui-bar-left {
+        width: .7rem
+    }
+    
+    .home-page .bui-bar-right {
+        width: .9rem
+    }
+    
+    .home-page .bui-bar-right .bui-btn .icon-chat {
+        font-size: .4rem;
+        color: #666
+    }
+    
+    .home-page .bui-searchbar {
+        padding-left: 0;
+        padding-right: 0
+    }
+    
+    .home-page .bui-searchbar .bui-input {
+        background-color: #F3F5F8
+    }
+    
+    .home-page .bui-searchbar .icon-search {
+        color: #333
+    }
+    
+    .home-page .bui-bar-left {
+        padding-top: .1rem
+    }
+    
+    .home-page .bui-bar-left .weather-box {
+        line-height: 1.2
+    }
+    
+    .home-page .weather-box {
+        text-align: center
+    }
+    
+    .home-page .weather-box .icon {
+        display: inline;
+        line-height: 1.2;
+        color: #666;
+        font-size: .36rem
+    }
+    
+    .home-page .weather-box .weather-text {
+        line-height: 1.2;
+        font-size: .2rem;
+        color: #666
+    }
+    
+    .home-page .home-part {
+        margin-top: .2rem;
+        background-color: #fff
+    }
+    
+    .home-page .part-title {
+        padding: .4rem .24rem;
+        font-size: .3rem;
+        color: #333;
+        text-align: left;
+    }
+    
+    .home-page .part-title .icon-listright {
+        color: #C9CDD5
+    }
+    
+    .home-page .store-navbar {
+        padding-left: .16rem
+    }
+    
+    .home-page .store-navbar .bui-nav {
+        border: none
+    }
+    
+    .home-page .store-navbar .bui-btn {
+        padding: 0 .08rem .2rem .08rem;
+        width: 3.8rem
+    }
+    
+    .home-page .store-navbar .wrap-pic {
+        height: 2rem;
+        border-radius: .1rem;
+        overflow: hidden
+    }
+    
+    .home-page .store-navbar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover
+    }
+    
+    .home-page .store-navbar h4 {
+        padding: .15rem 0;
+        font-size: .28rem;
+        color: #333333
+    }
+    
+    .home-page .store-navbar .details {
+        font-size: .24rem;
+        color: #999
+    }
+    
+    .home-page .show-part .bui-fluid {
+        border: none
+    }
+    
+    .home-page .show-part .bui-fluid .bui-btn {
+        padding: .3rem .24rem;
+        text-align: left
+    }
+    
+    .home-page .show-part .bui-fluid .number-map {
+        color: #999;
+        font-size: .2rem
+    }
+    
+    .home-page .show-part .bui-fluid .span1 {
+        margin-top: .05rem;
+        font-size: .6rem;
+        color: #333
+    }
+    
+    .home-page .show-part .bui-fluid .span1 .sub {
+        font-size: .24rem;
+        color: #333
+    }
+    
+    .home-page .show-part .bui-fluid .span1.green {
+        color: #08BF4B
+    }
+    
+    .home-activity-list {
+        padding: 0 .12rem
+    }
+    
+    .home-activity-list .wrap-pic {
+        height: 2.14rem;
+        overflow: hidden;
+        border-radius: .05rem
+    }
+    
+    .home-activity-list .wrap-pic img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover
+    }
+    
+    .home-activity-list li.bui-btn {
+        padding: 0 .12rem;
+        margin-bottom: .4rem;
+        border: none;
+        text-align: left
+    }
+    
+    .home-activity-list li.bui-btn h4 {
+        padding: .25rem 0 .12rem;
+        color: #333;
+        font-size: .32rem
+    }
+    
+    .home-activity-list .text-item {
+        margin-bottom: .1rem;
+        color: #666;
+        font-size: .24rem
+    }
+    
+    .home-activity-list .text-item .icon {
+        width: .2rem;
+        height: .2rem;
+        font-size: .2rem;
+        line-height: .2rem;
+        color: #ccc
+    }
+    
+    .home-activity-list .text-item .dot {
+        display: inline-block;
+        width: .1rem;
+        height: .1rem;
+        border-radius: 50%;
+        background-color: #66C23D
+    }
+    
+    .main-footer {
+        background-color: #fff
+    }
+    
+    .main-footer .btn-home {
+        position: relative;
+        overflow: visible
+    }
+    
+    .main-footer .btn-home .big-icon {
+        z-index: 10;
+        margin-top: -.2rem;
+        display: inline-block;
+        width: .94rem;
+        height: .94rem;
+        line-height: .94rem;
+        color: #fff;
+        border-radius: 50%;
+        background: linear-gradient(141.4deg, #02b9fa, #508dff)
+    }
+    
+    .main-footer .layer1 {
+        top: -.3rem;
+        left: 50%;
+        width: 1.2rem;
+        height: 1.2rem;
+        position: absolute;
+        box-shadow: 0 0 1px 1px #eee;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        background-color: #fff
+    }
+    
+    .main-footer .layer2 {
+        position: absolute;
+        top: 0rem;
+        bottom: -.05rem;
+        width: 100%;
+        background-color: #fff
+    }
+    
+    .no-data-tip {
+        position: relative;
+        padding: .3rem 0;
+        text-align: center;
+        font-size: .24rem;
+        color: #999999
+    }
+    
+    .no-data-tip .data-text {
+        position: relative;
+        z-index: 9;
+        display: inline-block;
+        padding: 0 .1rem;
+        background-color: #f3f5f8
+    }
+    
+    .no-data-tip:after {
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        right: 20%;
+        content: '';
+        height: 1px;
+        background-color: #E8E8E8
+    }
+</style>
+
+<div class="bui-page home-page">
+    <header class="bui-bar">
+        <div class="bui-bar-left">
+            <div class="bui-btn weather-box">
+                <span class="icon">
+                    &#xe643;
+                </span>
+                <div class="weather-text">33°</div>
+            </div>
+        </div>
+        <div class="bui-bar-main">
+            <div id="searchbar" class="bui-searchbar bui-box">
+                <div id="uiDoropdownArea" class="bui-dropdown">
+                    <div class="bui-btn bui-box area-btn">
+                        <div class="span1">广州</div>
+                        <i class="icon-dropdown"></i>
+                    </div>
+                </div>
+                <div class="span1">
+                    <div class="bui-input">
+                        <i class="icon-search"></i>
+                        <input type="search" value="" placeholder="请输入关键字" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bui-bar-right">
+            <a class="bui-btn">
+                <i class="icon-chat"><span class="bui-badges">5</span></i>
+            </a>
+        </div>
+    </header>
+    <main>
+        <!-- 轮播图 -->
+        <div id="slide" class="bui-slide bui-slide-skin01"></div>
+        <div style="width: 100%; height: 700px;">
+            <div id="uiTab" class="bui-tab">
+                <div class="bui-tab-head">
+                    <ul class="bui-nav">
+                        <li class="bui-btn">课程</li>
+                        <li class="bui-btn">观点</li>
+                        <li class="bui-btn">专访</li>
+                        <li class="bui-btn">公开课</li>
+                    </ul>
+                </div>
+                <div class="bui-tab-main">
+                    <ul>
+                        <!-- 内容必须在li里面 -->
+                        <li><img src="images/placeholder-list.png" alt=""></li>
+                        <li style="display: none;"><img src="images/placeholder-page.png" alt=""></li>
+                        <li style="display: none;"><img src="images/placeholder-list.png" alt=""></li>
+                        <li style="display: none;"><img src="images/placeholder-page.png" alt=""></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p class="no-data-tip"><span class="data-text">别拉啦，我是有底线的</span></p>
+    </main>
+    <footer class="main-footer">
+        <ul id="tabDynamicNav" class="bui-nav main-nav">
+            <li class="bui-btn bui-box-vertical active" href="pages/news/news.html">
+                <i class="icon icon-chat"></i>
+                <div class="span1">课程</div>
+            </li>
+            <li class="bui-btn bui-box-vertical" href="pages/todo/todo.html">
+                <i class="icon icon-menu"></i>
+                <div class="span1">任务</div>
+            </li>
+            <li class="bui-btn btn-home bui-box-vertical" href="pages/home/home.html">
+                <i class="icon-home big-icon"></i>
+                <span class="layer1"></span><span class="layer2"></span>
+            </li>
+            <li class="bui-btn bui-box-vertical" href="pages/apply/apply.html"><i class="icon icon-setting"></i>
+                <div class="span1">培训</div>
+            </li>
+            <li class="bui-btn bui-box-vertical" href="pages/userIndex/userIndex.html"><i class="icon icon-user"></i>
+                <div class="span1">我的</div>
+            </li>
+        </ul>
+    </footer>
+</div>
+<link rel="" href="lesson.js">
+</body>
+</html>
