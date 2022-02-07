@@ -1,0 +1,137 @@
+<style type="text/css">
+    .personal-header {
+        background-color: #39a4ff;
+        /*background-image: linear-gradient(to bottom, #7cb8e9, #89bfe3, #72a8d7, #89b5d8, #92bbda);*/
+        padding-top: .78rem;
+        padding-bottom: .3rem;
+    }
+    
+    .personal-header .personal-img {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        background: #fff;
+        /* border: 2px solid #fff; */
+        overflow: hidden;
+        margin: 0 auto .2rem auto;
+        text-align: center;
+    }
+    
+    .personal-header .personal-img img {
+        width: 100%;
+    }
+    
+    .personal-header p {
+        text-align: center;
+        color: #ffffff;
+        margin-bottom: 0.1rem;
+    }
+    
+    .personal-header .name {
+        font-size: 0.40rem;
+    }
+    
+    .nav-list {
+        border-top: none;
+        margin-top: 0.2rem;
+        padding: 0 0.2rem;
+        background-color: #ffffff;
+    }
+    
+    .nav-list .bui-btn {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .nav-list li:first-child {
+        border-top: none;
+    }
+    
+    .nav-list .icon i {
+        font-size: 0.4rem;
+    }
+    
+    .nav-list .icon {
+        height: 0.6rem;
+        line-height: 0.6rem;
+    }
+    
+    .nav-list .bui-btn {
+        border: none;
+        border-top: 1px solid #efefef;
+    }
+    
+    .icon-yellow {
+        color: #ffad03;
+    }
+    
+    .icon-thinblue {
+        color: #56ced5;
+    }
+    
+    .icon-green {
+        color: #6ed046;
+    }
+    
+    .icon-red {
+        color: #fd8886;
+    }
+    
+    .bui-box [class^=span] {
+        font-size: 0.35rem;
+    }
+    
+    .btn-list {
+        margin-top: 1rem;
+        display: flex;
+    }
+    
+    .round {
+        /* float: left; */
+        width: 30%;
+        border-radius: 0.2rem;
+    }
+</style>
+<div class="bui-page">
+    <main>
+        <div class="personal-header">
+            <div class="personal-img">
+                <img src="images/applogo.png">
+            </div>
+            <p class="name">王小o</p>
+        </div>
+        <ul class="bui-list nav-list">
+            <li class="bui-btn bui-box ">
+                <div class="icon"><i class="icon icon-yellow">&#xe67b;</i></div>
+                <div class="span1">个人中心</div>
+                <i class="icon-listright"></i>
+            </li>
+            <li class="bui-btn bui-box">
+                <div class="icon"><i class="icon icon-thinblue">&#xe60e;</i></div>
+                <div class="span1">个人采集</div>
+                <i class="icon-listright"></i>
+            </li>
+            <li class="bui-btn bui-box">
+                <div class="icon"><i class="icon icon-green">&#xe603;</i></div>
+                <div class="span1">联系客服</div>
+                <i class="icon-listright"></i>
+            </li>
+            <li class="bui-btn bui-box">
+                <div class="icon"><i class="icon icon-red">&#xe657;</i></div>
+                <div class="span1">授权码激活</div>
+                <i class="icon-listright"></i>
+            </li>
+            <li class="bui-btn bui-box">
+                <div class="icon"><i class="icon icon-yellow">&#xe622;</i></div>
+                <div class="span1">版本说明</div>
+                <i class="icon-listright"></i>
+            </li>
+        </ul>
+        <div class="btn-list">
+            <div class="bui-btn primary round">切换账号</div>
+            <div class="bui-btn primary round">退出登录</div>
+        </div>
+
+    </main>
+
+</div>
