@@ -1,4 +1,87 @@
-<!DOCTYPE HTML>
+<div class="bui-page home-page">
+    <header class="bui-bar">
+        <div class="bui-bar-left">
+            <div class="bui-btn weather-box">
+                <span class="icon">
+                    &#xe643;
+                </span>
+                <div class="weather-text">33°</div>
+            </div>
+        </div>
+        <div class="bui-bar-main">
+            <div id="searchbar" class="bui-searchbar bui-box">
+                <div id="uiDoropdownArea" class="bui-dropdown">
+                    <div class="bui-btn bui-box area-btn">
+                        <div class="span1">广州</div>
+                        <i class="icon-dropdown"></i>
+                    </div>
+                </div>
+                <div class="span1">
+                    <div class="bui-input">
+                        <i class="icon-search"></i>
+                        <input type="search" value="" placeholder="请输入关键字" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bui-bar-right">
+            <a class="bui-btn">
+                <i class="icon-chat"><span class="bui-badges">5</span></i>
+            </a>
+        </div>
+    </header>
+    <main>
+        <!-- 轮播图 -->
+        <div id="slide" class="bui-slide bui-slide-skin01"></div>
+        <div style="width: 100%; height: 700px;">
+            <div id="uiTab" class="bui-tab">
+                <div class="bui-tab-head">
+                    <ul class="bui-nav">
+                        <li class="bui-btn">课程</li>
+                        <li class="bui-btn">观点</li>
+                        <li class="bui-btn">专访</li>
+                        <li class="bui-btn">公开课</li>
+                    </ul>
+                </div>
+                <div class="bui-tab-main">
+                    <ul>
+                        <!-- 内容必须在li里面 -->
+                        <li><img src="images/placeholder-list.png" alt=""></li>
+                        <li style="display: none;"><img src="images/placeholder-page.png" alt=""></li>
+                        <li style="display: none;"><img src="images/placeholder-list.png" alt=""></li>
+                        <li style="display: none;"><img src="images/placeholder-page.png" alt=""></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p class="no-data-tip"><span class="data-text">别拉啦，我是有底线的</span></p>
+    </main>
+    <footer class="main-footer">
+        <ul id="tabDynamicNav" class="bui-nav main-nav">
+            <li class="bui-btn bui-box-vertical active" href="pages/news/news.html">
+                <i class="icon icon-chat"></i>
+                <div class="span1">课程</div>
+            </li>
+            <li class="bui-btn bui-box-vertical" href="pages/todo/todo.html">
+                <i class="icon icon-menu"></i>
+                <div class="span1">任务</div>
+            </li>
+            <li class="bui-btn btn-home bui-box-vertical" href="pages/home/home.html">
+                <i class="icon-home big-icon"></i>
+                <span class="layer1"></span><span class="layer2"></span>
+            </li>
+            <li class="bui-btn bui-box-vertical" href="pages/apply/apply.html"><i class="icon icon-setting"></i>
+                <div class="span1">培训</div>
+            </li>
+            <li class="bui-btn bui-box-vertical" href="pages/userIndex/userIndex.html"><i class="icon icon-user"></i>
+                <div class="span1">我的</div>
+            </li>
+        </ul>
+    </footer>
+</div>
+<link rel="" href="lesson.js">
+</body>
+</html>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -282,87 +365,4 @@
     }
 </style>
 
-<div class="bui-page home-page">
-    <header class="bui-bar">
-        <div class="bui-bar-left">
-            <div class="bui-btn weather-box">
-                <span class="icon">
-                    &#xe643;
-                </span>
-                <div class="weather-text">33°</div>
-            </div>
-        </div>
-        <div class="bui-bar-main">
-            <div id="searchbar" class="bui-searchbar bui-box">
-                <div id="uiDoropdownArea" class="bui-dropdown">
-                    <div class="bui-btn bui-box area-btn">
-                        <div class="span1">广州</div>
-                        <i class="icon-dropdown"></i>
-                    </div>
-                </div>
-                <div class="span1">
-                    <div class="bui-input">
-                        <i class="icon-search"></i>
-                        <input type="search" value="" placeholder="请输入关键字" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bui-bar-right">
-            <a class="bui-btn">
-                <i class="icon-chat"><span class="bui-badges">5</span></i>
-            </a>
-        </div>
-    </header>
-    <main>
-        <!-- 轮播图 -->
-        <div id="slide" class="bui-slide bui-slide-skin01"></div>
-        <div style="width: 100%; height: 700px;">
-            <div id="uiTab" class="bui-tab">
-                <div class="bui-tab-head">
-                    <ul class="bui-nav">
-                        <li class="bui-btn">课程</li>
-                        <li class="bui-btn">观点</li>
-                        <li class="bui-btn">专访</li>
-                        <li class="bui-btn">公开课</li>
-                    </ul>
-                </div>
-                <div class="bui-tab-main">
-                    <ul>
-                        <!-- 内容必须在li里面 -->
-                        <li><img src="images/placeholder-list.png" alt=""></li>
-                        <li style="display: none;"><img src="images/placeholder-page.png" alt=""></li>
-                        <li style="display: none;"><img src="images/placeholder-list.png" alt=""></li>
-                        <li style="display: none;"><img src="images/placeholder-page.png" alt=""></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <p class="no-data-tip"><span class="data-text">别拉啦，我是有底线的</span></p>
-    </main>
-    <footer class="main-footer">
-        <ul id="tabDynamicNav" class="bui-nav main-nav">
-            <li class="bui-btn bui-box-vertical active" href="pages/news/news.html">
-                <i class="icon icon-chat"></i>
-                <div class="span1">课程</div>
-            </li>
-            <li class="bui-btn bui-box-vertical" href="pages/todo/todo.html">
-                <i class="icon icon-menu"></i>
-                <div class="span1">任务</div>
-            </li>
-            <li class="bui-btn btn-home bui-box-vertical" href="pages/home/home.html">
-                <i class="icon-home big-icon"></i>
-                <span class="layer1"></span><span class="layer2"></span>
-            </li>
-            <li class="bui-btn bui-box-vertical" href="pages/apply/apply.html"><i class="icon icon-setting"></i>
-                <div class="span1">培训</div>
-            </li>
-            <li class="bui-btn bui-box-vertical" href="pages/userIndex/userIndex.html"><i class="icon icon-user"></i>
-                <div class="span1">我的</div>
-            </li>
-        </ul>
-    </footer>
-</div>
-<link rel="" href="lesson.js">
-</body>
-</html>
+
