@@ -1,5 +1,4 @@
 bui.ready(function(){
-    //初始化控件
         var uiStepbar = bui.stepbar({
             id: "#step",
             data: [{
@@ -18,7 +17,6 @@ bui.ready(function(){
         uiStepbar.on("change",function (e) {
             $(".stepbar").hide().eq(e).show()
         })
-        //激活第1步
         uiStepbar.value(0);
     
         $(".step1").on("click",function (argument) {
