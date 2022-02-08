@@ -1,4 +1,4 @@
-
+// 登录
 bui.ready(function(){
 
     var pageview = {};
