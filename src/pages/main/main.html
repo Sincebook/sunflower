@@ -1,23 +1,89 @@
-<!-- 这里还是一个标准的BUI页面 -->
-<div class="bui-page bui-box-vertical">
-    <header>
-        <div class="bui-bar">
-            <div class="bui-bar-left">
-                <!-- 左边有图标示例 -->
-                <div class="bui-btn btn-back"><i class="icon-back"></i></div>
-            </div>
-            <div class="bui-bar-main">BUI单页开发工</div>
-            <div class="bui-bar-right">
-                <!-- 右边有图标示例 -->
-                <div class="bui-btn"><i class="icon-search"></i></div>
+<style>
+    .main-footer .btn-home {
+        position: relative;
+        overflow: visible
+    }
+    
+    .main-footer .btn-home .big-icon {
+        z-index: 10;
+        margin-top: -.2rem;
+        display: inline-block;
+        width: .94rem;
+        height: .94rem;
+        line-height: .94rem;
+        color: #fff;
+        border-radius: 50%;
+        background: linear-gradient(141.4deg, #02b9fa, #508dff)
+    }
+    
+    .main-footer .layer1 {
+        top: -.3rem;
+        left: 50%;
+        width: 1.2rem;
+        height: 1.2rem;
+        position: absolute;
+        box-shadow: 0 0 1px 1px #eee;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        background-color: #fff
+    }
+    
+    .main-footer .layer2 {
+        position: absolute;
+        top: 0rem;
+        bottom: 0;
+        /* bottom: -.05rem; */
+        width: 100%;
+        background-color: #fff
+    }
+</style>
+<div class="bui-page">
+    <main>
+        <div id="tabDynamic" class="bui-tab">
+            <div class="bui-tab-main">
+                <ul>
+                    <li>
+                        <!-- 课程tab -->
+                    </li>
+                    <li>
+                        <!-- 任务tab -->
+                    </li>
+                    <li>
+                        <!-- 主页tab -->
+                    </li>
+                    <li>
+                        <!-- 培训tab -->
+                    </li>
+                    <li>
+                        <!-- 我的tab -->
+                    </li>
+                </ul>
+
             </div>
         </div>
-    </header>
-    <main>
-        <div id="btn" class="bui-btn">登录</div>
-        <!-- 中间内容 -->
     </main>
     <footer>
-        <!-- 底部内容 -->
+        <ul id="tabDynamicNav" class="bui-nav main-footer">
+            <li class="bui-btn bui-box-vertical" href="../lessons(课程）/lessons.html"> 
+                <i class="icon-weixin">&#xe678;</i>
+                <div class="span1">课程</div>
+            </li>
+            <li class="bui-btn bui-box-vertical" href="pages/task/task.html">
+                <i class="icon-weixin">&#xe665;</i>
+                <div class="span1">任务</div>
+            </li>
+            <li class="bui-btn btn-home bui-box-vertical" href="pages/home/home.html">
+                <i class="icon-home big-icon"></i>
+                <span class="layer1"></span><span class="layer2"></span>
+            </li>
+            <li class="bui-btn bui-box-vertical" href="pages/train/train.html">
+                <i class="icon-weixin">&#xe628;</i>
+                <div class="span1">培训</div>
+            </li>
+            <li class="bui-btn bui-box-vertical" href="pages/mine/mine.html">
+                <i class="icon-weixin">&#xe67b;</i>
+                <div class="span1">我的</div>
+            </li>
+        </ul>
     </footer>
 </div>
