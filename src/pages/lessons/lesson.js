@@ -1,3 +1,4 @@
+// js
 bui.ready(function(){
 
 var uiTab = bui.tab({
