@@ -1,5 +1,9 @@
-// 登录
-bui.ready(function(){
+/**
+ * 通用登录模板,包含输入交互,提交需要自己绑定验证
+ * 默认模块名: pages/login/login
+ * @return {[object]}  [ 返回一个对象 ]
+ */
+ loader.define(function(){
 
     var pageview = {};
     
@@ -38,15 +42,23 @@ bui.ready(function(){
         })
 
     }
-    bui.ajax({
-        url:"/api/users/login",
-        data:{
-            phone:'18638732919'
-        },
-        method:'post'
-    }).then(res => {
-        console.log(res)
-    })
+     //页面跳转
+     var btnr =document.getElementById('btnr')
+     btnr.onclick=function(){
+        bui.load({ url: "pages/register/register.html", param: {} });
+        //  alert('点秋香')
+     }
+     var btnr =document.getElementById('btnl')
+     btnr.onclick=function(){
+        bui.load({ url: "pages/login/login.html", param: {} });
+        //  alert('点秋香')
+     }
+     var btnr =document.getElementById('btnp')
+     btnr.onclick=function(){
+        bui.load({ url: "pages/reset/reset.html", param: {} });
+        //  alert('点秋香')
+     }
+
     pageview.init = function () {
 
         // 绑定事件
@@ -60,3 +72,4 @@ bui.ready(function(){
     // 输出模块
     return pageview;
 })
+   
