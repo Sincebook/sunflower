@@ -1,0 +1,162 @@
+<style>
+    .coupon-page-center main {
+        background-color: #F3F5F8
+    }
+    
+    .coupon-list .coupon-item {
+        position: relative;
+        padding: 0;
+        margin-top: .2rem;
+        min-height: 1.6rem;
+        border: none;
+        -ms-flex-line-pack: start;
+        align-content: flex-start
+    }
+    
+    .coupon-list .item-left {
+        padding: .4rem 0;
+        width: 1.6rem;
+        color: #fff;
+        background-color: #ccc
+    }
+    
+    .coupon-list .item-left .left-up {
+        margin-bottom: .05rem;
+        font-size: .48rem
+    }
+    
+    .coupon-list .item-left .sub {
+        font-size: .28rem
+    }
+    
+    .coupon-list .item-left.green {
+        background: linear-gradient(135deg, #79d53d 0%, #00bc32 100%)
+    }
+    
+    .coupon-list .item-left.orange {
+        background: linear-gradient(132deg, #ffb030 0%, #ff8b2e 100%)
+    }
+    
+    .coupon-list .item-left.blue {
+        background: linear-gradient(133deg, #47b2ff 0%, #227aff 100%)
+    }
+    
+    .coupon-list .divider {
+        position: relative;
+        height: 1.75rem;
+        border-right: 1px dashed #eee
+    }
+    
+    .coupon-list .divider:before,
+    .coupon-list .divider:after {
+        content: '';
+        width: .2rem;
+        height: .2rem;
+        position: absolute;
+        left: -.08rem;
+        background-color: #F3F5F8;
+        border-radius: 50%
+    }
+    
+    .coupon-list .divider:before {
+        top: -.12rem
+    }
+    
+    .coupon-list .divider:after {
+        bottom: -.12rem
+    }
+    
+    .coupon-list .item-content {
+        padding: .15rem
+    }
+    
+    .coupon-list .item-title {
+        margin-bottom: .15rem;
+        color: #333;
+        font-size: .28rem
+    }
+    
+    .coupon-list .item-text {
+        line-height: 1.4;
+        color: #666;
+        font-size: .24rem
+    }
+    
+    .coupon-list .time {
+        margin-top: .1rem;
+        margin-bottom: 0;
+        font-size: .24rem;
+        color: #999
+    }
+    
+    .coupon-list .item-right {
+        width: 1.8rem;
+        font-size: .2rem
+    }
+    
+    .coupon-list .item-right .details {
+        color: #FF8B2E
+    }
+    
+    .coupon-list .item-right .bui-btn {
+        display: inline-block;
+        margin-top: .15rem;
+        min-width: inherit
+    }
+    
+    .coupon-page .coupon-list .item-title {
+        margin-bottom: .2rem;
+        line-height: 1.4
+    }
+    
+    .coupon-page .coupon-list .single-btn {
+        padding-top: .08rem;
+        padding-bottom: .08rem;
+        color: #1DAAFC;
+        border: 1px solid #1DAAFC;
+        font-size: .24rem;
+        border-radius: .3rem
+    }
+    
+    .coupon-page .coupon-list .single-btn.out {
+        border-color: #999;
+        color: #999
+    }
+    
+    .site-tab .bui-tab-head .bui-btn:after {
+        left: 50%;
+        width: .25rem;
+        transform: translateX(-50%)
+    }
+</style>
+<div class="bui-page couponCenter-page">
+    <main>
+        <ul class="bui-list container-x coupon-list">
+            <li class="bui-btn bui-box-center coupon-item">
+                <div class="span1 item-content">
+                    <h3 class="item-title bui-text-hide">驾驶员安全运输知识培训</h3>
+                    <p class="item-text bui-box-text-hide">河南省-郑州市</p>
+                    <p class="time">2018.01.10-2019.11.11</p>
+                </div>
+                <div class="divider"></div>
+                <div class="item-right bui-align-center">
+                    <span class="details">30人已报名</span>
+                    <div class="bui-btn primary mini ring">立即报名</div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box-center coupon-item">
+                <div class="span1 item-content">
+                    <h3 class="item-title bui-text-hide">大货车司机安全培训</h3>
+                    <p class="item-text bui-box-text-hide">河南省-郑州市</p>
+                    <p class="time">2018.01.10-2019.11.11</p>
+                </div>
+                <div class="divider"></div>
+                <div class="item-right bui-align-center">
+
+                </div>
+            </li>
+        </ul>
+    </main>
+    <footer>
+    </footer>
+</div>
