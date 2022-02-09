@@ -13,8 +13,8 @@
     "!src/preview.png"
   ],
   "proxy": {
-    "/demo": {
-      "target": "http://www.easybui.com",
+    "/api": {
+      "target": "http://sunflower.since88.cn",
       "changeOrigin": true,
       "ssl": false
     }
