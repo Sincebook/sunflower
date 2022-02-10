@@ -39,7 +39,7 @@ loader.define(function(require, exports, module) {
             var current = index || 0;
             switch (current) {
                 case 0:
-                    loader.require(["pages//"])
+                    loader.require(["pages/lesson/lesson"])
                     break;
                 case 1:
                     loader.require(["pages/task/task"])
