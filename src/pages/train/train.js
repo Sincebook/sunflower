@@ -2,16 +2,16 @@ loader.define(function() {
     var pageview = {
         init: function() {
             var uiTabHead = bui.tab({
-                id: "#uiTabHead",
+                id: "#uiTabHeadTrain",
                 position: "top",
                 iconPosition: "left",
                 data: [{
-                    id: "uiTabHead0",
+                    id: "uiTabHeadTrain0",
                     title: "未报名",
                     name: "pages/train_page1/train_page1",
                     param: { type: "news" }
                 }, {
-                    id: "uiTabHead1",
+                    id: "uiTabHeadTrain1",
                     title: "已报名",
                     name: "pages/train_page2/train_page2",
                     param: { type: "photo" },
