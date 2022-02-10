@@ -5,7 +5,7 @@ loader.define(function() {
     pageview.init = function() {
 
         var uiSlide = bui.slide({
-            id: "#slide",
+            id: "#slide1",
             height: 300,
             autopage: true,
             loop: true,
