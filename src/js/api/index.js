@@ -1,18 +1,22 @@
-export const get = (url, data) => {
+if (localStorage.getItem('token')) {
+    let token = localStorage.getItem('token')
+    bui.config.ajax = { headers: {
+        token
+    }}
+}
+
+const get = (url, data) => {
     return bui.ajax({
         url,
         data,
         method:'get'
     })
 }
-export const post = (url, data) => {
-    let formData = new FormData()
-    for (let key in data) {
-      formData.append(key, data[key])
-    }
+
+const post = (url, data) => {
     return bui.ajax({
         url,
-        data: formData,
+        data,
         method:'post'
     })
 }

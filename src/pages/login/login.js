@@ -1,10 +1,6 @@
-/**
- * 通用登录模板,包含输入交互,提交需要自己绑定验证
- * 默认模块名: pages/login/login
- * @return {[object]}  [ 返回一个对象 ]
- */
+loader.import("../../js/api/login.js");
  loader.define(function(){
-
+    
     var pageview = {};
     
     pageview.bind = function () {
@@ -43,33 +39,43 @@
 
     }
      //页面跳转
-     var btnr =document.getElementById('btnr')
+     var btnr = document.getElementById('btnr')
      btnr.onclick=function(){
         bui.load({ url: "pages/register/register.html", param: {} });
         //  alert('点秋香')
      }
-     var btnr =document.getElementById('btnl')
+
+
+     var btnr = document.getElementById('btnl')
      btnr.onclick=function(){
-        bui.load({ url: "pages/login/login.html", param: {} });
-        //  alert('点秋香')
+        // bui.load({ url: "pages/login/login.html", param: {} });
+
+        var phone = document.getElementById('phone').value;
+        var password = document.getElementById('password').value;
+
+        if (phone.length > 10 && password.length > 4) {
+
+            login({phone, password}).then(res => {
+                console.log(res)
+                if (res.code === '0') {
+                    bui.hint({ content: "<i class='icon-check'></i><br />登录成功", position: "center", effect: "fadeInDown" });
+                    localStorage.setItem('token', res.data);
+                    bui.load({ url: "pages/main/main.html" });
+                } else {
+                    bui.alert(res.errMsg)
+                }
+            })
+        } else {
+            bui.alert("数据有误！")
+        }
+        
+
+
      }
      var btnr =document.getElementById('btnp')
      btnr.onclick=function(){
         bui.load({ url: "pages/reset/reset.html", param: {} });
         //  alert('点秋香')
      }
-
-    pageview.init = function () {
-
-        // 绑定事件
-        this.bind();
-    }
-
-
-    // 初始化
-    pageview.init();
-
-    // 输出模块
-    return pageview;
 })
    

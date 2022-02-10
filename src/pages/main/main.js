@@ -3,8 +3,11 @@
  * 默认模块名: main
  * @return {[object]}  [ 返回一个对象 ]
  */
+loader.import("../../js/api/lesson.js")
 loader.define(function(require, exports, module) {
-
+    // if (!localStorage.getItem('token')) {
+    //     bui.load({ url: "pages/login/login.html" });
+    // }
     var pageview = {},
         uiDialogNav;
 

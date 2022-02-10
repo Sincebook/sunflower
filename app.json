@@ -27,7 +27,7 @@
   "package": {
     "uglify": true,
     "folder": "pages",
-    "main": "pages/main/main"
+    "main": "pages/login/login"
   },
   "cleancss": false,
   "autoprefixer": true,
