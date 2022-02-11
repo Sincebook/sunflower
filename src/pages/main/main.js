@@ -3,16 +3,16 @@
  * 默认模块名: main
  * @return {[object]}  [ 返回一个对象 ]
  */
+if (!localStorage.getItem('token')) {
+    bui.load({ url: "pages/login/login.html", replace: true });
+}
 loader.import("../../js/api/lesson.js")
-loader.define(function(require, exports, module) {
-    // if (!localStorage.getItem('token')) {
-    //     bui.load({ url: "pages/login/login.html" });
-    // }
+loader.define(function (require, exports, module) {
     var pageview = {},
         uiDialogNav;
 
     // 模块初始化定义
-    pageview.init = function() {
+    pageview.init = function () {
         navTab();
 
         // 栏目弹出菜单, 因为要遮住底部的导航, 所以弹出层需要跟底部导航在一块初始化
@@ -30,15 +30,15 @@ loader.define(function(require, exports, module) {
 
         //menu在tab外层,menu需要传id
         var tab = bui.tab({
-                id: "#tabDynamic",
-                menu: "#tabDynamicNav",
-                swipe: false,
-                animate: false,
-                // 1: 声明是动态加载的tab
-                autoload: true,
-            })
-            // 2: 监听加载后的事件, load 只加载一次
-        tab.on("to", function(index) {
+            id: "#tabDynamic",
+            menu: "#tabDynamicNav",
+            swipe: false,
+            animate: false,
+            // 1: 声明是动态加载的tab
+            autoload: true,
+        })
+        // 2: 监听加载后的事件, load 只加载一次
+        tab.on("to", function (index) {
             var current = index || 0;
             switch (current) {
                 case 0:

@@ -1,4 +1,3 @@
-loader.import("../../js/api/index.js");
 function banners(params) {
     return get('/api/banner/findAll', params)
 }
