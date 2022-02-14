@@ -10,12 +10,14 @@ bui.ready(function() {
 
     // 绑定事件
     bind();
-
+    window.onresize = () => {
+        window.location.reload();
+    }
     // 事件类定义
     function bind() {
         // 绑定页面的所有按钮有href跳转
         bui.btn({ id: "#bui-router", handle: ".bui-btn" }).load();
-
+        
         // 统一绑定页面所有的后退按钮
         $("#bui-router").on("click", ".btn-back", function(e) {
             // 支持后退多层,支持回调
