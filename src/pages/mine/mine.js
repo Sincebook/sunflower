@@ -10,7 +10,12 @@ loader.define(function() {
     pageview.init = function() {
         document.getElementById('lgout').addEventListener('click', ()=> {
             localStorage.removeItem('token');
-            bui.load({url:'pages/login/login.html', replace: true})
+            bui.load({url:'pages/login/login.html',
+            replace: true,
+            callback: () => {
+                window.location.reload();
+            }
+        })
         })
     }
 

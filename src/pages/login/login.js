@@ -35,45 +35,50 @@ loader.define(function () {
                 $(e.target).toggleClass("active")
             }
         })
-       
+
     }
     pageview.init = () => {
         var btnr = document.getElementById('btnl')
-        btnr.onclick=function(){
-           // bui.load({ url: "pages/login/login.html", param: {} });
-   
-           var phone = document.getElementById('phone').value;
-           var password = document.getElementById('password').value;
-   
-           if (phone.length > 10 && password.length > 4) {
-   
-               login({phone, password}).then(res => {
-                   console.log(res)
-                   if (res.code === '0') {
-                       bui.hint({ content: "<i class='icon-check'></i><br />登录成功", position: "center", effect: "fadeInDown" });
-                       localStorage.setItem('token', res.data);
-                       // window.location.href = '#pages/main/main.html';
-                       bui.load({ url: "pages/main/main.html", replace:true });
-                   } else {
-                       bui.alert(res.errMsg)
-                   }
-               })
-           } else {
-               bui.alert("数据有误！")
-           }
+        btnr.onclick = function () {
+            // bui.load({ url: "pages/login/login.html", param: {} });
+
+            var phone = document.getElementById('phone').value;
+            var password = document.getElementById('password').value;
+
+            if (phone.length > 10 && password.length > 4) {
+
+                login({ phone, password }).then(res => {
+                    console.log(res)
+                    if (res.code === '0') {
+                        bui.hint({ content: "<i class='icon-check'></i><br />登录成功", position: "center", effect: "fadeInDown" });
+                        localStorage.setItem('token', res.data);
+                        // window.location.href = '#pages/main/main.html';
+                        bui.load({
+                            url: "pages/main/main.html", replace: true,
+                            callback: () => {
+                                window.location.reload();
+                            }
+                        });
+                    } else {
+                        bui.alert(res.errMsg)
+                    }
+                })
+            } else {
+                bui.alert("数据有误！")
+            }
         }
         var btnr = document.getElementById('btnr')
         btnr.onclick = function () {
             bui.load({ url: "pages/register/register.html", param: {} });
             //  alert('点秋香')
         }
-    
+
         var btnr = document.getElementById('btnp')
         btnr.onclick = function () {
             bui.load({ url: "pages/reset/reset.html", param: {} });
             //  alert('点秋香')
         }
-    } 
+    }
     pageview.init();
     return pageview;
 })

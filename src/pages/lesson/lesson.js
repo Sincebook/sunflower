@@ -12,7 +12,7 @@ loader.define(function () {
                     data: res.data
                 });
             } else {
-                bui.alert(res.errMsg)
+                console.log(res.errMsg)
             }
         });
         let ul = document.getElementById('uiNewsTabNav');
@@ -28,7 +28,7 @@ loader.define(function () {
                 }
                 ul.innerHTML = htm
             } else {
-                bui.alert(res.errMsg)
+                console.log(res.errMsg)
             }
         })
         let btns = ul.querySelectorAll('.bui-btn');
