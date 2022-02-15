@@ -18,54 +18,66 @@
            }
            #circle img{
                width: 100%;
+               height: 100%;
            }
        </style>
     </header>
     <main>
         <!-- 正文内容 -->
        
-        <div class="bui-list">
+        <div class="bui-list" id="message">
             <div class="bui-btn bui-box">
-				<div class="bui-label">头像：</div>
+				<div class="bui-label">头像:</div>
 				<div class="span1">
 					 <div id="circle">
-                        <img src="../../images/applogo.png" alt="">
+                        <img id="image" src="../../images/applogo.png" alt="">
                     </div>
 				</div>
 			</div>
 			<div class="bui-btn bui-box">
-				<div class="bui-label">昵称：</div>
+				<div class="bui-label">名字:</div>
 				<div class="span1">
-					<div class="bui-value">最好的太阳</div>
+					<div class="bui-value" id="name" b-text="page.attrs.name">
+						
+					</div>
 				</div>
 			</div>
 			<div class="bui-btn bui-box">
-				<div class="bui-label">类别：</div>
+				<div class="bui-label">类别:</div>
 				<div class="span1">
-					<div class="bui-value">货运</div>
+					<div class="bui-value" id="type" b-text="page.attrs.type"></div>
 				</div>
 			</div>
             <div class="bui-btn bui-box">
-				<div class="bui-label">手机号码：</div>
+				<div class="bui-label">手机号码:</div>
 				<div class="span1">
-					<div class="bui-value">12345678901</div>
+					<div class="bui-value" id="phone" b-text="page.attrs.phone"></div>
 				</div>
 			</div>
             <div class="bui-btn bui-box">
-				<div class="bui-label">身份证号：</div>
+				<div class="bui-label">身份证号:</div>
 				<div class="span1">
-					<div class="bui-value">411111111111111</div>
+					<div class="bui-value" id="idcard" b-text="page.attrs.idcard"></div>
 				</div>
 			</div>
             <div class="bui-btn bui-box">
-				<div class="bui-label">所属单位：</div>
+				<div class="bui-label">所属公司:</div>
 				<div class="span1">
-					<div class="bui-value">郑州汽车局</div>
+					<div class="bui-value" id="companyName" b-text="page.attrs.companyName"></div>
+				</div>
+			</div>
+            <div class="bui-btn bui-box">
+				<div class="bui-label">公司地址:</div>
+				<div class="span1">
+					<div class="bui-value" id="companyAddress" b-text="page.attrs.companyAddress"></div>
+				</div>
+			</div>
+            <div class="bui-btn bui-box">
+				<div class="bui-label">公司电话:</div>
+				<div class="span1">
+					<div class="bui-value" id="companyPhone" b-text="page.attrs.companyPhone"></div>
 				</div>
 			</div>
         </div>
     </main>
-    <footer>
-        <!-- 底部内容 -->
-    </footer>
 </div>
