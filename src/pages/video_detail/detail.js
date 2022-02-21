@@ -16,7 +16,27 @@ loader.define(function(require,exports,module,global){
 		// 	}
 		// ]
 		});
-
+        const media = document.getElementById('media')	// video元素
+        const capture = document.getElementById('capture')	// button元素
+        
+        const canvas = document.getElementById('canvas')  // canvas元素
+        const context = canvas.getContext('2d')
+        
+        navigator.mediaDevices.getUserMedia({video: {width: 480, height: 320, facingMode: 'user'}, audio: true}).then(stream => {
+          // 将视频流设置为video元素的源
+          media.srcObject = stream
+          // 低版本浏览器
+          // media.src = window.URL.createObjectURL(stream)
+          media.play()
+        })
+        
+        // 绑定拍照按钮的单机事件
+        capture.addEventListener('click', () => {
+          context.drawImage(media, 0, 0)	// 将video在canvas上绘制出来
+          canvas.toBlob(blob => {		// 将canvas转换为blob
+            console.log(blob)
+          })
+        })
 	myPlayer.controlBar.progressControl.disable();
 	var video = document.getElementById('video');
 
