@@ -24,6 +24,9 @@ loader.define(function () {
         document.getElementById('btn-cdk').addEventListener('click', () => {
             bui.load({ url: 'pages/cdk/cdk.html' })
         })
+        document.getElementById('jump').addEventListener('click', () => {
+            bui.load({ url: 'pages/video_detail/detail.html' })
+        })
     }
 
     // 初始化
