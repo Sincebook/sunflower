@@ -1,3 +1,4 @@
+loader.import("../../js/api/task.js")
 loader.define(function() {
     var pageview = {
         init: function() {
@@ -23,10 +24,14 @@ loader.define(function() {
                 }, ]
             })
 
-            // uiTabHead.addBadge(1, 5)
-            // uiTabHead.addBadge(1, 3)
-            // uiTabHead.removeBadge()
+            viewCurrentTask().then(res => {
+                console.log(res);
+                if (res.code === '0') {
 
+                } else {
+                    bui.alert(res.errMsg);
+                }
+            })
         }
     }
     pageview.init();

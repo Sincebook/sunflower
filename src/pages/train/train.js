@@ -1,3 +1,4 @@
+loader.import("../../js/api/train.js")
 loader.define(function() {
     var pageview = {
         init: function() {
@@ -17,11 +18,6 @@ loader.define(function() {
                     param: { type: "photo" },
                 }, ]
             })
-
-            // uiTabHead.addBadge(1, 5)
-            // uiTabHead.addBadge(1, 3)
-            // uiTabHead.removeBadge()
-
         }
     }
     pageview.init();
