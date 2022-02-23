@@ -10,9 +10,9 @@ bui.ready(function() {
 
     // 绑定事件
     bind();
-    window.onresize = () => {
-        window.location.reload();
-    }
+    // window.onresize = () => {
+    //     window.location.reload();
+    // }
     // 事件类定义
     function bind() {
         // 绑定页面的所有按钮有href跳转
