@@ -70,10 +70,6 @@ loader.define(function() {
                                         </div>
                                         <div class="span1">
                                             <h3 class="activity-title">${res.data[i].name} </h3>
-                                            <div class="tags">
-                                                <span class="tag-item"></span>
-                                                <span class="tag-item"></span>
-                                            </div>
                                             <div class="activity-time"><i class="icon icon-time"></i>${getTime(res.data[i].uptime)}</div>
                                         </div>
                                         </div>`
