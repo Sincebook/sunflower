@@ -9,3 +9,6 @@ function getClasses(params) {
 function findByClassesId(params) {
     return get('/api/lesson/findByClassesId', params)
 }
+function getClasseLesson(params) {
+    return get('/api/lesson/findByIdDetail', params)
+}

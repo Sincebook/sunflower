@@ -21,6 +21,7 @@ loader.define(function() {
             bui.load({ url: 'pages/cdk/cdk.html' })
         })
 
+
         displayOwnInfo().then(res => {
             console.log(res);
             if (res.code === '0') {
@@ -38,6 +39,10 @@ loader.define(function() {
             } else {
                 bui.alert(res.errMsg);
             }
+            })
+
+        document.getElementById('jump').addEventListener('click', () => {
+            bui.load({ url: 'pages/video_detail/detail.html' })
         })
     }
 
