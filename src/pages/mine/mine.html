@@ -95,11 +95,11 @@
 </style>
 <div class="bui-page">
     <main>
-        <div class="personal-header">
+        <div class="personal-header" style="width: auto">
             <div class="personal-img">
-                <img src="images/applogo.png">
+                <img b-bind:src="page.image">
             </div>
-            <p class="name">王小o</p>
+            <p class="name" b-text="page.name"></p>
         </div>
         <ul class="bui-list nav-list">
             <li class="bui-btn bui-box" id="btn-myMessage">
