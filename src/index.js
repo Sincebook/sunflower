@@ -1,5 +1,6 @@
 window.router = bui.router();
 loader.import("../../js/api/index.js");
+loader.import("../../js/api/lesson.js")
 bui.ready(function() {
     // 初始化路由
     router.init({

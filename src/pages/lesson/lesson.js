@@ -11,7 +11,7 @@ loader.define(function() {
                 } else {
                     _data = data * 1000
                 }
-                const time = new Date(_data);
+                const time = new Date(Number(_data));
                 const Y = time.getFullYear();
                 const Mon = time.getMonth() + 1;
                 const Day = time.getDate();

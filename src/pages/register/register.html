@@ -13,10 +13,26 @@
         <div class="section-title">请填写信息</div>
         <ul class="bui-list">
             <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="phonenumber">姓名:</label>
+                <div class="span1">
+                    <div class="bui-input user-input">
+                        <input id="phone" type="text" b-model="page.name" value="" placeholder="请输入您的真实姓名">
+                    </div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="phonenumber">身份证号:</label>
+                <div class="span1">
+                    <div class="bui-input user-input">
+                        <input id="phone" type="text" b-model="page.idcard" value="" placeholder="请输入您的身份证号">
+                    </div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
                 <label class="bui-label" for="phonenumber">手机号:</label>
                 <div class="span1">
                     <div class="bui-input user-input">
-                        <input id="phonenumber" type="number" value="" placeholder="请输入手机号">
+                        <input id="phone" type="number" b-model="page.phone" value="" placeholder="请输入手机号">
                     </div>
                 </div>
             </li>
@@ -24,20 +40,20 @@
                 <label class="bui-label" for="password">密码:</label>
                 <div class="span1">
                     <div id="passwordInput" class="bui-input">
-                        <input id="password" type="password" placeholder="请输入密码">
+                        <input id="password" type="password" b-model="page.password" placeholder="请输入密码">
                     </div>
                 </div>
             </li>
       			<li class="bui-btn bui-box clearactive">
       				<label class="bui-label">验证码:</label>
       				<div class="span1">
-      					<input type="text" class="bui-input" value="" placeholder="请输入验证码" maxlength="4">
+      					<input id="code" type="text" b-model="page.code" class="bui-input" value="" placeholder="请输入验证码" maxlength="4">
       				</div>
-      				<div class="bui-btn primary-reverse mini ring" id="btnSend">发送验证码</div>
+      				<div class="bui-btn primary-reverse mini ring" b-click="page.sendQrCode" id="btnSend">发送验证码</div>
       			</li>
     		</ul>
         <div class="container-xy">
-          <div class="bui-btn round primary" href="pages/msg/msg.html">注册</div>
+          <div class="bui-btn round primary" b-click="page.register">注册</div>
         </div>
     </main>
 

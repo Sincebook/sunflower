@@ -1,64 +1,58 @@
+function getUserMedia(constraints,success,error){
+    if(navigator.mediaDevices.getUserMedia){
+        navigator.mediaDevices.getUserMedia(constraints).then(success).catch(error);
+    }else if (navigator.webkitGetUserMedia) {
+        navigator.webkitGetUserMedia(constraints,success,error);
+    }else if (navigator.mozGetUserMedia) {
+        navigator.mozGetUserMedia(constraints,success,error);
+    }else if (navigator.getUserMedia) {
+        navigator.getUserMedia(constraints,success,error)
+    }
+}
+
+let video = document.getElementById('video');
+let canvas = document.getElementById('canvas');
+let context = canvas.getContext('2d');
+//成功回调
+function success(stream){
+    video.srcObject = stream;
+    video.play();
+}
+//失败回调
+function error(error) {
+    console.log(error)
+    alert("访问用户媒体失败");
+}
+//开启摄像头
+if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia) {
+    // alert("???")
+    getUserMedia({audio: true, video:{facingMode: "user"}},success,error)
+}else {
+    alert("不支持");
+}
+// alert("???")
 loader.define(function(require,exports,module,global){
     var pageview = {
 	};
+
     var myPlayer = videojs('my-video',{
-		// controls:true,
-		// poster:'',
-		// preload:'auto',
-		// autoplay:false,
-		// fluid:true,
-		// muted:false,
-		// sources:[ // 视频源
-		// 	{
-		// 		src: '//vjs.zencdn.net/v/oceans.mp4',
-		// 		type: 'video/mp4',
-		// 		poster: '//vjs.zencdn.net/v/oceans.png'
-		// 	}
-		// ]
+		controls:true,
+		poster:'',
+		preload:'auto',
+		autoplay:false,
+		fluid:true,
+		muted:false,
+		src: 'http://vjs.zencdn.net/v/oceans.mp4',
 		});
 
+    myPlayer.load();
+      
+		// //实现拍照的功能
+		// document.getElementById('snap').addEventListener('click',function(){
+		// 	context.drawImage(video,0,0,500,500);
+		// });
 
-        function getUserMedia(constraints,success,error){
-			if(navigator.mediaDevices.getUserMedia){
-				navigator.mediaDevices.getUserMedia(constraints).then(success).catch(error);
-			}else if (navigator.webkitGetUserMedia) {
-				navigator.webkitGetUserMedia(constraints,success,error);
-			}else if (navigator.mozGetUserMedia) {
-				navigator.mozGetUserMedia(constraints,success,error);
-			}else if (navigator.getUserMedia) {
-				navigator.getUserMedia(constraints,success,error)
-			}
-		}
-		
-		let video = document.getElementById('video');
-		let canvas = document.getElementById('canvas');
-		let context = canvas.getContext('2d');
-		//成功回调
-		function success(stream){
-			video.srcObject = stream;
-			video.play();
-		}
-		//失败回调
-		function error(error) {
-			console.log("访问用户媒体失败");
-		}
-		//开启摄像头
-		if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia) {
-			getUserMedia({video:{width:500,height:500}},success,error)
-		}else {
-			alert("不支持");
-		}
-		//实现拍照的功能
-		document.getElementById('snap').addEventListener('click',function(){
-			context.drawImage(video,0,0,500,500);
-		});
-
-
-
-
-
-
-	// myPlayer.controlBar.progressControl.disable();
+	myPlayer.controlBar.progressControl.disable();
 	// var video = document.getElementById('video');
 
 
