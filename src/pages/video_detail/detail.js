@@ -30,22 +30,37 @@ if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.w
 }else {
     alert("不支持");
 }
-// alert("???")
+
 loader.define(function(require,exports,module,global){
     var pageview = {
 	};
-
+    var params = router.getPageParams();
+    getClasseLesson({id: params.lesson_id}).then(res => {
+        console.log(res)
+        const vedioList = res.data.les_content.vedio;
+        for (let i in vedioList) {
+            if (vedioList[i].id == params.id) {
+                console.log(vedioList[i])
+                // document.getElementById('my-video').setAttribute('poster',vedioList[i].image)
+                // document.getElementById('my-video').setAttribute('src',vedioList[i].url)
+              
+            }
+        }
+    })
     var myPlayer = videojs('my-video',{
-		controls:true,
-		poster:'',
-		preload:'auto',
-		autoplay:false,
-		fluid:true,
-		muted:false,
-		src: 'http://vjs.zencdn.net/v/oceans.mp4',
-		});
-
-    myPlayer.load();
+        controls:false,
+        poster:'',
+        preload:'auto',
+        autoplay:false,
+        fluid:true, // 默认播放音频
+        playbackRates: [0.5, 1, 1.5, 2],
+        // poster:"http://outin-49d28f1f8d3d11ec897300163e10ce6c.oss-cn-beijing.aliyuncs.com/ee73cb7a73d94380a78b819ddae85a00/snapshots/b3b9e717ecd946938b4ffc775efaaff9-00003.jpg?Expires=1645706023&OSSAccessKeyId=LTAI4FocoL6tuCdYhuvug6Ee&Signature=ekm5UIGtgj%2B016Egrx%2FWbnGGLgo%3D",
+        src: 'https://outin-49d28f1f8d3d11ec897300163e10ce6c.oss-cn-beijing.aliyuncs.com/ee73cb7a73d94380a78b819ddae85a00/4036c069400b46f38eff0e5a81cede7a-a31912eafa51444fd6d2d7ab57dc0a7b-ld.mp4?Expires=1645714174&OSSAccessKeyId=LTAI4FocoL6tuCdYhuvug6Ee&Signature=IrGy7%2F9tDh4S39lO3HTm0v90Noc%3D',
+        sources: [{src: 'https://outin-49d28f1f8d3d11ec897300163e10ce6c.oss-cn-beijing.aliyuncs.com/ee73cb7a73d94380a78b819ddae85a00/4036c069400b46f38eff0e5a81cede7a-a31912eafa51444fd6d2d7ab57dc0a7b-ld.mp4?Expires=1645714174&OSSAccessKeyId=LTAI4FocoL6tuCdYhuvug6Ee&Signature=IrGy7%2F9tDh4S39lO3HTm0v90Noc%3D', type: 'video/mp4'}]
+        },function() {
+            console.log()
+        });
+    // myPlayer.load();
       
 		// //实现拍照的功能
 		// document.getElementById('snap').addEventListener('click',function(){
