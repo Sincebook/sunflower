@@ -36,6 +36,7 @@
         height: 300px;
         border-radius: 50%;
     }
+
     .tip {
         margin: 0 auto;
         margin-top: 20px;
@@ -57,12 +58,19 @@
     </header>
     <main>
         <!-- 正文内容 -->
-        <div class="tip">请保证光线充足</div>
+        <div class="tip">
+            <h3 style="color:#000">请保证光线充足,人脸处于屏幕中心</h3>
+        </div>
+        <br><br>
         <div class="main">
             <div id="caiji" style="z-index: 3;">
             </div>
             <video id="video" class="pic"></video>
+            <br><br>
+            <div class="bui-btn large primary" id="poss">拍照</div><br>
+            <small>注意人脸将应用于后期学习验证,且仅可采集一次。</small>
         </div>
+        <div id="output"></div>
     </main>
     <footer>
         <!-- 底部内容 -->

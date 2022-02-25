@@ -10,3 +10,6 @@ function userRegister(params) {
 function changePassword(params) {
     return post('/api/users/password', params)
 }
+function uploadFace(params) {
+    return post('/api/users/face', params)
+}

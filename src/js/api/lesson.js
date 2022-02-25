@@ -12,3 +12,6 @@ function findByClassesId(params) {
 function getClasseLesson(params) {
     return get('/api/lesson/findByIdDetail', params)
 }
+function addStudyImg(params) {
+    return post('/api/studyImg/add', params)
+}

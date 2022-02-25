@@ -1,4 +1,3 @@
-loader.import("../../js/api/login.js")
 loader.define(function () {
 
     var pageview = {};

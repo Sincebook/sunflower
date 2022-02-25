@@ -13,7 +13,14 @@ loader.define(function () {
             id: "#tabLesson",
         });
         getClasseLesson({ id: params.id }).then(res => {
-            console.log(res.data);
+            let finishVideo = videoStorage.get('finishVideo');
+            let videoIds = []
+            for (let i in finishVideo) {
+                if (finishVideo[i].lesson_id == params.id) {
+                    videoIds.push(finishVideo[i].videoId)
+                }
+            }
+            console.log(videoIds)
             var videos = [];
             var ppts = [];
             videos = res.data.les_content.vedio;
@@ -24,11 +31,11 @@ loader.define(function () {
                 html += `<li class="bui-btn bui-box" href="/pages/video_detail/detail?id=${videos[index].id}&lesson_id=${params.id}">
                 <div class="bui-thumbnail"><img src="${videos[index].image}" alt=""></div>
                 <div class="span1">
-                    <h3 class="item-title" style="color:#333">${videos[index].name}</h3>
+                    <h4 class="item-title" style="color:#000">${videos[index].name}</h4>
                     <div class="tags">
                         <span class="tag-item" style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1; overflow: hidden;color:#666">${videos[index].description}</span>
                     </div>
-                    <br>
+                    <small style="border-radius:5px;background:#eee;padding:3px;color:${videoIds.includes(Number(videos[index].id))?'green':'red'};">${videoIds.includes(Number(videos[index].id))?'已完成':'未完成'}</small><br>
                     <span class="item-text">${getTime(videos[index].uptime)}</span>
                 </div>
                 </li>`;
@@ -54,26 +61,7 @@ loader.define(function () {
             coursewareList.innerHTML = htl;
 
         })
-        function getTime(data) {
-            var _data = data;
-            //如果是13位正常，如果是10位则需要转化为毫秒
-            if (data.length == 13) {
-                _data = data
-            } else {
-                _data = data * 1000
-            }
-            console.log(_data)
-            const time = new Date(Number(_data));
-            console.log(time)
-            const Y = time.getFullYear();
-            const Mon = time.getMonth() + 1;
-            const Day = time.getDate();
-            const H = time.getHours() < 10 ? '0' + time.getHours() : time.getHours();
-            const Min = time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes();;
-            const S = time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds();;
-            return `${Y}-${Mon}-${Day} ${H}:${Min}:${S}`
-        }
-
+      
     };
 
     // 初始化

@@ -27,7 +27,7 @@ function error(error) {
 if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia) {
     // alert("???")
     getUserMedia({
-        audio: true,
+        audio: false,
         video: {
             facingMode: "user"
         }
@@ -55,6 +55,8 @@ loader.define(function (require, exports, module, global) {
                 </video>`
                     document.getElementById('name').innerText = vedioList[i].name
                     document.getElementById('description').innerText = vedioList[i].description
+                    var playTime = 0;
+                 
                     var myPlayer = videojs('my-video', {
                         controls: true,
                         poster: '',
@@ -64,9 +66,20 @@ loader.define(function (require, exports, module, global) {
                         playbackRates: [0.5, 1, 1.5, 2],
                     }, function () {
                         this.on('ended', function () {
-                            console.log('视频放完了')
+                            videoStorage.set('finishVideo', {videoId: vedioList[i].id, lesson_id:params.lesson_id})
+                            
                         })
+                        this.on("timeupdate",function(){
+                            // playTime++;
+                            // console.log(playTime)
+                            // storage.set('ids',playTime)
+                            // console.log(myPlayer.currentTime);
+                        })
+                        this.on("error", function(){
+                            bui.alert('该视频播放异常')
+                        });
                     });
+                   
                     myPlayer.controlBar.progressControl.disable();
                     myPlayer.landscapeFullscreen();
                 } else {

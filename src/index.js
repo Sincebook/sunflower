@@ -1,6 +1,8 @@
 window.router = bui.router();
 loader.import("../../js/api/index.js");
 loader.import("../../js/api/lesson.js")
+loader.import("../../js/api/mine.js")
+loader.import("../../js/api/login.js")
 bui.ready(function() {
     // 初始化路由
     router.init({
@@ -26,6 +28,7 @@ bui.ready(function() {
         })
     }
 })
+var videoStorage = bui.storage({size:99})
 function getTime(data) {
     var _data = data;
     //如果是13位正常，如果是10位则需要转化为毫秒

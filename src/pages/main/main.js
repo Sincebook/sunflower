@@ -1,14 +1,19 @@
 if (!localStorage.getItem('token')) {
     bui.load({ url: "pages/login/login.html", replace: true });
 }
-
-loader.import("../../js/api/lesson.js")
 loader.import("../../js/api/task.js")
 loader.import("../../js/api/home.js")
 loader.import("../../js/api/train.js")
-loader.import("../../js/api/mine.js")
 
 loader.define(function(require, exports, module) {
+    displayOwnInfo().then(res => {
+        console.log(res)
+        if (res.code === '0') {
+            bui.alert('你还未完成人脸采集,请先人脸采集完成!', function() {
+                bui.load({url:'pages/face/face'})
+            })
+        }
+    })
     var pageview = {},
         uiDialogNav;
 
