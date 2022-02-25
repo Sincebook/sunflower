@@ -108,7 +108,7 @@
 <div class="bui-page">
     <main>
         <div class="videoBack">
-            <a class="bui-btn" style="background-color: transparent; border: none;" onclick="bui.back();">
+            <a class="bui-btn" style="background-color: transparent; border: none;" onclick="bui.back(function(){window.location.reload()});">
                 <i class="icon-back backClick"></i>
             </a>
         </div>
@@ -116,18 +116,16 @@
             <video id="video" class="pic" style="width:80px;height: 80px;"></video>
         </div>
         <div id="videoDetail">
-            <video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" playsinline="true" data-setup="{}" poster="">
-                <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
-           </video>
+            
         </div>
-        <canvas id="canvas"></canvas>
-        <h2 id="name">安全知识.mp4</h2>
-        <div id="section">
+        <canvas id="canvas" style="display:none;"></canvas>
+        <h2 id="name" style="color: #000;background: white;padding: 10px;">loading</h2>
+        <div id="section" style="color: #555;background: white;padding: 10px;">
             <h3>视频简介</h3>
-            <p>会上首先传达学习了党的十九大精神以及省、市、区委常委（扩大）会议精神，省、市、区传达学习党的十九大精神大会精神和市院党组（扩大）会议精神。院领导结合检察工作实际，逐一谈学习十九大精神感想和体会。钟磊检察长结合自身检察工作实际，分享自己学习十九大精神感想和体会，并作讲话。
+            <p id="description">
             </p>
         </div>
-        <div style="padding-left:8px;">
+        <!-- <div style="padding-left:8px;">
             <h3></h3>
             <ul class="bui-list activity" id="scrollList">
                 <li>
@@ -182,17 +180,17 @@
                     </div>                 
                 </li>
             </ul>
-        </div>
+        </div> -->
         <!-- 底部消息 -->
-
+        <ul class="bui-list" id="videoLists">123333</ul>
 
     </main>
-    <footer style="padding: 8px;">
+    <!-- <footer style="padding: 8px;">
         <div class="chatbar">
             <div class="bui-input">
                 <input type="text" id="chatInput" placeholder="写下你的心得体会" style="border-bottom: 1px solid #73859f;"></input><span id="btnSend" class="bui-btn mini primary round">发送</span>
             </div>
         </div>
-    </footer>
+    </footer> -->
 
 </div>

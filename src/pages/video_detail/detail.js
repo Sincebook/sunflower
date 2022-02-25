@@ -1,12 +1,12 @@
-function getUserMedia(constraints,success,error){
-    if(navigator.mediaDevices.getUserMedia){
+function getUserMedia(constraints, success, error) {
+    if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia(constraints).then(success).catch(error);
-    }else if (navigator.webkitGetUserMedia) {
-        navigator.webkitGetUserMedia(constraints,success,error);
-    }else if (navigator.mozGetUserMedia) {
-        navigator.mozGetUserMedia(constraints,success,error);
-    }else if (navigator.getUserMedia) {
-        navigator.getUserMedia(constraints,success,error)
+    } else if (navigator.webkitGetUserMedia) {
+        navigator.webkitGetUserMedia(constraints, success, error);
+    } else if (navigator.mozGetUserMedia) {
+        navigator.mozGetUserMedia(constraints, success, error);
+    } else if (navigator.getUserMedia) {
+        navigator.getUserMedia(constraints, success, error)
     }
 }
 
@@ -14,7 +14,7 @@ let video = document.getElementById('video');
 let canvas = document.getElementById('canvas');
 let context = canvas.getContext('2d');
 //成功回调
-function success(stream){
+function success(stream) {
     video.srcObject = stream;
     video.play();
 }
@@ -26,49 +26,76 @@ function error(error) {
 //开启摄像头
 if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia) {
     // alert("???")
-    getUserMedia({audio: true, video:{facingMode: "user"}},success,error)
-}else {
+    getUserMedia({
+        audio: true,
+        video: {
+            facingMode: "user"
+        }
+    }, success, error)
+} else {
     alert("不支持");
 }
 
-loader.define(function(require,exports,module,global){
-    var pageview = {
-	};
+loader.define(function (require, exports, module, global) {
+    var pageview = {};
     var params = router.getPageParams();
-    getClasseLesson({id: params.lesson_id}).then(res => {
-        console.log(res)
-        const vedioList = res.data.les_content.vedio;
-        for (let i in vedioList) {
-            if (vedioList[i].id == params.id) {
-                console.log(vedioList[i])
-                // document.getElementById('my-video').setAttribute('poster',vedioList[i].image)
-                // document.getElementById('my-video').setAttribute('src',vedioList[i].url)
-              
+    pageview.init = function () {
+        getClasseLesson({
+            id: params.lesson_id
+        }).then(res => {
+            console.log(res)
+            const vedioList = res.data.les_content.vedio;
+            let htmls = ''
+            let videos = document.getElementById("videoLists");
+            for (let i in vedioList) {
+                if (vedioList[i].id == params.id) {
+                    document.getElementById('videoDetail').innerHTML =
+                        `<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" playsinline="true" data-setup="{}" poster="${vedioList[i].image}">
+                     <source src="${vedioList[i].url}" type="video/mp4"> 
+                </video>`
+                    document.getElementById('name').innerText = vedioList[i].name
+                    document.getElementById('description').innerText = vedioList[i].description
+                    var myPlayer = videojs('my-video', {
+                        controls: true,
+                        poster: '',
+                        preload: 'auto',
+                        autoplay: false,
+                        fluid: true, // 默认播放音频
+                        playbackRates: [0.5, 1, 1.5, 2],
+                    }, function () {
+                        this.on('ended', function () {
+                            console.log('视频放完了')
+                        })
+                    });
+                    myPlayer.controlBar.progressControl.disable();
+                    myPlayer.landscapeFullscreen();
+                } else {
+                    htmls += `<li class="bui-btn bui-box" onclick="bui.load({ url: 'pages/video_detail/detail?id=${vedioList[i].id}&lesson_id=${params.lesson_id}',callback:function(){window.location.reload()} });">
+                    <div class="bui-thumbnail"><img src="${vedioList[i].image}" alt=""></div>
+                    <div class="span1">
+                        <h3 class="item-title" style="color:#333">${vedioList[i].name}</h3>
+                        <div class="tags">
+                            <span class="tag-item" style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1; overflow: hidden;color:#666">${vedioList[i].description}</span>
+                        </div>
+                        <br>
+                        <span class="item-text">${getTime(vedioList[i].uptime)}</span>
+                    </div>
+                    </li>`
+                }
             }
-        }
-    })
-    var myPlayer = videojs('my-video',{
-        controls:false,
-        poster:'',
-        preload:'auto',
-        autoplay:false,
-        fluid:true, // 默认播放音频
-        playbackRates: [0.5, 1, 1.5, 2],
-        // poster:"http://outin-49d28f1f8d3d11ec897300163e10ce6c.oss-cn-beijing.aliyuncs.com/ee73cb7a73d94380a78b819ddae85a00/snapshots/b3b9e717ecd946938b4ffc775efaaff9-00003.jpg?Expires=1645706023&OSSAccessKeyId=LTAI4FocoL6tuCdYhuvug6Ee&Signature=ekm5UIGtgj%2B016Egrx%2FWbnGGLgo%3D",
-        src: 'https://outin-49d28f1f8d3d11ec897300163e10ce6c.oss-cn-beijing.aliyuncs.com/ee73cb7a73d94380a78b819ddae85a00/4036c069400b46f38eff0e5a81cede7a-a31912eafa51444fd6d2d7ab57dc0a7b-ld.mp4?Expires=1645714174&OSSAccessKeyId=LTAI4FocoL6tuCdYhuvug6Ee&Signature=IrGy7%2F9tDh4S39lO3HTm0v90Noc%3D',
-        sources: [{src: 'https://outin-49d28f1f8d3d11ec897300163e10ce6c.oss-cn-beijing.aliyuncs.com/ee73cb7a73d94380a78b819ddae85a00/4036c069400b46f38eff0e5a81cede7a-a31912eafa51444fd6d2d7ab57dc0a7b-ld.mp4?Expires=1645714174&OSSAccessKeyId=LTAI4FocoL6tuCdYhuvug6Ee&Signature=IrGy7%2F9tDh4S39lO3HTm0v90Noc%3D', type: 'video/mp4'}]
-        },function() {
-            console.log()
-        });
+            videos.innerHTML = htmls;
+        })
+    }
+    pageview.init();
     // myPlayer.load();
-      
-		// //实现拍照的功能
-		// document.getElementById('snap').addEventListener('click',function(){
-		// 	context.drawImage(video,0,0,500,500);
-		// });
 
-	myPlayer.controlBar.progressControl.disable();
-	// var video = document.getElementById('video');
+    // //实现拍照的功能
+    // document.getElementById('snap').addEventListener('click',function(){
+    // 	context.drawImage(video,0,0,500,500);
+    // });
+
+    // myPlayer.controlBar.progressControl.disable();
+    // var video = document.getElementById('video');
 
 
     // if (navigator.mediaDevices.getUserMedia) {

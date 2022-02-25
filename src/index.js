@@ -26,3 +26,22 @@ bui.ready(function() {
         })
     }
 })
+function getTime(data) {
+    var _data = data;
+    //如果是13位正常，如果是10位则需要转化为毫秒
+    if (data.length == 13) {
+        _data = data
+    } else {
+        _data = data * 1000
+    }
+    console.log(_data)
+    const time = new Date(Number(_data));
+    console.log(time)
+    const Y = time.getFullYear();
+    const Mon = time.getMonth() + 1;
+    const Day = time.getDate();
+    const H = time.getHours() < 10 ? '0' + time.getHours() : time.getHours();
+    const Min = time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes();;
+    const S = time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds();;
+    return `${Y}-${Mon}-${Day} ${H}:${Min}:${S}`
+}
