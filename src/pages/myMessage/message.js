@@ -18,7 +18,7 @@ loader.define(function () {
             },
         }) 
         console.log("进去了");
-        findMyMessage().then(res => {
+        displayOwnInfo().then(res => {
             console.log(res);
             if(res.code === '0'){
                 bs.attrs = res.data;

@@ -9,9 +9,12 @@ loader.define(function(require, exports, module) {
     displayOwnInfo().then(res => {
         console.log(res)
         if (res.code === '0') {
-            bui.alert('你还未完成人脸采集,请先人脸采集完成!', function() {
-                bui.load({url:'pages/face/face'})
-            })
+            if (!res.data.image) {
+                bui.alert('你还未完成人脸采集,请先人脸采集完成!', function() {
+                    bui.load({url:'pages/face/face'})
+                })
+            }
+            
         }
     })
     var pageview = {},
