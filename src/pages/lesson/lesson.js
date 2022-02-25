@@ -48,10 +48,8 @@ loader.define(function() {
                         e = e || window.event;
                         // console.log(e.target);
                         for (let i = 0; i < ulChildren.length; i++) {
-                            ulChildren[i].className = 'bui-btn';
                             ulChildren[i].style.color = '#666';
                         }
-                        e.target.className = 'bui-btn active-btn';
                         e.target.style.color = '#39a4ff';
                         // console.log(e.target.id);
                         let classes_id = e.target.id;
@@ -70,6 +68,8 @@ loader.define(function() {
                                         </div>
                                         <div class="span1">
                                             <h3 class="activity-title">${res.data[i].name} </h3>
+                                            <div class="tags">
+                        <span class="tag-item" style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1; overflow: hidden;color:#666">${res.data[i].description}</span></div>
                                             <div class="activity-time"><i class="icon icon-time"></i>${getTime(res.data[i].uptime)}</div>
                                         </div>
                                         </div>`
