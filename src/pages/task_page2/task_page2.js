@@ -36,7 +36,7 @@ loader.define(function(require, exports, module, global) {
                         <div class="span1">${res.data[i].mission.name}</div>
                         <i class="icon-accordion"></i>
                     </dt>
-                    <dd>
+                    <dd id="${res.data[i].lesson.id}">
                     <ul class="bui-list bui-list-thumbnail"></ul>
                     <li class="bui-btn bui-box">
                     <div class="bui-thumbnail bui-sub"><img src="${res.data[i].lesson.image}"></div>
@@ -49,6 +49,12 @@ loader.define(function(require, exports, module, global) {
             </dd>`
                     }
                     accordionList.innerHTML = html;
+                    let childAccordionList = accordionList.querySelectorAll('dd');
+                    for (let i = 0; i < childAccordionList.length; i++) {
+                        childAccordionList[i].onclick = function() {
+                            bui.load({ url: "pages/lesson_detail/detail.html", param: { id: this.id } });
+                        }
+                    }
                     uiAccordion.showFirst();
                 } else {
                     bui.alert(res.errMsg);
