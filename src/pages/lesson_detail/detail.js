@@ -42,7 +42,7 @@ loader.define(function () {
 
             }
             for (let index = 0; index < ppts.length; index++) {
-                htl += `<li class="bui-btn bui-box">
+                htl += `<li class="bui-btn bui-box"  href="/pages/ppt/ppt?id=${ppts[index].id}&lesson_id=${params.id}">
                 <div class="bui-thumbnail"><img src="${ppts[index].image}" alt=""></div>
                 <div class="span1">
                     <h3 class="item-title">${ppts[index].name}</h3>

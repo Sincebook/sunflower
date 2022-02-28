@@ -60,26 +60,6 @@ loader.define(function () {
         function error(error) {
             console.log(`访问用户媒体设备失败${error.name}, ${error.message}`);
         }
-        const base64ToBlob = function (base64Data) {
-            let arr = base64Data.split(','),
-              fileType = arr[0].match(/:(.*?);/)[1],
-              bstr = atob(arr[1]),
-              l = bstr.length,
-              u8Arr = new Uint8Array(l);
-          
-            while (l--) {
-              u8Arr[l] = bstr.charCodeAt(l);
-            }
-            return new Blob([u8Arr], {
-              type: fileType
-            });
-          };
-          // blob转file
-          const blobToFile = function (newBlob, fileName) {
-            newBlob.lastModifiedDate = new Date();
-            newBlob.name = fileName;
-            return newBlob;
-          };
         //调用
         function dataURLtoFile(url, filename) {
 
@@ -158,66 +138,9 @@ loader.define(function () {
                 canvas.width = 500;
                 canvas.height = 500;
                 canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-                // var img = document.createElement("img");
-                // img.src = canvas.toDataURL("image/png");
-                // var blob = base64ToBlob(canvas.toDataURL("image/png"));
-                // var file = blobToFile(blob, '123');
                 var file = dataURLtoFile(canvas.toDataURL("image/png"),'123.png')
-                // uploadFace({image:file}).then(res=> {
-                //     console.log(res)
-                // })
-                // bui.config.upload = {needNative:true}
                 console.log(file)
                 startUpload(file);
-                // var uiUpload = bui.upload({
-                //     showProgress: true,
-                //     url: "/api/users/face",
-                //     data:{file:canvas.toDataURL("image/png")},
-                //     fileKey:'image',
-                //     onSuccess: function(res) {
-                //         console.log(res)
-                //     },
-                //     onFail: function(error) {
-                //         console.log(error)
-                //     }
-                // });
-                // console.log(123)
-                // uiUpload.start({
-                //     showProgress: true,
-                //     url: "/api/users/face",
-                //     data:{file},
-                //     fileKey:'image',
-                //     onSuccess: function(res) {
-                //         console.log(res)
-                //     },
-                //     onFail: function(error) {
-                //         console.log(error)
-                //     }
-                // });
-                // uiUpload.add({
-                //     onSuccess: function() {
-                //         console.log('123')
-                //     }
-                // })
-                // var data = uiUpload.data();
-                // console.log(data)
-                // uiUpload.start({
-                //     url: "/api/users/face",
-                //     data: {
-                //         file:blob
-                //     },
-                //     fileKey:'image',
-                //     onSuccess: function(_data) {
-                //         console.log('123123')
-                //     },
-                //     onFail: function(e) {
-                //         console.log('123123')
-                //     }
-                // })
-                // console.log(img)
-                // uploadFace({image:img}).then(res=> {
-                //     console.log(res);
-                // })
         });
     }
 
