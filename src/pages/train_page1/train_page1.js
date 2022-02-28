@@ -17,22 +17,10 @@ loader.define(function(require, exports, module, global) {
                 const Mon = time.getMonth() + 1;
                 const Day = time.getDate();
                 const H = time.getHours() < 10 ? '0' + time.getHours() : time.getHours();
-                const Min = time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes();
-                const S = time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds();
-                return `${Y}.${Mon}.${Day}`
+                const Min = time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes();;
+                const S = time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds();;
+                return `${Y}.${Mon}.${Day} ${H}:${Min}:${S}`
             }
-
-            // document.getElementById('signUpForTrain').addEventListener('click', () => {
-            //     let train_id = 1312;
-            //     signUp({ train_id }).then(res => {
-            //         console.log(res);
-            //         if (res.code === '0') {
-            //             bui.alert(res.data);
-            //         } else {
-            //             bui.alert(res.errMsg);
-            //         }
-            //     })
-            // })
 
             let trainList1 = document.querySelector('#trainList1');
             findMyTraining().then(res => {
@@ -40,7 +28,8 @@ loader.define(function(require, exports, module, global) {
                 if (res.code === '0') {
                     let html = '';
                     for (let i in res.data) {
-                        html += `<li class="bui-btn bui-box-center coupon-item" id="${res.data[i].classesId}">
+                        if (res.data[i].trainRecordsStatus == 0)
+                            html += `<li class="bui-btn bui-box-center coupon-item" id="${res.data[i].classesId}">
                         <div class="span1 item-content">
                             <h3 class="item-title bui-text-hide">${res.data[i].name}</h3>
                             <p class="item-text bui-box-text-hide">${res.data[i].address}</p>
@@ -54,8 +43,9 @@ loader.define(function(require, exports, module, global) {
                     </li>`
                     }
                     trainList1.innerHTML = html;
+                    var train_id
                     if (res.data) {
-                        var train_id = res.data[0].id;
+                        train_id = res.data[0].id;
                     }
                     let signUpForTrain = document.querySelectorAll('#signUpForTrain');
                     for (let i = 0; i < signUpForTrain.length; i++) {
