@@ -24,14 +24,6 @@ loader.define(function() {
                 }, ]
             })
 
-            viewCurrentTask().then(res => {
-                console.log(res);
-                if (res.code === '0') {
-
-                } else {
-                    bui.alert(res.errMsg);
-                }
-            })
         }
     }
     pageview.init();

@@ -9,3 +9,7 @@ function signInApi(params) {
 function signOutApi(params) {
     return post('/api/trainRecord/intime', params)
 }
+
+function findMyTraining(params) {
+    return get('/api/train/findByCompanyId', params)
+}
