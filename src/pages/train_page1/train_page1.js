@@ -29,7 +29,7 @@ loader.define(function(require, exports, module, global) {
                     let html = '';
                     for (let i in res.data) {
                         if (res.data[i].trainRecordsStatus == 0)
-                            html += `<li class="bui-btn bui-box-center coupon-item" id="${res.data[i].classesId}">
+                            html += `<li class="bui-btn bui-box-center coupon-item">
                         <div class="span1 item-content">
                             <h3 class="item-title bui-text-hide">${res.data[i].name}</h3>
                             <p class="item-text bui-box-text-hide">${res.data[i].address}</p>
@@ -38,22 +38,28 @@ loader.define(function(require, exports, module, global) {
                         <div class="divider"></div>
                         <div class="item-right bui-align-center">
                             <span class="details">${res.data[i].signUpNums}人已报名</span>
-                            <div class="bui-btn primary mini ring" id="signUpForTrain">立即报名</div>
+                            <div class="bui-btn primary mini ring" id="signUpForTrain" data-trainId="${res.data[i].id}">立即报名</div>
                         </div>
                     </li>`
                     }
                     trainList1.innerHTML = html;
-                    var train_id
-                    if (res.data) {
-                        train_id = res.data[0].id;
-                    }
                     let signUpForTrain = document.querySelectorAll('#signUpForTrain');
                     for (let i = 0; i < signUpForTrain.length; i++) {
                         signUpForTrain[i].onclick = function() {
+                            console.log(this);
+                            console.log(this.dataset["trainid"]);
+                            let train_id = this.dataset["trainid"];
                             signUp({ train_id }).then(res => {
                                 console.log(res);
                                 if (res.code === '0') {
-                                    bui.alert(res.data);
+                                    bui.alert(res.data, () => {
+                                        bui.load({
+                                            url: 'pages/train_page1/train_page1.html',
+                                            callback: function() {
+                                                window.location.reload();
+                                            }
+                                        })
+                                    });
                                 } else {
                                     bui.alert(res.errMsg);
                                 }

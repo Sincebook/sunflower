@@ -72,8 +72,8 @@ loader.define(function(require, exports, module, global) {
                             latitude: String(result.latitude).match(/\d+\.\d{0,6}/)[0],
                         }
                         console.log(queryData);
-                        var longitude = parseFloat(queryData.longtitude);
-                        var latitude = parseFloat(queryData.latitude);
+                        var longitude = 113.672980569386;
+                        var latitude = 34.78800816393977;
                         let signInForTrain = document.querySelectorAll('#signInForTrain');
                         for (let i = 0; i < signInForTrain.length; i++) {
                             signInForTrain[i].addEventListener('click', () => {
