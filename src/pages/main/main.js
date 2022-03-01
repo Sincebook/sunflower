@@ -11,10 +11,10 @@ loader.define(function(require, exports, module) {
         if (res.code === '0') {
             if (!res.data.image) {
                 bui.alert('你还未完成人脸采集,请先人脸采集完成!', function() {
-                    bui.load({url:'pages/face/face'})
+                    bui.load({ url: 'pages/face/face' })
                 })
             }
-            
+
         }
     })
     var pageview = {},
@@ -57,12 +57,9 @@ loader.define(function(require, exports, module) {
                     loader.require(["pages/task/task"])
                     break;
                 case 2:
-                    loader.require(["pages/home/home"])
-                    break;
-                case 3:
                     loader.require(["pages/train/train"])
                     break;
-                case 4:
+                case 3:
                     loader.require(["pages/mine/mine"])
                     break;
             }
