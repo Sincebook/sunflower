@@ -2,7 +2,11 @@ window.router = bui.router();
 loader.import("../../js/api/index.js");
 loader.import("../../js/api/lesson.js")
 loader.import("../../js/api/mine.js")
-loader.import("../../js/api/login.js")
+loader.import("../../js/api/login.js");
+loader.import("../../js/pdf.js");
+loader.import("../../js/pdf.worker.js");
+loader.import("../../js/jquery-2.1.1.min.js");
+loader.import("../../js/pdfh5.js");
 bui.ready(function() {
     // 初始化路由
     router.init({
