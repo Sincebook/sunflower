@@ -57,12 +57,9 @@ loader.define(function(require, exports, module) {
                     loader.require(["pages/task/task"])
                     break;
                 case 2:
-                    loader.require(["pages/home/home"])
-                    break;
-                case 3:
                     loader.require(["pages/train/train"])
                     break;
-                case 4:
+                case 3:
                     loader.require(["pages/mine/mine"])
                     break;
             }
