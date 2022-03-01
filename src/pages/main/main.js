@@ -11,10 +11,10 @@ loader.define(function(require, exports, module) {
         if (res.code === '0') {
             if (!res.data.image) {
                 bui.alert('你还未完成人脸采集,请先人脸采集完成!', function() {
-                    bui.load({url:'pages/face/face'})
+                    bui.load({ url: 'pages/face/face' })
                 })
             }
-            
+
         }
     })
     var pageview = {},

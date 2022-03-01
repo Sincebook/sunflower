@@ -53,12 +53,7 @@ loader.define(function(require, exports, module, global) {
                                 console.log(res);
                                 if (res.code === '0') {
                                     bui.alert(res.data, () => {
-                                        bui.load({
-                                            url: 'pages/train_page1/train_page1.html',
-                                            callback: function() {
-                                                window.location.reload();
-                                            }
-                                        })
+                                        bui.refresh();
                                     });
                                 } else {
                                     bui.alert(res.errMsg);
