@@ -57,15 +57,11 @@ loader.define(function(require, exports, module, global) {
                         <div class="divider"></div>
                         <div class="item-right bui-align-center">
                             <span class="details">${res.data[i].signUpNums}人已报名</span>
-                            <div class="bui-btn primary mini ring" id="signInForTrain">签到</div>
+                            <div class="bui-btn primary mini ring" id="signInForTrain" data-train-id="${res.data[i].id}">签到</div>
                         </div>
                     </li>`
                     }
                     trainList2.innerHTML = html;
-                    var train_id;
-                    if (res.data) {
-                        train_id = res.data[0].id;
-                    }
                     getPosition().then(result => {
                         let queryData = {
                             longtitude: String(result.longitude).match(/\d+\.\d{0,6}/)[0],
@@ -75,17 +71,32 @@ loader.define(function(require, exports, module, global) {
                         var longitude = 113.672980569386;
                         var latitude = 34.78800816393977;
                         let signInForTrain = document.querySelectorAll('#signInForTrain');
+                        let signInTrain = true;
                         for (let i = 0; i < signInForTrain.length; i++) {
-                            signInForTrain[i].addEventListener('click', () => {
-                                signInApi({ train_id, longitude, latitude }).then(res => {
-                                    console.log(res);
-                                    if (res.code === '0') {
-                                        bui.alert('签到成功');
-                                        signInForTrain[i].innerHTML = '签退';
-                                    } else {
-                                        bui.alert(res.errMsg);
-                                    }
-                                })
+                            signInForTrain[i].addEventListener('click', function() {
+                                let train_id = this.dataset["trainId"];
+                                if (!signInTrain) {
+                                    signInApi({ train_id, longitude, latitude }).then(res => {
+                                        console.log(res);
+                                        if (res.code === '0') {
+                                            bui.alert('签到成功');
+                                            signInForTrain[i].innerHTML = '签退';
+                                            signInTrain = false;
+                                        } else {
+                                            bui.alert(res.errMsg);
+                                        }
+                                    })
+                                } else {
+                                    signOutApi({ train_id, longitude, latitude }).then(res => {
+                                        console.log(res);
+                                        if (res.code === '0') {
+                                            bui.alert('签退成功');
+                                        } else {
+                                            bui.alert(res.errMsg);
+                                        }
+                                    })
+                                }
+
                             })
                         }
                     }).catch(err => {

@@ -69,7 +69,7 @@ loader.define(function() {
                                         <div class="span1">
                                             <h3 class="activity-title">${res.data[i].name} </h3>
                                             <div class="tags">
-                        <span class="tag-item" style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1; overflow: hidden;color:#666">${res.data[i].description}</span></div>
+                        <span class="tag-item" style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1; overflow: hidden;">${res.data[i].description}</span></div>
                                             <div class="activity-time"><i class="icon icon-time"></i>${getTime(res.data[i].uptime)}</div>
                                         </div>
                                         </div>`
