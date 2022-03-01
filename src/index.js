@@ -33,6 +33,7 @@ bui.ready(function() {
     }
 })
 var videoStorage = bui.storage({size:99})
+var pptStorage = bui.storage({size:99})
 function getTime(data) {
     var _data = data;
     //如果是13位正常，如果是10位则需要转化为毫秒

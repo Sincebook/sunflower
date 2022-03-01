@@ -141,10 +141,20 @@ loader.define(function (require, exports, module, global) {
                         playbackRates: [0.5, 1, 1.5, 2],
                     }, function () {
                         this.on('ended', function () {
-                            videoStorage.set('finishVideo', {
-                                videoId: vedioList[i].id,
-                                lesson_id: params.lesson_id
-                            })
+                            let videos = videoStorage.get('finishVideo');
+                            let addStatus = true
+                            for (let i in videos) {
+                                if (videos[i].videoId == Number(params.id) && videos[i].lesson_id == params.lesson_id) {
+                                    addStatus = false
+                                }
+                            }
+                            if (addStatus) {
+                                videoStorage.set('finishVideo', {
+                                    videoId: vedioList[i].id,
+                                    lesson_id: params.lesson_id
+                                })
+                                console.log('没有数据')
+                            } 
 
                         })
                         this.on("timeupdate", function () {

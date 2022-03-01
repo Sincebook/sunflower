@@ -14,13 +14,21 @@ loader.define(function () {
         });
         getClasseLesson({ id: params.id }).then(res => {
             let finishVideo = videoStorage.get('finishVideo');
+            let finishPPT = pptStorage.get('finishPPT');
+            console.log(finishVideo, finishPPT)
             let videoIds = []
+            let pptIds = []
             for (let i in finishVideo) {
                 if (finishVideo[i].lesson_id == params.id) {
                     videoIds.push(finishVideo[i].videoId)
                 }
             }
-            console.log(videoIds)
+            for (let i in finishPPT) {
+                if (finishPPT[i].lesson_id == params.id) {
+                    pptIds.push(finishPPT[i].pptId)
+                }
+            }
+            console.log(pptIds)
             var videos = [];
             var ppts = [];
             videos = res.data.les_content.vedio;
@@ -49,7 +57,7 @@ loader.define(function () {
                     <div class="tags">
                         <span class="tag-item" style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1; overflow: hidden;color:#666">${ppts[index].description}</span>
                     </div>
-                    <br>
+                    <small style="border-radius:5px;background:#eee;padding:3px;color:${pptIds.includes(Number(ppts[index].id))?'green':'red'};">${pptIds.includes(Number(ppts[index].id))?'已完成':'未完成'}</small><br>
                     <span class="item-text">${getTime(ppts[index].uptime)}</span>
                 </div>
                 </li>`;
