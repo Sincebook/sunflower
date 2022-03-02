@@ -7,6 +7,7 @@ loader.define(function(require, exports, module, global) {
                 id: "#accordion3"
             })
 
+
             function getTime(data) {
                 var _data = data;
                 //如果是13位正常，如果是10位则需要转化为毫秒
@@ -25,12 +26,13 @@ loader.define(function(require, exports, module, global) {
                 return `${Y}.${Mon}.${Day}`
             }
 
-            let accordionList = document.querySelector('#accordion3');
-            viewFutureTasks().then(res => {
+            let accordionList = document.querySelector('#accordion2');
+            viewHistoricalTasks().then(res => {
                 console.log(res);
                 if (res.code === '0') {
                     let html = '';
                     for (let i in res.data) {
+                        let testStatus = res.data[i].userScore == null ? '未参加考试' : res.data[i].userScore;
                         html += `<dt class="bui-btn bui-box" id="${res.data[i].mission.id}">
                         <div class="span1">${res.data[i].mission.name}</div>
                         <i class="icon-accordion"></i>
@@ -45,13 +47,25 @@ loader.define(function(require, exports, module, global) {
                         <p class="item-text">${res.data[i].lesson.status}</p>
                     </div>
                     </li>
+                    <li class="bui-btn bui-box toExam" style="background-color: rgb(243, 242, 242); padding:0.05rem 0" id="${res.data[i].lesson.id}" >
+                    <div class="icon"><i class="icon icon-thinblue">&#xe62d;</i></div>
+                    <div class="span1" style="font-size:0.3rem">课程考试</div>
+                    <div class="color_yellow">${testStatus}</div>
+                    <i class="icon-listright"></i>
+                </li>
             </dd>`
                     }
                     accordionList.innerHTML = html;
                     let childAccordionList = accordionList.querySelectorAll('dd');
+                    let toExam = accordionList.querySelectorAll('.toExam');
+                    console.log(toExam);
                     for (let i = 0; i < childAccordionList.length; i++) {
                         childAccordionList[i].onclick = function() {
                             bui.load({ url: "pages/lesson_detail/detail.html", param: { id: this.id } });
+                        }
+                        toExam[i].onclick = function(e) {
+                            e.stopPropagation();
+                            bui.load({ url: "pages/exam/exam.html", param: { id: this.id } });
                         }
                     }
                     uiAccordion.showFirst();
@@ -59,8 +73,10 @@ loader.define(function(require, exports, module, global) {
                     bui.alert(res.errMsg);
                 }
             })
+
         }
     };
+
     pageview.init();
     return pageview;
 })
