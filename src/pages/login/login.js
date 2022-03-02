@@ -51,13 +51,15 @@ loader.define(function () {
                     if (res.code === '0') {
                         bui.hint({ content: "<i class='icon-check'></i><br />登录成功", position: "center", effect: "fadeInDown" });
                         localStorage.setItem('token', res.data);
-                        // window.location.href = '#pages/main/main.html';
-                        bui.load({
-                            url: "pages/main/main.html", replace: true,
-                            callback: () => {
-                                window.location.reload();
-                            }
-                        });
+                        addRecord().then(res => {
+                            // console.log('添加成功了吗？')
+                            bui.load({
+                                url: "pages/main/main.html", replace: true,
+                                callback: () => {
+                                    window.location.reload();
+                                }
+                            });
+                        })
                     } else {
                         bui.alert(res.errMsg)
                     }

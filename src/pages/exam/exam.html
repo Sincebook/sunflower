@@ -1,5 +1,54 @@
-<div>
-    <main>
-        
-    </main>
-</div>
+<header>
+    <div class="bui-bar">
+        <div class="bui-bar-left">
+            <a class="bui-btn" onclick="bui.back();"><i class="icon-back"></i></a>
+        </div>
+        <div class="bui-bar-main">课程考试</div>
+        <div class="bui-bar-right">
+            <!-- 右边按钮 -->
+        </div>
+    </div>
+</header>
+<main>
+    <div class="title" style="padding:20px;background:rgb(245, 245, 245);">
+        <h3 b-model="page.choices[page.num].title">hha</h3>
+    </div>
+    <ul class="bui-list">
+        <li class="bui-btn bui-box">
+            <div class="span1">
+                <label for="interest1" ><span b-text="page.nums">A. 单选按钮样式1</span> </label>
+            </div>
+            <input id="interest1" type="radio" class="bui-choose" name="interest" value="" text="">
+        </li>
+        <li class="bui-btn bui-box bui-btn-line">
+            <div class="span1">
+                <label for="interest2">B. 单选按钮样式2</label>
+            </div>
+            <input id="interest2" type="radio" class="bui-choose" name="interest" value="" text="">
+        </li>
+        <li class="bui-btn bui-box bui-btn-line">
+            <div class="span1">
+                <label for="interest3">C. 单选按钮样式2</label>
+            </div>
+            <input id="interest3" type="radio" class="bui-choose" name="interest" value="" text="">
+        </li>
+        <li class="bui-btn bui-box bui-btn-line">
+            <div class="span1">
+                <label for="interest4">D. 单选按钮样式2</label>
+            </div>
+            <input id="interest4" type="radio" class="bui-choose" name="interest" value="" text="">
+        </li>
+    </ul>
+</main>
+<footer style="">
+    <div class="bui-interval" style="">
+        <ul class="bui-group ring small">
+            <li class="bui-btn " style="width: 100px;margin: 10px;">上一题</li>
+            <li class="bui-btn primary" style="width: 100px;margin: 10px;">确定</li>
+            <li class="bui-btn " style="width: 100px;margin: 10px;">下一题</li>
+        </ul>
+    </div>
+</footer>
+<style>
+   
+</style>

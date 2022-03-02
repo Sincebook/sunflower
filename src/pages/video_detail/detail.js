@@ -122,8 +122,10 @@ loader.define(function (require, exports, module, global) {
             const vedioList = res.data.les_content.vedio;
             let htmls = ''
             let videos = document.getElementById("videoLists");
+            let hasvideo = true
             for (let i in vedioList) {
-                if (vedioList[i].id == params.id) {
+                if (vedioList[i].id == params.id && hasvideo) {
+                    hasvideo = false
                     document.getElementById('videoDetail').innerHTML =
                         `<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" playsinline="true" data-setup="{}" poster="${vedioList[i].image}">
                      <source src="${vedioList[i].url}" type="video/mp4"> 
