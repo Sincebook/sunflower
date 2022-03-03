@@ -11,42 +11,69 @@
         </div>
     </header>
     <main>
-        <div class="title" style="padding:20px;background:rgb(245, 245, 245);">
-            <h3 b-text="page.choices.title">hha</h3>
+        <div class="title  section-title" style="padding:20px;background:rgb(250, 250, 230); color:#000;">
+          <span b-text="page.typeName"></span> <span b-text="page.choices.title">123</span> 
         </div>
-        <ul class="bui-list">
+        <img id="pic" src="" style="display:none;width: 100%;">
+        <ul class="bui-list" id="singleChoice">
             <li class="bui-btn bui-box">
                 <div class="span1">
-                    <label for="interest1"><span b-text="page.choice">A. 单选按钮样式1</span> </label>
+                    <label for="interest1">A. <span b-text="page.choice.0.content"></span> </label>
                 </div>
-                <input id="interest1" type="radio" class="bui-choose" name="interest" value="" text="">
+                <input id="interest1" type="radio" class="bui-choose" name="interest" value="A" text="">
             </li>
             <li class="bui-btn bui-box bui-btn-line">
                 <div class="span1">
-                    <label for="interest2">B. 单选按钮样式2</label>
+                    <label for="interest2" >B. <span b-text="page.choice.1.content"></span></label>
                 </div>
-                <input id="interest2" type="radio" class="bui-choose" name="interest" value="" text="">
+                <input id="interest2" type="radio" class="bui-choose" name="interest" value="B" text="">
+            </li>
+            <li class="bui-btn bui-box bui-btn-line"  b-style="page.choice.2.style">
+                <div class="span1">
+                    <label for="interest3">C. <span b-text="page.choice.2.content"></span></label>
+                </div>
+                <input id="interest3" type="radio" class="bui-choose" name="interest" value="C" text="">
+            </li>
+            <li class="bui-btn bui-box bui-btn-line"  b-style="page.choice.3.display" >
+                <div class="span1">
+                    <label for="interest4" >D. <span b-text="page.choice.3.content"></span></label>
+                </div>
+                <input id="interest4" type="radio" class="bui-choose" name="interest" value="D" text="">
+            </li>
+        </ul>
+        <ul class="bui-list" id="multiChoice">
+            <li class="bui-btn bui-box">
+                <div class="span1">
+                    <label for="interest1">A. <span b-text="page.choice.0.content"></span> </label>
+                </div>
+                <input id="interester1" type="checkbox" class="bui-choose" name="interester" value="A" text="">
             </li>
             <li class="bui-btn bui-box bui-btn-line">
                 <div class="span1">
-                    <label for="interest3">C. 单选按钮样式2</label>
+                    <label for="interest2" >B. <span b-text="page.choice.1.content"></span></label>
                 </div>
-                <input id="interest3" type="radio" class="bui-choose" name="interest" value="" text="">
+                <input id="interester2" type="checkbox" class="bui-choose" name="interester" value="B" text="">
             </li>
             <li class="bui-btn bui-box bui-btn-line">
                 <div class="span1">
-                    <label for="interest4">D. 单选按钮样式2</label>
+                    <label for="interest3">C. <span b-text="page.choice.2.content"></span></label>
                 </div>
-                <input id="interest4" type="radio" class="bui-choose" name="interest" value="" text="">
+                <input id="interester3" type="checkbox" class="bui-choose" name="interester" value="C" text="">
+            </li>
+            <li class="bui-btn bui-box bui-btn-line">
+                <div class="span1">
+                    <label for="interest4" >D. <span b-text="page.choice.3.content"></span></label>
+                </div>
+                <input id="interester4" type="checkbox" class="bui-choose" name="interester" value="D" text="">
             </li>
         </ul>
     </main>
-    <footer style="">
-        <div class="bui-interval" style="">
+    <footer>
+        <div class="bui-interval">
             <ul class="bui-group ring small">
-                <li class="bui-btn " style="width: 100px;margin: 10px;">上一题</li>
-                <li class="bui-btn primary" style="width: 100px;margin: 10px;">确定</li>
-                <li class="bui-btn " style="width: 100px;margin: 10px;">下一题</li>
+                <li class="bui-btn " style="width: 100px;margin: 10px;" b-click="page.lastTitle">上一题</li>
+                <li class="bui-btn primary" style="width: 100px;margin: 10px;" b-click="page.subTitle">确定</li>
+                <li class="bui-btn " style="width: 100px;margin: 10px;" b-click="page.nextTitle">下一题</li>
             </ul>
         </div>
     </footer>
