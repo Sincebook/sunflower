@@ -163,9 +163,6 @@ loader.define(function (require, exports, module, global) {
 
                             playTime++;
                             if (playTime % 20 == 0) {
-                                // console.log(playTime)
-                                // console.log('人脸识别')
-                                // console.log(canvas, video)
                                 canvas.width = 500;
                                 canvas.height = 500;
                                 canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
@@ -176,7 +173,7 @@ loader.define(function (require, exports, module, global) {
                                     bui.alert('请本人观看', function () {
                                         watchStatus = true
                                     })
-                                    
+                        
                                 }
                                 
                             }

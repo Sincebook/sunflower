@@ -1,5 +1,5 @@
 loader.define(function () {
-
+    bui.alert('考试仅有一次机会，请认真作答！')
     var bs = bui.store({
         scope: "page", // 用于区分公共数据及当前数据的唯一值
         data: {
@@ -18,14 +18,14 @@ loader.define(function () {
             answer: []
         },
         mounted: function () {
-            var params = router.getPageParams(); 777777777777
+            var params = router.getPageParams();
             getExam({
-                lesson_id: params.id
+                lesson_id: params.les_id
             }).then(res => {
                 let datas = res.data
                 this.allTile = datas
                 this.$methods.showTitle()
-                console.log(datas)
+                // console.log(datas)
                 this.answer = []
                 datas.forEach(() => {
                     this.answer.push('')
@@ -191,7 +191,18 @@ loader.define(function () {
                     }
                 })
                 score = parseInt(score / this.allTile.length * 100)
-                bui.alert(score)
+                var params = router.getPageParams();
+                upExam({mission_id: params.mis_id, score}).then(res => {
+                    console.log(res)
+                    if (res.code == '0') {
+                        
+                    }
+                })
+                bui.alert(`本次考试分数：${score}`,function () {
+                    bui.back(function() {
+                        window.location.reload();
+                    })
+                })
             }
         },
         watch: {

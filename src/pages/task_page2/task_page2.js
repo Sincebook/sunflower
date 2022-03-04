@@ -46,7 +46,7 @@ loader.define(function(require, exports, module, global) {
                         <p class="item-text">${res.data[i].lesson.status}</p>
                     </div>
                     </li>
-                    <li class="bui-btn bui-box toExam" style="background-color: rgb(243, 242, 242); padding:0.05rem 0" id="${res.data[i].lesson.id}" >
+                    <li class="bui-btn bui-box toExam" style="background-color: rgb(250, 250, 250); padding:0.05rem 0" id="${res.data[i].lesson.id}" >
                     <div class="icon"><i class="icon icon-thinblue">&#xe62d;</i></div>
                     <div class="span1" style="font-size:0.3rem">课程考试</div>
                     <div class="color_yellow">${testStatus}</div>
