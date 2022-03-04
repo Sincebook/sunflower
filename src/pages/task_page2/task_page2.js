@@ -32,7 +32,7 @@ loader.define(function(require, exports, module, global) {
                 if (res.code === '0') {
                     let html = '';
                     for (let i in res.data) {
-                        let testStatus = res.data[i].userScore == null ? '未参加考试' : res.data[i].userScore;
+                        let testStatus = res.data[i].userScore == null ? '未参加考试' : '分数:' + res.data[i].userScore;
                         html += `<dt class="bui-btn bui-box" id="${res.data[i].mission.id}">
                         <div class="span1">${res.data[i].mission.name}</div>
                         <i class="icon-accordion"></i>
