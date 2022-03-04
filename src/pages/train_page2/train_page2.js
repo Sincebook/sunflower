@@ -71,17 +71,19 @@ loader.define(function(require, exports, module, global) {
                         var longitude = 113.672980569386;
                         var latitude = 34.78800816393977;
                         let signInForTrain = document.querySelectorAll('#signInForTrain');
-                        let signInTrain = true;
                         for (let i = 0; i < signInForTrain.length; i++) {
+                            signInForTrain[i].setAttribute('status', "yes");
                             signInForTrain[i].addEventListener('click', function() {
                                 let train_id = this.dataset["trainId"];
-                                if (!signInTrain) {
+                                console.log(this.getAttribute('yes')); //true
+                                if (this.getAttribute('status') === 'yes') {
                                     signInApi({ train_id, longitude, latitude }).then(res => {
                                         console.log(res);
                                         if (res.code === '0') {
                                             bui.alert('签到成功');
                                             signInForTrain[i].innerHTML = '签退';
-                                            signInTrain = false;
+                                            signInForTrain[i].setAttribute('status', 'no');
+                                            console.log(signInForTrain[i]);
                                         } else {
                                             bui.alert(res.errMsg);
                                         }
@@ -91,14 +93,15 @@ loader.define(function(require, exports, module, global) {
                                         console.log(res);
                                         if (res.code === '0') {
                                             bui.alert('签退成功');
+                                            signInForTrain[i].innerHTML = '已完成'
                                         } else {
                                             bui.alert(res.errMsg);
                                         }
                                     })
                                 }
-
                             })
                         }
+                        console.log(signInForTrain);
                     }).catch(err => {
                         console.log(err)
                     })

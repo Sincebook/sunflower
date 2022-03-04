@@ -48,7 +48,7 @@ loader.define(function() {
                         <p class="item-text">${res.data[i].lesson.status}</p>
                     </div>
                     </li>
-                    <li class="bui-btn bui-box toExam" style="background-color: rgb(243, 242, 242); padding:0.05rem 0" id="${res.data[i].lesson.id}" mis_id="${res.data[i].mission.id}">
+                    <li class="bui-btn bui-box toExam" style="background-color: rgb(243, 242, 242); padding:0.05rem 0" id="${res.data[i].lesson.id}" data-misId="${res.data[i].mission.id}">
                     <div class="icon"><i class="icon icon-thinblue">&#xe62d;</i></div>
                     <div class="span1" style="font-size:0.3rem">课程考试</div>
                     <div class="color_yellow">${testStatus}</div>
@@ -66,7 +66,7 @@ loader.define(function() {
                         }
                         toExam[i].onclick = function(e) {
                             e.stopPropagation();
-                            bui.load({ url: "pages/exam/exam.html", param: { id: this.id, mis_id: this.mis_id } });
+                            bui.load({ url: "pages/exam/exam.html", param: { les_id: this.id, mis_id: this.dataset.misid } });
                         }
                     }
                     uiAccordion.showFirst();
