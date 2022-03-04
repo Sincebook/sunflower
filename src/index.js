@@ -3,6 +3,7 @@ loader.import("../../js/api/index.js");
 loader.import("../../js/api/lesson.js")
 loader.import("../../js/api/mine.js")
 loader.import("../../js/api/login.js");
+loader.import("../../js/api/exam.js");
 loader.import("../../js/pdf.js");
 loader.import("../../js/pdf.worker.js");
 loader.import("../../js/jquery-2.1.1.min.js");
@@ -14,7 +15,6 @@ bui.ready(function() {
         progress: true,
         hash: true,
     })
-
     // 绑定事件
     bind();
     // window.onresize = () => {

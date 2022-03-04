@@ -59,7 +59,7 @@ loader.define(function() {
                     accordionList.innerHTML = html;
                     let childAccordionList = accordionList.querySelectorAll('dd');
                     let toExam = accordionList.querySelectorAll('.toExam');
-                    console.log(toExam);
+                    console.log(this.id, '1231');
                     for (let i = 0; i < childAccordionList.length; i++) {
                         childAccordionList[i].onclick = function() {
                             bui.load({ url: "pages/lesson_detail/detail.html", param: { id: this.id } });
