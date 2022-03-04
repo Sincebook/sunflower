@@ -198,11 +198,24 @@ loader.define(function () {
                         
                     }
                 })
-                bui.alert(`本次考试分数：${score}`,function () {
-                    bui.back(function() {
-                        window.location.reload();
+                if (score > params.score) {
+                    finishCert({lesson_id:params.les_id, score}).then(res => {
+                        console.log(res)
+                        bui.alert(`恭喜你通过了考试，本次考试分数：${score}`,function () {
+                            bui.back(function() {
+                               window.location.reload();
+                            })
+                        })
                     })
-                })
+                    
+                } else {
+                    bui.alert(`很遗憾，没有通过考试，本次考试分数：${score}`,function () {
+                        bui.back(function() {
+                          window.location.reload();
+                        })
+                    })
+                }
+                
             }
         },
         watch: {

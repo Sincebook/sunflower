@@ -7,3 +7,6 @@ function upExam(params) {
 function finishStudy(params) {
     return post('/api/misUsers/study', params)
 }
+function finishCert(params) {
+    return post('/api/studyFinish/add', params)
+}

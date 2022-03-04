@@ -14,6 +14,18 @@ loader.define(function() {
                 }
             })
         })
+        document.getElementById('btn-face').addEventListener('click', () => {
+            bui.load({ url: 'pages/face/face.html' })
+        })
+        document.getElementById('btn-myLesson').addEventListener('click', () => {
+            bui.load({ url: 'pages/myLesson/mylesson.html' })
+        })
+        document.getElementById('btn-myCert').addEventListener('click', () => {
+            bui.load({ url: 'pages/myCert/mycert.html' })
+        })
+        document.getElementById('btn-myMessage').addEventListener('click', () => {
+            bui.load({ url: 'pages/myMessage/message.html' })
+        })
         document.getElementById('btn-myMessage').addEventListener('click', () => {
             bui.load({ url: 'pages/myMessage/message.html' })
         })
