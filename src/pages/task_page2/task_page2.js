@@ -7,7 +7,6 @@ loader.define(function(require, exports, module, global) {
                 id: "#accordion2"
             })
 
-
             function getTime(data) {
                 var _data = data;
                 //如果是13位正常，如果是10位则需要转化为毫秒
@@ -37,7 +36,7 @@ loader.define(function(require, exports, module, global) {
                         <div class="span1">${res.data[i].mission.name}</div>
                         <i class="icon-accordion"></i>
                     </dt>
-                    <dd id="${res.data[i].lesson.id}">
+                    <dd id="${res.data[i].lesson.id}" data-misid="${res.data[i].mission.id}">
                     <ul class="bui-list bui-list-thumbnail"></ul>
                     <li class="bui-btn bui-box">
                     <div class="bui-thumbnail bui-sub"><img src="${res.data[i].lesson.image}"></div>
@@ -61,11 +60,10 @@ loader.define(function(require, exports, module, global) {
                     console.log(toExam);
                     for (let i = 0; i < childAccordionList.length; i++) {
                         childAccordionList[i].onclick = function() {
-                            bui.load({ url: "pages/lesson_detail/detail.html", param: { id: this.id } });
+                            bui.load({ url: "pages/lesson_detail/detail.html", param: { id: this.id, mis_id: this.dataset.misid } });
                         }
                         toExam[i].onclick = function(e) {
                             e.stopPropagation();
-                            bui.load({ url: "pages/exam/exam.html", param: { id: this.id } });
                         }
                     }
                     uiAccordion.showFirst();

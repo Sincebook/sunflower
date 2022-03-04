@@ -56,18 +56,6 @@ loader.define(function(require, exports, module, global) {
             </dd>`
                     }
                     accordionList.innerHTML = html;
-                    let childAccordionList = accordionList.querySelectorAll('dd');
-                    let toExam = accordionList.querySelectorAll('.toExam');
-                    console.log(toExam);
-                    for (let i = 0; i < childAccordionList.length; i++) {
-                        childAccordionList[i].onclick = function() {
-                            bui.load({ url: "pages/lesson_detail/detail.html", param: { id: this.id } });
-                        }
-                        toExam[i].onclick = function(e) {
-                            e.stopPropagation();
-                            bui.load({ url: "pages/exam/exam.html", param: { id: this.id } });
-                        }
-                    }
                     uiAccordion.showFirst();
                 } else {
                     bui.alert(res.errMsg);
