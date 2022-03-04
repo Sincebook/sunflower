@@ -48,7 +48,7 @@ loader.define(function() {
                         <p class="item-text">${res.data[i].lesson.status}</p>
                     </div>
                     </li>
-                    <li class="bui-btn bui-box toExam" style="background-color: rgb(243, 242, 242); padding:0.05rem 0" id="${res.data[i].lesson.id}" >
+                    <li class="bui-btn bui-box toExam" style="background-color: rgb(243, 242, 242); padding:0.05rem 0" id="${res.data[i].lesson.id}" mis_id="${res.data[i].mission.id}">
                     <div class="icon"><i class="icon icon-thinblue">&#xe62d;</i></div>
                     <div class="span1" style="font-size:0.3rem">课程考试</div>
                     <div class="color_yellow">${testStatus}</div>
@@ -59,14 +59,14 @@ loader.define(function() {
                     accordionList.innerHTML = html;
                     let childAccordionList = accordionList.querySelectorAll('dd');
                     let toExam = accordionList.querySelectorAll('.toExam');
-                    console.log(toExam);
+                    console.log(this.id, '1231');
                     for (let i = 0; i < childAccordionList.length; i++) {
                         childAccordionList[i].onclick = function() {
                             bui.load({ url: "pages/lesson_detail/detail.html", param: { id: this.id } });
                         }
                         toExam[i].onclick = function(e) {
                             e.stopPropagation();
-                            bui.load({ url: "pages/exam/exam.html", param: { id: this.id } });
+                            bui.load({ url: "pages/exam/exam.html", param: { id: this.id, mis_id: this.mis_id } });
                         }
                     }
                     uiAccordion.showFirst();

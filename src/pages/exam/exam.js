@@ -18,14 +18,13 @@ loader.define(function () {
             answer: []
         },
         mounted: function () {
-            var params = router.getPageParams();
+            var params = router.getPageParams(); 777777777777
             getExam({
                 lesson_id: params.id
             }).then(res => {
                 let datas = res.data
                 this.allTile = datas
                 this.$methods.showTitle()
-                // showTitle(datas[this.nums])
                 console.log(datas)
                 this.answer = []
                 datas.forEach(() => {
@@ -35,7 +34,6 @@ loader.define(function () {
         },
         methods: {
             showTitle() {
-
                 let single = document.getElementById('singleChoice')
                 let multi = document.getElementById('multiChoice')
                 let titlePic = document.getElementById('pic')
@@ -107,33 +105,54 @@ loader.define(function () {
                 }
             },
             subTitle() {
+                var val = ''
                 if (this.type == 1) {
-                    var val = $('input[name="interest"]:checked').val();
+                    val = $('input[name="interest"]:checked').val();
                     if (!val) {
                         bui.hint('没有选择');
                         return
                     }
-                    bui.hint({ content: "<i class='icon-check'></i><br/>回答完成<br/>进入下一题", position: "center", effect: "fadeInDown" });
-
                 } else if (this.type == 2) {
-                    var val = ''
                     $('input[name="interester"]:checked').each((item, content) => {
                         val = val + content.value
-                    });
-
+                    })
                 } else if (this.type == 3) {
-                    $('input[name="interest"]:checked')
+                    if ($('input[name="interest"]:checked').val() == 'A') {
+                        val = '正确'
+                    } else {
+                        val = '错误'
+                    };
                 }
-                console.log(val)
+                bui.hint({ content: "<i class='icon-check'></i><br/>回答完成<br/>进入下一题", position: "center", effect: "fadeInDown" });
+                this.answer[this.nums] = val
+                let num = 0
+                this.answer.forEach((item, index) => {
+                    if (item) {
+                        num++
+                    }
+                })
+                if (num == this.answer.length) {
+                    this.score()
+                    return
+                }
+                
+                this.nextTitle()
             },
             showAnswer() {
-                if (this.answer[this.nums]) {
-
+                let answerRes = this.answer[this.nums]
+                if (answerRes) {
+                    if (this.type == 2) {
+                        this.strToRes(answerRes).forEach((item, index) => {
+                            $('input[name="interester"]')[item].checked = true
+                        })
+                    } else {
+                        console.log(this.strToRes(answerRes), this.nums)
+                        $('input[name="interest"]')[this.strToRes(answerRes)].checked = true
+                    }
                 } else {
                     $('input[name="interest"]').removeAttr('checked')
                     $('input[name="interester"]').removeAttr('checked')
                 }
-               
             },
             strToint(_data) {
                 if (_data == 'A') {
@@ -145,6 +164,34 @@ loader.define(function () {
                 } else if (_data == 'D') {
                     return 3
                 }
+            },
+            strToRes(_data) {
+                if (this.type == 1) {
+                    return this.strToint(_data)
+                } else if (this.type == 2) {
+                    let multiRes = []
+                    _data.split('').forEach((item, index) => {
+                        multiRes.push(this.strToint(item))
+                    })
+                    return multiRes
+                } else if (this.type == 3) {
+                    if (_data == '正确') {
+                        return 0
+                    } else {
+                        return 1
+                    }
+                }
+            },
+            score() {
+                var score = 0
+                console.log(this.allTile)
+                this.allTile.forEach((item, index) => {
+                    if (item.answer == this.answer[index]) {
+                        score++
+                    }
+                })
+                score = parseInt(score / this.allTile.length * 100)
+                bui.alert(score)
             }
         },
         watch: {
