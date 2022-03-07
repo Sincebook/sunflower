@@ -23,13 +23,23 @@ loader.define(function() {
 
             banners().then(res => {
                 if (res.code === '0') {
-                    // console.log(res);
+                    console.log(res);
                     var uiSlide = bui.slide({
                         id: "#slide",
                         height: 360,
                         autopage: true,
-                        data: res.data
+                        autoplay: true,
+                        data: res.data,
                     });
+                    var banner = document.querySelector('#slide');
+                    var bannerList = banner.children[0].children[0].children;
+                    for (let i = 0; i < bannerList.length; i++) {
+                        bannerList[i].onclick = function() {
+                            // console.log(this.dataset.id);
+                            bui.load({ url: "pages/lesson_detail/detail.html", param: { id: this.dataset.id } });
+                        }
+                    }
+                    console.log();
                 } else {
                     console.log(res.errMsg)
                 }

@@ -1,4 +1,5 @@
 loader.import("../../js/api/mine.js")
+loader.import("../../js/api/myLesson.js");
 loader.define(function() {
 
     var pageview = {};
@@ -30,7 +31,7 @@ loader.define(function() {
             bui.load({ url: 'pages/myMessage/message.html' })
         })
         document.getElementById('btn-cdk').addEventListener('click', () => {
-            bui.load({ url: 'pages/cdk/cdk.html' }) 
+            bui.load({ url: 'pages/cdk/cdk.html' })
         })
         document.getElementById('btn-infor').addEventListener('click', () => {
             bui.load({ url: 'pages/software/software.html' })
@@ -53,7 +54,7 @@ loader.define(function() {
             } else {
                 bui.alert(res.errMsg);
             }
-            })
+        })
 
         document.getElementById('jump').addEventListener('click', () => {
             bui.load({ url: 'pages/video_detail/detail.html' })
