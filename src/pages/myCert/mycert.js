@@ -54,7 +54,7 @@ loader.define(function () {
                     <br> 
                     <div style="float: right;font-size: 8px;">
                         <img src="../../images/2022030417510515.gif" alt="" style="float: right;width: 50%;"><br><br><br><br>
-                        <span style="float: right;">2020年3月12日</span><br><br>
+                        <span style="float: right;">${getTime(element.uptime)}</span><br><br>
                     </div>
 				</div>
 			</div>

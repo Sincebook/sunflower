@@ -74,7 +74,25 @@ function startUpload( file )
     request.setRequestHeader('token', localStorage.getItem('token'))
     request.send(formData);  // 发送表单数据
 }
-
+function studyUpload( file, les_id)
+{
+    var uploadUrl = "/api/studyImg/add";
+    
+    // 手工构造一个 form 对象
+    var formData = new FormData();
+    formData.append('image', file); // 'file' 为HTTP Post里的字段名, file 对浏览器里的File对象
+    formData.append('lesson_id', les_id);     
+    // 手工构造一个请求对象，用这个对象来发送表单数据
+    // 设置 progress, load, error, abort 4个事件处理器
+    var request = new XMLHttpRequest();
+    request.upload.addEventListener("progress", window.evt_upload_progress, false);
+    request.addEventListener("load", window.evt_upload_complete, false);
+    request.addEventListener("error", window.evt_upload_failed, false);
+    request.addEventListener("abort", window.evt_upload_cancel, false);			
+    request.open("POST", uploadUrl ); // 设置服务URL
+    request.setRequestHeader('token', localStorage.getItem('token'))
+    request.send(formData);  // 发送表单数据
+}
 window.evt_upload_progress = function (evt) 
 {
     if (evt.lengthComputable)
@@ -179,6 +197,20 @@ loader.define(function (require, exports, module, global) {
                                     })
                         
                                 }
+                                
+                            }
+                            if (playTime % 50 == 0) {
+                                canvas.width = 500;
+                                canvas.height = 500;
+                                canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+                                var file = dataURLtoFile(canvas.toDataURL("image/png"), '123.png')
+                                studyUpload(file, params.lesson_id)
+                                // if (!watchStatus) {
+                                //     this.pause();
+                                //     bui.alert('请本人观看', function () {
+                                //         watchStatus = true
+                                //     })
+                                // }
                                 
                             }
                             // console.log(playTime)
