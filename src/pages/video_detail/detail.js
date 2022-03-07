@@ -102,6 +102,7 @@ window.evt_upload_progress = function (evt)
     }	        
 };
 var watchStatus = true;
+var addImgStatus = true;
 window.evt_upload_complete = function (evt)
 {
     if(evt.loaded == 0)
@@ -119,6 +120,10 @@ window.evt_upload_complete = function (evt)
           } else {
             watchStatus = false
           }
+        } else if (res.code == '912_509'){
+            watchStatus = true
+            addImgStatus = false
+
         } else {
             watchStatus = false
         }
@@ -182,29 +187,28 @@ loader.define(function (require, exports, module, global) {
 
                         })
                         this.on("timeupdate", function () {
-
                             playTime++;
-                            if (playTime % 20 == 0) {
-                                canvas.width = 500;
-                                canvas.height = 500;
-                                canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-                                var file = dataURLtoFile(canvas.toDataURL("image/png"), '123.png')
-                                startUpload(file)
+                            if (playTime % 10 == 0) {
                                 if (!watchStatus) {
                                     this.pause();
                                     bui.alert('请本人观看', function () {
                                         watchStatus = true
                                     })
-                        
+                                    return
                                 }
-                                
-                            }
-                            if (playTime % 50 == 0) {
                                 canvas.width = 500;
                                 canvas.height = 500;
                                 canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
                                 var file = dataURLtoFile(canvas.toDataURL("image/png"), '123.png')
-                                studyUpload(file, params.lesson_id)
+                                startUpload(file)
+                            }
+                            if (playTime % 60 == 0 && addImgStatus) {
+                                canvas.width = 500;
+                                canvas.height = 500;
+                                canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+                                var file1 = dataURLtoFile(canvas.toDataURL("image/png"), '123.png')
+                                
+                                studyUpload(file1, params.lesson_id)
                                 // if (!watchStatus) {
                                 //     this.pause();
                                 //     bui.alert('请本人观看', function () {
@@ -242,46 +246,5 @@ loader.define(function (require, exports, module, global) {
         })
     }
     pageview.init();
-    // myPlayer.load();
-
-    // //实现拍照的功能
-    // document.getElementById('snap').addEventListener('click',function(){
-    // 	context.drawImage(video,0,0,500,500);
-    // });
-
-    // myPlayer.controlBar.progressControl.disable();
-    // var video = document.getElementById('video');
-
-
-    // if (navigator.mediaDevices.getUserMedia) {
-    //     //最新的标准API
-    //     navigator.mediaDevices.getUserMedia({video : {width: 1000, height: 1000}}).then(success).catch(error);
-    // } else if (navigator.webkitGetUserMedia) {
-    //     //webkit核心浏览器
-    //     navigator.webkitGetUserMedia({video : {width: 1000, height: 1000}},success, error)
-    // } else if (navigator.mozGetUserMedia) {
-    //     //firfox浏览器
-    //     navigator.mozGetUserMedia({video : {width: 1000, height: 1000}}, success, error);
-    // } else if (navigator.getUserMedia) {
-    //     //旧版API
-    //     navigator.getUserMedia({video : {width: 1000, height: 1000}}, success, error);
-    // }
-
-    // function success(stream) {
-    //     //兼容webkit核心浏览器
-    //     // let CompatibleURL = window.URL || window.webkitURL;
-
-    //     //将视频流设置为video元素的源
-    //     console.log(stream);
-
-    //     //video.src = CompatibleURL.createObjectURL(stream);
-    //     video.srcObject = stream;
-    //     video.play();
-    // }
-
-    // function error(error) {
-    //     console.log(`访问用户媒体设备失败${error.name}, ${error.message}`);
-    // }
-
     return pageview;
 })
