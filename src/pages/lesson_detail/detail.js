@@ -35,7 +35,11 @@ loader.define(function () {
             ppts = res.data.les_content.ppt;
             var html = "";
             var htl = "";
+            var upStudy = 0;
             for (let index = 0; index < videos.length; index++) {
+                if(!videoIds.includes(Number(videos[index].id))) {
+                    upStudy++
+                }
                 html += `<li class="bui-btn bui-box" href="/pages/video_detail/detail?id=${videos[index].id}&lesson_id=${params.id}">
                 <div class="bui-thumbnail"><img src="${videos[index].image}" alt=""></div>
                 <div class="span1">
@@ -50,6 +54,9 @@ loader.define(function () {
 
             }
             for (let index = 0; index < ppts.length; index++) {
+                if(!pptIds.includes(Number(ppts[index].id))) {
+                    upStudy++
+                }
                 htl += `<li class="bui-btn bui-box"  href="/pages/ppt/ppt?id=${ppts[index].id}&lesson_id=${params.id}">
                 <div class="bui-thumbnail"><img src="${ppts[index].image}" alt=""></div>
                 <div class="span1">
@@ -61,7 +68,11 @@ loader.define(function () {
                     <span class="item-text">${getTime(ppts[index].uptime)}</span>
                 </div>
                 </li>`;
-
+            }
+            if (upStudy == 0) {
+                finishStudy({mission_id: params.mis_id}).then(res=> {
+                    console.log(res)
+                })
             }
             var videoList = document.getElementById("videoList");
             var coursewareList = document.getElementById("coursewareList");
