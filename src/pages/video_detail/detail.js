@@ -21,7 +21,10 @@ function success(stream) {
 //失败回调
 function error(error) {
     console.log(error)
-    bui.alert(error);
+    bui.alert("获取相机权限失败，请前往系统设置打开", function () {
+        window.location.reload();
+    }   
+    );
 }
 //开启摄像头
 if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia) {
