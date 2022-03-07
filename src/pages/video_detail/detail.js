@@ -21,7 +21,7 @@ function success(stream) {
 //失败回调
 function error(error) {
     console.log(error)
-    alert("访问用户媒体失败");
+    bui.alert(error);
 }
 //开启摄像头
 if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia) {
