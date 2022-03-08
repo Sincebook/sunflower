@@ -84,6 +84,20 @@ loader.define(function () {
                 this.empty();
             }
         })
+        var userInput1 = bui.input({
+            id: ".user-idcard",
+            callback: function (e) {
+                // 清空数据
+                this.empty();
+            }
+        })
+        var userInput2 = bui.input({
+            id: ".user-phone",
+            callback: function (e) {
+                // 清空数据
+                this.empty();
+            }
+        })
 
         // 密码显示或者隐藏
         var password = bui.input({
