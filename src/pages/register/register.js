@@ -66,6 +66,8 @@ loader.define(function () {
                                         }
                                     });
                                 });
+                            } else {
+                                bui.alert(res.errMsg);
                             }
                         })
                     }
