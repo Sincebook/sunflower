@@ -8,9 +8,9 @@ loader.import("../../js/pdf.js");
 loader.import("../../js/pdf.worker.js");
 loader.import("../../js/jquery-2.1.1.min.js");
 loader.import("../../js/pdfh5.js");
-if(plus){
-    plus.camera.getCamera();
-}
+// if(plus){
+//     plus.camera.getCamera();
+// }
 bui.ready(function() {
     
     // 初始化路由
