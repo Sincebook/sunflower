@@ -1,21 +1,39 @@
-<div class="bui-page">
-    <header>
-        <div class="bui-bar">
-         <div class="bui-bar-left">
-             <a class="bui-btn" onclick="bui.back();"><i class="icon-back"></i></a>
-         </div>
-         <div class="bui-bar-main">我的课程</div>
-         <div class="bui-bar-right">
-             <!-- 右边按钮 -->
-         </div>
+<style>
+    #myLesson h3 {
+        font-size: 0.35rem;
+    }
+    
+    #myLesson .tag-item {
+        font-size: 0.25rem;
+        padding-top: 0.1rem;
+        color: rgb(117, 115, 115);
+    }
+    
+    .active {
+        display: block;
+    }
+</style>
+<header>
+    <div class="bui-bar">
+        <div class="bui-bar-left">
+            <a class="bui-btn" onclick="bui.back();"><i class="icon-back"></i></a>
         </div>
-     </header>
-    <main>
-        <li class="bui-btn">
-            
+        <div class="bui-bar-main">我的课程</div>
+        <div class="bui-bar-right">
+            <!-- 右边按钮 -->
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <li class="bui-btn" id="none" style="display: none;">
             <i class="icon-warn" style="font-size:99px;"> &#xe622;</i>
             <div class="span1">暂无课程</div>
         </li>
-        <!-- <div class="">课程可前往公众号【舵正行】购买</div> -->
-    </main>
+        <div id="myLesson">
+
+        </div>
+    </div>
+    <!-- <div class="">课程可前往公众号【舵正行】购买</div> -->
+</main>
 </div>
