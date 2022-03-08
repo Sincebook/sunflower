@@ -1,3 +1,4 @@
+console.log(window.plus)
 function getUserMedia(constraints, success, error) {
     if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia(constraints).then(success).catch(error);
