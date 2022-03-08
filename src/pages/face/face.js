@@ -58,7 +58,11 @@ loader.define(function () {
         }
 
         function error(error) {
-            console.log(`访问用户媒体设备失败${error.name}, ${error.message}`);
+            bui.alert('相机权限被禁用，请前往【系统设置】-【应用管理】- 打开相机权限',function() {
+                bui.back(() => {
+                    window.location.reload();
+                });
+            })
         }
         //调用
         function dataURLtoFile(url, filename) {
