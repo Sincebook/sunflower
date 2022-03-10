@@ -47,7 +47,7 @@ loader.define(function(require, exports, module, global) {
                 if (res.code === '0') {
                     let html = '';
                     for (let i in res.data) {
-                        if (res.data[i].trainRecordsStatus == 1)
+                        if (res.data[i].trainRecordsStatus == 1) {
                             html += `<li class="bui-btn bui-box-center coupon-item" id="${res.data[i].classesId}">
                         <div class="span1 item-content">
                             <h3 class="item-title bui-text-hide">${res.data[i].name}</h3>
@@ -60,70 +60,86 @@ loader.define(function(require, exports, module, global) {
                             <div class="bui-btn primary mini ring" id="signInForTrain" data-train-id="${res.data[i].id}">签到</div>
                         </div>
                     </li>`
+                        } else if (res.data[i].trainRecordsStatus == 2) {
+                            html += `<li class="bui-btn bui-box-center coupon-item" id="${res.data[i].classesId}">
+                                <div class="span1 item-content">
+                                    <h3 class="item-title bui-text-hide">${res.data[i].name}</h3>
+                                    <p class="item-text bui-box-text-hide">${res.data[i].address}</p>
+                                    <p class="time">${getTime(res.data[i].beginTime)}-${getTime(res.data[i].endTime)}</p>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="item-right bui-align-center">
+                                    <span class="details">${res.data[i].signUpNums}人已报名</span>
+                                    <div class="bui-btn primary mini ring" id="signOutForTrain" data-train-id="${res.data[i].id}">签退</div>
+                                </div>
+                            </li>`
+                        } else if (res.data[i].trainRecordsStatus == 3) {
+                            html += `<li class="bui-btn bui-box-center coupon-item" id="${res.data[i].classesId}">
+                                <div class="span1 item-content">
+                                    <h3 class="item-title bui-text-hide">${res.data[i].name}</h3>
+                                    <p class="item-text bui-box-text-hide">${res.data[i].address}</p>
+                                    <p class="time">${getTime(res.data[i].beginTime)}-${getTime(res.data[i].endTime)}</p>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="item-right bui-align-center">
+                                    <span class="details">${res.data[i].signUpNums}人已报名</span>
+                                    <div class="bui-btn primary mini ring" id="trainOver" data-train-id="${res.data[i].id}">已完成</div>
+                                </div>
+                            </li>`
+                        }
                     }
                     trainList2.innerHTML = html;
                     getPosition().then(result => {
                         let queryData = {
-                            longtitude: String(result.longitude).match(/\d+\.\d{0,6}/)[0],
-                            latitude: String(result.latitude).match(/\d+\.\d{0,6}/)[0],
+                            longtitude: String(result.longitude).match(/\d+\.\d{0,12}/)[0],
+                            latitude: String(result.latitude).match(/\d+\.\d{0,12}/)[0],
                         }
                         console.log(queryData);
-                        var longitude = 113.672980569386;
-                        var latitude = 34.78800816393977;
+                        var longitude = queryData.longtitude;
+                        var latitude = queryData.latitude;
                         let signInForTrain = document.querySelectorAll('#signInForTrain');
+                        let signOutForTrain = document.querySelectorAll('#signOutForTrain');
+                        let trainOver = document.querySelectorAll('#trainOver');
                         for (let i = 0; i < signInForTrain.length; i++) {
-                            signInForTrain[i].setAttribute('status', "yes");
                             signInForTrain[i].addEventListener('click', function() {
                                 let train_id = this.dataset["trainId"];
-                                console.log(this.getAttribute('yes')); //true
-                                if (this.getAttribute('status') === 'yes') {
-                                    signInApi({ train_id, longitude, latitude }).then(res => {
-                                        console.log(res);
-                                        if (res.code === '0') {
-                                            bui.alert('签到成功');
-                                            signInForTrain[i].innerHTML = '签退';
-                                            signInForTrain[i].setAttribute('status', 'no');
-                                            console.log(signInForTrain[i]);
-                                        } else {
-                                            bui.alert(res.errMsg);
-                                        }
-                                    })
-                                } else {
-                                    signOutApi({ train_id, longitude, latitude }).then(res => {
-                                        console.log(res);
-                                        if (res.code === '0') {
-                                            bui.alert('签退成功');
-                                            signInForTrain[i].innerHTML = '已完成'
-                                        } else {
-                                            bui.alert(res.errMsg);
-                                        }
-                                    })
-                                }
+                                signInApi({ train_id, longitude, latitude }).then(res => {
+                                    console.log(res);
+                                    if (res.code === '0') {
+                                        bui.alert('签到成功');
+                                        signInForTrain[i].innerHTML = '签退';
+                                    } else {
+                                        bui.alert(res.errMsg);
+                                        console.log(1);
+                                    }
+                                })
                             })
                         }
-                        console.log(signInForTrain);
+                        for (let i = 0; i < signOutForTrain.length; i++) {
+                            signOutForTrain[i].addEventListener('click', function() {
+                                let train_id = this.dataset["trainId"];
+                                signOutApi({ train_id, longitude, latitude }).then(res => {
+                                    console.log(res);
+                                    if (res.code === '0') {
+                                        bui.alert('签退成功');
+                                        signOutForTrain[i].innerHTML = '已完成';
+                                    } else {
+                                        bui.alert(res.errMsg);
+                                        console.log(3);
+                                    }
+                                })
+                            })
+                        }
                     }).catch(err => {
                         console.log(err)
-                    })
+                    });
                 } else {
-                    bui.alert(res.errMsg);
+                    console.log(res.errMsg);
                 }
             })
 
-            // document.querySelector('#signOutForTrain').addEventListener('click', () => {
-            //     let train_id = 2;
-            //     let address = '深圳';
-            //     signOutApi({ train_id, address }).then(res => {
-            //         console.log(res);
-            //         if (res.code === '0') {
-
-            //         } else {
-            //             bui.alert(res.errMsg);
-            //         }
-            //     })
-            // })
         }
-    };
+    }
     pageview.init();
     return pageview;
 })

@@ -7,7 +7,7 @@ function signInApi(params) {
 }
 
 function signOutApi(params) {
-    return post('/api/trainRecord/intime', params)
+    return post('/api/trainRecord/outtime', params)
 }
 
 function findMyTraining(params) {
