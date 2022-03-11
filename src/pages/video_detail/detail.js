@@ -154,12 +154,7 @@ loader.define(function (require, exports, module, global) {
                 if (vedioList[i].id == params.id && hasvideo) {
                     hasvideo = false
                     document.getElementById('videoDetail').innerHTML =
-                        `<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" playsinline="true"  t7-video-player-type="inline"
-                        webkit-playsinline="true"  
-                        playsinline="true"  
-                        x-webkit-airplay="true"
-                        x5-playsinline="showLine"
-                 data-setup="{}" poster="${vedioList[i].image}">
+                        `<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" data-setup="{}" poster="${vedioList[i].image}">
                      <source src="${vedioList[i].url}" type="video/mp4"> 
                 </video>`
                     document.getElementById('name').innerText = vedioList[i].name
@@ -171,9 +166,6 @@ loader.define(function (require, exports, module, global) {
                         poster: '',
                         preload: 'auto',
                         autoplay: false,
-                        // isFull: true,
-                        // isfull:true,
-                        isFullscreen:false,
                         fluid: true, // 默认播放音频
                         playbackRates: [0.5, 1, 1.5, 2],
                     }, function () {
@@ -214,26 +206,22 @@ loader.define(function (require, exports, module, global) {
                                 canvas.width = 500;
                                 canvas.height = 500;
                                 canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-                                var file1 = dataURLtoFile(canvas.toDataURL("image/png"), '123.png')
-                                
-                                studyUpload(file1, params.lesson_id)
-                                // if (!watchStatus) {
-                                //     this.pause();
-                                //     bui.alert('请本人观看', function () {
-                                //         watchStatus = true
-                                //     })
-                                // }
-                                
+                                var file1 = dataURLtoFile(canvas.toDataURL("image/png"), '123.png')               
+                                studyUpload(file1, params.lesson_id)  
                             }
-                            // console.log(playTime)
-                            // storage.set('ids',playTime)
-                            // console.log(myPlayer.currentTime);
                         })
                         this.on("error", function () {
                             bui.alert('该视频播放异常')
                         });
+                        this.on("fullscreenchange", function (item) {
+                            this.videoContext = uni.createVideoContext("myvideo", this);    // this这个是实例对象 必传
+                            console.log(item)
+                            this.videoUrl = item.video_path;
+                            this.videoContext.requestFullScreen({ direction: 90 });  
+                            this.videoContext.play();
+                            this.videoPlay = true; 
+                        })
                     });
-
                     myPlayer.controlBar.progressControl.disable();
                     myPlayer.landscapeFullscreen();
                 } else {
