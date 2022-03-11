@@ -154,7 +154,7 @@ loader.define(function (require, exports, module, global) {
                 if (vedioList[i].id == params.id && hasvideo) {
                     hasvideo = false
                     document.getElementById('videoDetail').innerHTML =
-                        `<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" data-setup="{}" poster="${vedioList[i].image}">
+                        `<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" data-setup="{}" poster="${vedioList[i].image}" loop webkit-playsinline='true' playsinline='true' x-webkit-airplay='true' x5-video-player-type='h5' x5-video-player-fullscreen='true' x5-video-ignore-metadata='true'  width='100%' height='100%'>
                      <source src="${vedioList[i].url}" type="video/mp4"> 
                 </video>`
                     document.getElementById('name').innerText = vedioList[i].name
@@ -214,12 +214,14 @@ loader.define(function (require, exports, module, global) {
                             bui.alert('该视频播放异常')
                         });
                         this.on("fullscreenchange", function (item) {
-                            this.videoContext = uni.createVideoContext("myvideo", this);    // this这个是实例对象 必传
-                            console.log(item)
-                            this.videoUrl = item.video_path;
-                            this.videoContext.requestFullScreen({ direction: 90 });  
-                            this.videoContext.play();
-                            this.videoPlay = true; 
+                            this.requestFullScreen(-90);
+                            document.getElementById('my-video').requestFullScreen(-90);
+                            // this.videoContext = uni.createVideoContext("myvideo", this);    // this这个是实例对象 必传
+                            // console.log(item)
+                            // this.videoUrl = item.video_path;
+                            // this.videoContext.requestFullScreen({ direction: 90 });  
+                            // this.videoContext.play();
+                            // this.videoPlay = true; 
                         })
                     });
                     myPlayer.controlBar.progressControl.disable();
