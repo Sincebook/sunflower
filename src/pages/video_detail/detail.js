@@ -154,7 +154,12 @@ loader.define(function (require, exports, module, global) {
                 if (vedioList[i].id == params.id && hasvideo) {
                     hasvideo = false
                     document.getElementById('videoDetail').innerHTML =
-                        `<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" playsinline="true" data-setup="{}" poster="${vedioList[i].image}">
+                        `<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" playsinline="true"  t7-video-player-type="inline"
+                        webkit-playsinline="true"  
+                        playsinline="true"  
+                        x-webkit-airplay="true"
+                        x5-playsinline="showLine"
+                 data-setup="{}" poster="${vedioList[i].image}">
                      <source src="${vedioList[i].url}" type="video/mp4"> 
                 </video>`
                     document.getElementById('name').innerText = vedioList[i].name
@@ -166,6 +171,9 @@ loader.define(function (require, exports, module, global) {
                         poster: '',
                         preload: 'auto',
                         autoplay: false,
+                        // isFull: true,
+                        // isfull:true,
+                        isFullscreen:false,
                         fluid: true, // 默认播放音频
                         playbackRates: [0.5, 1, 1.5, 2],
                     }, function () {
