@@ -154,7 +154,7 @@ loader.define(function (require, exports, module, global) {
                 if (vedioList[i].id == params.id && hasvideo) {
                     hasvideo = false
                     document.getElementById('videoDetail').innerHTML =
-                        `<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" data-setup="{}" poster="${vedioList[i].image}" loop webkit-playsinline='true' playsinline='true' x-webkit-airplay='true' x5-video-player-type='h5' x5-video-player-fullscreen='true' x5-video-ignore-metadata='true'  width='100%' height='100%'>
+                        `<video id="my-video"  x5-video-orientation="landscape" class="video-js vjs-big-play-centered" controls preload="auto" data-setup="{}" poster="${vedioList[i].image}" webkit-playsinline='true' playsinline='true' x-webkit-airplay='true' x5-video-player-type='h5' x5-video-player-fullscreen='true' x5-video-ignore-metadata='true'  width='100%' height='100%'>
                      <source src="${vedioList[i].url}" type="video/mp4"> 
                 </video>`
                     document.getElementById('name').innerText = vedioList[i].name
@@ -167,7 +167,7 @@ loader.define(function (require, exports, module, global) {
                         preload: 'auto',
                         autoplay: false,
                         fluid: true, // 默认播放音频
-                        playbackRates: [0.5, 1, 1.5, 2],
+                        // x5-video-orientation:'landscape'
                     }, function () {
                         this.on('ended', function () {
                             let videos = videoStorage.get('finishVideo');
@@ -214,6 +214,7 @@ loader.define(function (require, exports, module, global) {
                             bui.alert('该视频播放异常')
                         });
                         this.on("fullscreenchange", function (item) {
+                            console.log(item)
                             this.requestFullScreen(-90);
                             document.getElementById('my-video').requestFullScreen(-90);
                             // this.videoContext = uni.createVideoContext("myvideo", this);    // this这个是实例对象 必传
