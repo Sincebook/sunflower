@@ -50,7 +50,7 @@ loader.define(function() {
                         <small style="border-radius:5px;background:#eee;padding:3px;color:${temp > 1?'green':'red'};">${temp > 1 ?'课程已完成':'未完成'}</small><br>
                     </div>
                     </li>
-                    <li class="bui-btn bui-box toExam" style="background-color: rgb(250, 250, 250); padding:0.05rem 0" id="${res.data[i].lesson.id}" data-misId="${res.data[i].mission.id}" data-status="${res.data[i].misUsersStatus.status}">
+                    <li class="bui-btn bui-box toExam" style="background-color: rgb(250, 250, 250); padding:0.05rem 0" data-score="${res.data[i].mission.score}" id="${res.data[i].lesson.id}" data-misId="${res.data[i].mission.id}" data-status="${res.data[i].misUsersStatus.status}">
                     <div class="icon"><i class="icon icon-thinblue">&#xe62d;</i></div>
                     <div class="span1" style="font-size:0.3rem">课程考试</div>
                     <div class="color_yellow">${testStatus}</div>
@@ -67,10 +67,8 @@ loader.define(function() {
                         }
                         toExam[i].onclick = function(e) {
                             e.stopPropagation();
-                            if (this.dataset.status == 2) {
-                                bui.load({ url: "pages/exam/exam.html", param: { les_id: this.id, mis_id: this.dataset.misid } });
-                            } else if (this.dataset.status == 3){
-                                bui.alert('已经参与考试');
+                            if (this.dataset.status == 2 || this.dataset.status == 3) {
+                                bui.load({ url: "pages/exam/exam.html", param: { les_id: this.id, mis_id: this.dataset.misid, score: this.dataset.score } });
                             } else {
                                 bui.alert('请先完成课程学习');
                             }

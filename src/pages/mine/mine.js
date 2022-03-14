@@ -15,9 +15,7 @@ loader.define(function() {
                 }
             })
         })
-        document.getElementById('btn-face').addEventListener('click', () => {
-            bui.load({ url: 'pages/face/face.html' })
-        })
+        
         document.getElementById('btn-myLesson').addEventListener('click', () => {
             bui.load({ url: 'pages/myLesson/mylesson.html' })
         })
@@ -40,6 +38,14 @@ loader.define(function() {
         displayOwnInfo().then(res => {
             console.log(res);
             if (res.code === '0') {
+                document.getElementById('btn-face').addEventListener('click', () => {
+                    if (res.data.image) {
+                        bui.alert('人像仅能采集一次，如有问题请联系管理员')
+                    } else {
+                        bui.load({ url: 'pages/face/face.html' })
+                    }
+                    
+                })
                 let bs = bui.store({
                     el: '.bui-page',
                     scope: "page",

@@ -1,5 +1,5 @@
 loader.define(function () {
-    bui.alert('考试仅有一次机会，请认真作答！')
+    // bui.alert('考试仅有一次机会，请认真作答！')
     var bs = bui.store({
         scope: "page", // 用于区分公共数据及当前数据的唯一值
         data: {
