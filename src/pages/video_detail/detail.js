@@ -167,6 +167,8 @@ loader.define(function (require, exports, module, global) {
                         preload: 'auto',
                         autoplay: false,
                         fluid: true, // 默认播放音频
+                        isFull:true,
+                        isfull:true
                         // x5-video-orientation:'landscape'
                     }, function () {
                         this.on('ended', function () {
