@@ -57,7 +57,7 @@ loader.define(function(require, exports, module, global) {
                         <div class="divider"></div>
                         <div class="item-right bui-align-center">
                             <span class="details">${res.data[i].signUpNums}人已报名</span>
-                            <div class="bui-btn primary mini ring" id="signInForTrain" data-train-id="${res.data[i].id}">签到</div>
+                            <div class="bui-btn primary mini ring" id="signInForTrain" data-train-id="${res.data[i].id}" data-state="no">签到</div>
                         </div>
                     </li>`
                         } else if (res.data[i].trainRecordsStatus == 2) {
@@ -70,7 +70,7 @@ loader.define(function(require, exports, module, global) {
                                 <div class="divider"></div>
                                 <div class="item-right bui-align-center">
                                     <span class="details">${res.data[i].signUpNums}人已报名</span>
-                                    <div class="bui-btn primary mini ring" id="signOutForTrain" data-train-id="${res.data[i].id}">签退</div>
+                                    <div class="bui-btn primary mini ring" id="signInForTrain" data-train-id="${res.data[i].id}" data-state="yes">签退</div>
                                 </div>
                             </li>`
                         } else if (res.data[i].trainRecordsStatus == 3) {
@@ -95,39 +95,40 @@ loader.define(function(require, exports, module, global) {
                             latitude: String(result.latitude).match(/\d+\.\d{0,12}/)[0],
                         }
                         console.log(queryData);
-                        var longitude = queryData.longtitude;
-                        var latitude = queryData.latitude;
+                        var longitude = 113.672980569386;
+                        var latitude = 34.78800816393977;
                         let signInForTrain = document.querySelectorAll('#signInForTrain');
-                        let signOutForTrain = document.querySelectorAll('#signOutForTrain');
-                        let trainOver = document.querySelectorAll('#trainOver');
+
                         for (let i = 0; i < signInForTrain.length; i++) {
                             signInForTrain[i].addEventListener('click', function() {
                                 let train_id = this.dataset["trainId"];
-                                signInApi({ train_id, longitude, latitude }).then(res => {
-                                    console.log(res);
-                                    if (res.code === '0') {
-                                        bui.alert('签到成功');
-                                        signInForTrain[i].innerHTML = '签退';
-                                    } else {
-                                        bui.alert(res.errMsg);
-                                        console.log(1);
-                                    }
-                                })
-                            })
-                        }
-                        for (let i = 0; i < signOutForTrain.length; i++) {
-                            signOutForTrain[i].addEventListener('click', function() {
-                                let train_id = this.dataset["trainId"];
-                                signOutApi({ train_id, longitude, latitude }).then(res => {
-                                    console.log(res);
-                                    if (res.code === '0') {
-                                        bui.alert('签退成功');
-                                        signOutForTrain[i].innerHTML = '已完成';
-                                    } else {
-                                        bui.alert(res.errMsg);
-                                        console.log(3);
-                                    }
-                                })
+                                let state = this.dataset.state;
+                                if (state == 'no') {
+                                    signInApi({ train_id, longitude, latitude }).then(res => {
+                                        console.log(res);
+                                        if (res.code === '0') {
+                                            bui.alert('签到成功');
+                                            signInForTrain[i].innerHTML = '签退';
+                                            signInForTrain[i].dataset.state = 'yes';
+                                        } else {
+                                            bui.alert(res.errMsg);
+                                        }
+                                    })
+                                } else {
+                                    signInForTrain[i].addEventListener('click', function() {
+                                        let train_id = this.dataset["trainId"];
+                                        signOutApi({ train_id, longitude, latitude }).then(res => {
+                                            console.log(res);
+                                            if (res.code === '0') {
+                                                bui.alert('签退成功');
+                                                signInForTrain[i].innerHTML = '已完成';
+                                            } else {
+                                                bui.alert(res.errMsg);
+                                            }
+                                        })
+                                    })
+                                }
+
                             })
                         }
                     }).catch(err => {
