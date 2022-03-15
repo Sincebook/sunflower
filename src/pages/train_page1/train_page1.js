@@ -44,16 +44,16 @@ loader.define(function(require, exports, module, global) {
                     }
                     trainList1.innerHTML = html;
                     let signUpForTrain = document.querySelectorAll('#signUpForTrain');
+                    let loadtoTrain = document.querySelector('#loadtoTrain');
+                    console.log(loadtoTrain);
                     for (let i = 0; i < signUpForTrain.length; i++) {
                         signUpForTrain[i].onclick = function() {
-                            console.log(this);
-                            console.log(this.dataset["trainid"]);
                             let train_id = this.dataset["trainid"];
                             signUp({ train_id }).then(res => {
                                 console.log(res);
                                 if (res.code === '0') {
                                     bui.alert(res.data, () => {
-                                        bui.refresh();
+                                        location.reload();
                                     });
                                 } else {
                                     bui.alert(res.errMsg);
