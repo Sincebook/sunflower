@@ -189,7 +189,9 @@ loader.define(function (require, exports, module, global) {
 
                         })
                         this.on("timeupdate", function () {
+
                             playTime++;
+                            localStorage.setItem('videoTime', `${playTime},${params.id},${params.lesson_id}`)
                             if (playTime % 10 == 0) {
                                 if (!watchStatus) {
                                     this.pause();
@@ -219,16 +221,16 @@ loader.define(function (require, exports, module, global) {
                             console.log(item)
                             this.requestFullScreen(-90);
                             document.getElementById('my-video').requestFullScreen(-90);
-                            // this.videoContext = uni.createVideoContext("myvideo", this);    // this这个是实例对象 必传
-                            // console.log(item)
-                            // this.videoUrl = item.video_path;
-                            // this.videoContext.requestFullScreen({ direction: 90 });  
-                            // this.videoContext.play();
-                            // this.videoPlay = true; 
                         })
                     });
                     myPlayer.controlBar.progressControl.disable();
                     myPlayer.landscapeFullscreen();
+                    if (localStorage.getItem('videoTime')) {
+                        let timeple = localStorage.getItem('videoTime').split(',')
+                        if (timeple[1] == params.id && timeple[2] == params.lesson_id) {
+                            myPlayer.currentTime(timeple[0]);
+                        }
+                    }
                 } else {
                     htmls += `<li class="bui-btn bui-box" onclick="bui.load({ url: 'pages/video_detail/detail?id=${vedioList[i].id}&lesson_id=${params.lesson_id}',callback:function(){window.location.reload()} });">
                     <div class="bui-thumbnail"><img src="${vedioList[i].image}" alt=""></div>
