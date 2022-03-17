@@ -1,4 +1,19 @@
 loader.define(function () {
+    function getUrlBase64(url, ext, callback) {
+        var canvas = document.createElement("canvas");   //创建canvas DOM元素
+        var ctx = canvas.getContext("2d");
+        var img = new Image;
+        img.crossOrigin = 'Anonymous';
+        img.src = url;
+        img.onload = function () {
+            canvas.height = 60; //指定画板的高度,自定义
+            canvas.width = 85; //指定画板的宽度，自定义
+            ctx.drawImage(img, 0, 0, 60, 85); //参数可自定义
+            var dataURL = canvas.toDataURL("image/" + ext);
+            callback.call(this, dataURL); //回掉函数获取Base64编码
+            canvas = null;
+        };
+    }
     findMyCert({lesson_id:1}).then(res => {
         if (res.code == '0') {
             let html = ''
@@ -14,7 +29,7 @@ loader.define(function () {
                 let imgStudy = ''
                 let timeStudy = ''
                 element.studyImg.forEach(e => {
-                    imgStudy+=`<td><img src="${e.image}"></td>`
+                    imgStudy+=`<td><img src="${e.image}" ></td>`
                     timeStudy+=`<td>${getTime(e.uptime)}</td>`
                 })
                 html +=`<br>
@@ -59,7 +74,7 @@ loader.define(function () {
 				</div>
 			</div>
 		</div>
-        <button id="cert${i}">导出</button>
+        <button style="float:right;margin:20px" id="cert${i}">导出</button>
         `
             });
             document.getElementById('res').innerHTML = html
@@ -76,7 +91,7 @@ loader.define(function () {
                 useCORS: true,
               }).then(canvas => {
                 canvas.toBlob((blob) => {
-                  saveAs(blob, `${cert}.jpeg`);
+                  saveAs(blob, `${e.target.id}.jpeg`);
                 });
               });
           
