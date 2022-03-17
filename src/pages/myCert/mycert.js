@@ -2,7 +2,7 @@ loader.define(function () {
     findMyCert({lesson_id:1}).then(res => {
         if (res.code == '0') {
             let html = ''
-            res.data.forEach(element => {
+            res.data.forEach((element, i) => {
                 let td = ''
                 element.finishMediaDtoList.forEach(e => {
                     td+=` <tr>
@@ -18,7 +18,7 @@ loader.define(function () {
                     timeStudy+=`<td>${getTime(e.uptime)}</td>`
                 })
                 html +=`<br>
-                <div class="bui-box-space">
+                <div class="bui-box-space" id="htmlcert${i}">
 			<div class="span1">
 				<div class="bui-sub primary" data-sub="合格" style="width: 100%;background: #fff;padding:0 40px;color: #000;">
                     <div style="text-align:center;line-height: 60px;">
@@ -58,11 +58,30 @@ loader.define(function () {
                     </div>
 				</div>
 			</div>
-		</div>`
+		</div>
+        <button id="cert${i}">导出</button>
+        `
             });
             document.getElementById('res').innerHTML = html
+           
         }
         console.log(res)
+        
+    })
+    
+    document.getElementById('res').addEventListener('click', function (e) {
+        if (e.target.id) {
+            let htmls = document.getElementById('html' + e.target.id)
+            html2canvas(htmls, {
+                useCORS: true,
+              }).then(canvas => {
+                canvas.toBlob((blob) => {
+                  saveAs(blob, `${cert}.jpeg`);
+                });
+              });
+          
+        }
+        
     })
     var pageview = {};
     pageview.init = function () { 

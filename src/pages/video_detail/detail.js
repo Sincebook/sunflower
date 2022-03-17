@@ -226,7 +226,9 @@ loader.define(function (require, exports, module, global) {
                     myPlayer.controlBar.progressControl.disable();
                     myPlayer.landscapeFullscreen();
                     if (localStorage.getItem('videoTime')) {
+                        console.log('123')
                         let timeple = localStorage.getItem('videoTime').split(',')
+                        console.log(timeple)
                         if (timeple[1] == params.id && timeple[2] == params.lesson_id) {
                             myPlayer.currentTime(timeple[0]);
                         }
