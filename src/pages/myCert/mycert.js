@@ -35,7 +35,7 @@ loader.define(function () {
                 html +=`<br>
                 <div class="bui-box-space" id="htmlcert${i}">
 			<div class="span1">
-				<div class="bui-sub primary" data-sub="合格" style="width: 100%;background: #fff;padding:0 40px;color: #000;">
+				<div class="bui-sub primary" data-sub="合格" style="width: 100%;background: #fff;padding:0 30px;color: #000;">
                     <div style="text-align:center;line-height: 60px;">
                         <h3 stlye="">道路运输从业人员安全教育证明</h3>
                     </div>
@@ -74,7 +74,10 @@ loader.define(function () {
 				</div>
 			</div>
 		</div>
+        <div style="height:60px">
         <button style="float:right;margin:20px" id="cert${i}">导出</button>
+        </div>
+        
         `
             });
             document.getElementById('res').innerHTML = html
