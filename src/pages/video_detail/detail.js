@@ -104,6 +104,7 @@ window.evt_upload_progress = function (evt)
 };
 var watchStatus = true;
 var addImgStatus = true;
+let errorTimes = 0;
 window.evt_upload_complete = function (evt)
 {
     if(evt.loaded == 0)
@@ -119,14 +120,21 @@ window.evt_upload_complete = function (evt)
           if (res.data == true) {
             watchStatus = true
           } else {
-            watchStatus = false
+            errorTimes++ 
+            if(errorTimes == 2) {
+                watchStatus = false
+                errorTimes = 0
+            }
           }
         } else if (res.code == '912_509'){
             watchStatus = true
             addImgStatus = false
-
         } else {
-            watchStatus = false
+            errorTimes++ 
+            if(errorTimes == 2) {
+                watchStatus = false
+                errorTimes = 0
+            }
         }
     }			
 };		 
