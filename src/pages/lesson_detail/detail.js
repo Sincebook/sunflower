@@ -1,6 +1,37 @@
 // 可能未导入时显示方法不存在，可在index中先导入
 loader.define(function () {
-
+    function getVideoDuration(url) {
+        // IOS的微信小程序中无法触发onloadedmetadata
+        // if (this.getENVIR() === 'wxapp' && this.checkIfIOS()) {
+        //   return new Promise((reslove) => {
+        //     let audio = new Audio(url);
+        //     audio.muted = true;
+        //     audio.play().then(() => audio.pause());
+        //     audio.addEventListener('loadedmetadata', function() {
+        //       reslove(parseInt((audio.duration * 1000).toString(), 10));
+        //     });
+        //     audio.muted = false;
+        //   });
+        // }
+        return new Promise((reslove) => {
+            let video = document.createElement('video');
+            video.preload = 'metadata';
+            video.src = url;
+            video.onloadedmetadata = () => {
+                reslove(parseInt((video.duration).toString(), 0));
+                video = null;
+            };
+        });
+    }
+    function timeLong(_data) {
+        // let h = parseInt(_data / 3600)
+        let m = parseInt(_data / 60)
+        let s = _data - m * 60
+       
+        m < 10 ? m = `0${m}` : ''
+        s < 10 ? s = `0${s}` : ''
+        return `${m}:${s}`
+    }
     var pageview = {};
     var tab = null;
     pageview.init = function () {
@@ -15,7 +46,8 @@ loader.define(function () {
         getClasseLesson({ id: params.id }).then(res => {
             let finishVideo = videoStorage.get('finishVideo');
             let finishPPT = pptStorage.get('finishPPT');
-            console.log(finishVideo, finishPPT)
+            // console.log(finishVideo)
+            // console.log(finishVideo, finishPPT)
             let videoIds = []
             let pptIds = []
             for (let i in finishVideo) {
@@ -36,25 +68,56 @@ loader.define(function () {
             var html = "";
             var htl = "";
             var upStudy = 0;
-            for (let index = 0; index < videos.length; index++) {
-                if(!videoIds.includes(Number(videos[index].id))) {
-                    upStudy++
-                }
-                html += `<li class="bui-btn bui-box" href="/pages/video_detail/detail?id=${videos[index].id}&lesson_id=${params.id}">
-                <div class="bui-thumbnail"><img src="${videos[index].image}" alt=""></div>
-                <div class="span1">
-                    <h4 class="item-title" style="color:#000">${videos[index].name}</h4>
-                    <div class="tags">
-                        <span class="tag-item" style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1; overflow: hidden;color:#666">${videos[index].description}</span>
+            function setVideo(index) {
+                console.log(index)
+                getVideoDuration(videos[index].url).then(res => {
+                    if (index < videos.length) {
+                        console.log(videos[index].url, index);
+                        html += `<li class="bui-btn bui-box" href="/pages/video_detail/detail?id=${videos[index].id}&lesson_id=${params.id}">
+                    <div class="bui-thumbnail"><img src="${videos[index].image}" alt=""></div>
+                    <div class="span1">
+                        <h4 class="item-title" style="color:#000;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;overflow: hidden;">${videos[index].name}</h4>
+                        <div class="tags">
+                            <span class="tag-item" style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1; overflow: hidden;color:#666">${videos[index].description}</span>
+                        </div>
+                        <small style="border-radius:5px;background:#eee;padding:3px;color:${videoIds.includes(Number(videos[index].id)) ? 'green' : 'red'};">${videoIds.includes(Number(videos[index].id)) ? '已完成' : '未完成'}</small><br>
+                        <span class="item-text">${timeLong(res)}</span>
                     </div>
-                    <small style="border-radius:5px;background:#eee;padding:3px;color:${videoIds.includes(Number(videos[index].id))?'green':'red'};">${videoIds.includes(Number(videos[index].id))?'已完成':'未完成'}</small><br>
-                    <span class="item-text">${getTime(videos[index].uptime)}</span>
-                </div>
-                </li>`;
-
+                    </li>`;  
+                    }
+                    index++;
+                    document.getElementById("videoList").innerHTML = html
+                    setVideo(index);
+                });
             }
+            setVideo(0);
+            // function setVideo() {
+            //     for (let index = 0; index < videos.length; index++) {
+            //         if (!videoIds.includes(Number(videos[index].id))) {
+            //             upStudy++
+            //         }
+            //         getVideoDuration(videos[index].url).then(res => function () {
+            //             console.log(res)
+            //             // console.log(document.getElementsByClassName('item-text'))
+            //         })
+            //         let reslut = 0
+            //         html += `<li class="bui-btn bui-box" href="/pages/video_detail/detail?id=${videos[index].id}&lesson_id=${params.id}">
+            //         <div class="bui-thumbnail"><img src="${videos[index].image}" alt=""></div>
+            //         <div class="span1">
+            //             <h4 class="item-title" style="color:#000;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;overflow: hidden;">${videos[index].name}</h4>
+            //             <div class="tags">
+            //                 <span class="tag-item" style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1; overflow: hidden;color:#666">${videos[index].description}</span>
+            //             </div>
+            //             <small style="border-radius:5px;background:#eee;padding:3px;color:${videoIds.includes(Number(videos[index].id)) ? 'green' : 'red'};">${videoIds.includes(Number(videos[index].id)) ? '已完成' : '未完成'}</small><br>
+            //             <span class="item-text">${reslut}</span>
+            //         </div>
+            //         </li>`;
+
+            //     }
+            // }
+            // setVideo()
             for (let index = 0; index < ppts.length; index++) {
-                if(!pptIds.includes(Number(ppts[index].id))) {
+                if (!pptIds.includes(Number(ppts[index].id))) {
                     upStudy++
                 }
                 htl += `<li class="bui-btn bui-box"  href="/pages/ppt/ppt?id=${ppts[index].id}&lesson_id=${params.id}">
@@ -64,23 +127,23 @@ loader.define(function () {
                     <div class="tags">
                         <span class="tag-item" style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1; overflow: hidden;color:#666">${ppts[index].description}</span>
                     </div>
-                    <small style="border-radius:5px;background:#eee;padding:3px;color:${pptIds.includes(Number(ppts[index].id))?'green':'red'};">${pptIds.includes(Number(ppts[index].id))?'已完成':'未完成'}</small><br>
+                    <small style="border-radius:5px;background:#eee;padding:3px;color:${pptIds.includes(Number(ppts[index].id)) ? 'green' : 'red'};">${pptIds.includes(Number(ppts[index].id)) ? '已完成' : '未完成'}</small><br>
                     <span class="item-text">${getTime(ppts[index].uptime)}</span>
                 </div>
                 </li>`;
             }
             if (upStudy == 0) {
-                finishStudy({mission_id: params.mis_id}).then(res=> {
+                finishStudy({ mission_id: params.mis_id }).then(res => {
                     console.log(res)
                 })
             }
             var videoList = document.getElementById("videoList");
             var coursewareList = document.getElementById("coursewareList");
-            videoList.innerHTML = html;
+            // videoList.innerHTML = html;
             coursewareList.innerHTML = htl;
 
         })
-      
+
     };
 
     // 初始化

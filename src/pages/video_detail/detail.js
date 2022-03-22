@@ -154,7 +154,7 @@ loader.define(function (require, exports, module, global) {
                 if (vedioList[i].id == params.id && hasvideo) {
                     hasvideo = false
                     document.getElementById('videoDetail').innerHTML =
-                        `<video id="my-video"  x5-video-orientation="landscape" class="video-js vjs-big-play-centered" controls preload="auto" data-setup="{}" poster="${vedioList[i].image}" webkit-playsinline='true' playsinline='true' x-webkit-airplay='true' x5-video-player-type='h5' x5-video-player-fullscreen='true' x5-video-ignore-metadata='true'  width='100%' height='100%'>
+                        `<video id="my-video"  x5-video-orientation="landscape" class="video-js vjs-big-play-centered" controls preload="auto" data-setup="{}" poster="${vedioList[i].image}">
                      <source src="${vedioList[i].url}" type="video/mp4"> 
                 </video>`
                     document.getElementById('name').innerText = vedioList[i].name
