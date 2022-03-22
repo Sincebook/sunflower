@@ -23,11 +23,12 @@ loader.define(function () {
             };
         });
     }
+
     function timeLong(_data) {
         // let h = parseInt(_data / 3600)
         let m = parseInt(_data / 60)
         let s = _data - m * 60
-       
+
         m < 10 ? m = `0${m}` : ''
         s < 10 ? s = `0${s}` : ''
         return `${m}:${s}`
@@ -36,6 +37,7 @@ loader.define(function () {
     var tab = null;
     pageview.init = function () {
         var params = router.getPageParams();
+        console.log(videoPosStorage.get('ProVideo'))
         // getClasseLesson({id: params.id}).then(res => {
         //     console.log(res)
         // })
@@ -43,7 +45,9 @@ loader.define(function () {
         tab = bui.tab({
             id: "#tabLesson",
         });
-        getClasseLesson({ id: params.id }).then(res => {
+        getClasseLesson({
+            id: params.id
+        }).then(res => {
             let finishVideo = videoStorage.get('finishVideo');
             let finishPPT = pptStorage.get('finishPPT');
             // console.log(finishVideo)
@@ -68,11 +72,23 @@ loader.define(function () {
             var html = "";
             var htl = "";
             var upStudy = 0;
+            let Alltime = 0;
+            let studyTime2 = 0;
             function setVideo(index) {
-                console.log(index)
-                getVideoDuration(videos[index].url).then(res => {
-                    if (index < videos.length) {
-                        console.log(videos[index].url, index);
+                // console.log(index)
+               
+                if (index < videos.length) {
+                    getVideoDuration(videos[index].url).then(res => {
+
+                        // console.log(videos[index].url, index);
+                        let process = 0
+                        let temples = videoPosStorage.get('ProVideo')
+                        for (let i in temples) {
+                            if (temples[i].videoId.split(',')[0] == videos[index].id && temples[i].videoId.split(',')[1] == params.id) {
+                                console.log('成功计时')
+                                process = temples[i].process
+                            }
+                        }
                         html += `<li class="bui-btn bui-box" href="/pages/video_detail/detail?id=${videos[index].id}&lesson_id=${params.id}">
                     <div class="bui-thumbnail"><img src="${videos[index].image}" alt=""></div>
                     <div class="span1">
@@ -81,14 +97,24 @@ loader.define(function () {
                             <span class="tag-item" style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1; overflow: hidden;color:#666">${videos[index].description}</span>
                         </div>
                         <small style="border-radius:5px;background:#eee;padding:3px;color:${videoIds.includes(Number(videos[index].id)) ? 'green' : 'red'};">${videoIds.includes(Number(videos[index].id)) ? '已完成' : '未完成'}</small><br>
-                        <span class="item-text">${timeLong(res)}</span>
+                        <span class="item-text">视频时长:${timeLong(res)} - 已观看:${timeLong(process)}</span>
                     </div>
-                    </li>`;  
-                    }
-                    index++;
-                    document.getElementById("videoList").innerHTML = html
-                    setVideo(index);
-                });
+                    </li>`;
+                        
+                        Alltime += res
+                        studyTime2 += process
+                        index++;
+                        if (index == videos.length) {
+                            html += `<div style="background:rgba(100,100,0,0.1);text-align:center;font-size:12px;padding:10px">课程总时长：${timeLong(Alltime)}，已学习：${timeLong(studyTime2)}，当前进度：${parseInt(studyTime2/Alltime*100)}%</div>`
+                        }
+                        document.getElementById("videoList").innerHTML = html
+                        setVideo(index);
+
+
+                    });
+
+                }
+
             }
             setVideo(0);
             // function setVideo() {
@@ -133,11 +159,13 @@ loader.define(function () {
                 </li>`;
             }
             if (upStudy == 0) {
-                finishStudy({ mission_id: params.mis_id }).then(res => {
+                finishStudy({
+                    mission_id: params.mis_id
+                }).then(res => {
                     console.log(res)
                 })
             }
-            var videoList = document.getElementById("videoList");
+            // var videoList = document.getElementById("videoList");
             var coursewareList = document.getElementById("coursewareList");
             // videoList.innerHTML = html;
             coursewareList.innerHTML = htl;

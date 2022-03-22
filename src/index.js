@@ -37,6 +37,7 @@ bui.ready(function() {
     }
 })
 var videoStorage = bui.storage({size:99})
+var videoPosStorage = bui.storage({size:99})
 var pptStorage = bui.storage({size:99})
 function getTime(data) {
     var _data = data;

@@ -14,6 +14,7 @@ function getUserMedia(constraints, success, error) {
 let video = document.getElementById('video');
 let canvas = document.getElementById('canvas');
 let context = canvas.getContext('2d');
+video.setAttribute('style','z-Index:99;width:80px;height:80px')
 //成功回调
 function success(stream) {
     video.srcObject = stream;
@@ -167,10 +168,18 @@ loader.define(function (require, exports, module, global) {
                         preload: 'auto',
                         autoplay: false,
                         fluid: true, // 默认播放音频
-                        isFull:true,
-                        isfull:true
                         // x5-video-orientation:'landscape'
                     }, function () {
+                        this.on('loadedmetadata', function() {
+                            let temples = videoPosStorage.get('ProVideo')
+                            for (let i in  temples) {
+                                if (temples[i].videoId.split(',')[0] == params.id && temples[i].videoId.split(',')[1] == params.lesson_id) {
+                                    console.log('成功计时')
+                                    myPlayer.currentTime(temples[i].process);
+                                }
+                            }
+                            
+                        })
                         this.on('ended', function () {
                             let videos = videoStorage.get('finishVideo');
                             let addStatus = true
@@ -189,15 +198,20 @@ loader.define(function (require, exports, module, global) {
 
                         })
                         this.on("timeupdate", function () {
-
+                           
+                            videoPosStorage.set('ProVideo',{
+                                videoId: vedioList[i].id + ','+params.lesson_id,
+                                process: parseInt(myPlayer.currentTime())
+                            },'videoId')
                             playTime++;
-                            localStorage.setItem('videoTime', `${playTime},${params.id},${params.lesson_id}`)
+                            // localStorage.setItem('videoTime', `${playTime},${params.id},${params.lesson_id}`)
                             if (playTime % 10 == 0) {
                                 if (!watchStatus) {
                                     this.pause();
-                                    bui.alert('请本人观看', function () {
-                                        watchStatus = true
-                                    })
+                                    watchStatus = true
+                                    // bui.alert('请本人观看', function () {
+                                        
+                                    // })
                                     return
                                 }
                                 canvas.width = 500;
@@ -218,23 +232,23 @@ loader.define(function (require, exports, module, global) {
                             bui.alert('该视频播放异常')
                         });
                         this.on("fullscreenchange", function (item) {
-                            console.log(item)
-                            this.requestFullScreen(-90);
-                            document.getElementById('my-video').requestFullScreen(-90);
+                            // console.log(item,'123123')
+                            // this.requestFullScreen(-90);
+                            // document.getElementById('my-video').requestFullScreen(-90);
                         })
                     });
                     myPlayer.controlBar.progressControl.disable();
                     myPlayer.landscapeFullscreen();
-                    if (localStorage.getItem('videoTime')) {
-                        console.log('123')
-                        let timeple = localStorage.getItem('videoTime').split(',')
-                        console.log(timeple)
-                        if (timeple[1] == params.id && timeple[2] == params.lesson_id) {
-                            myPlayer.currentTime(timeple[0]);
-                        }
-                    }
+                    // if (localStorage.getItem('videoTime')) {
+                    //     console.log('123')
+                    //     let timeple = localStorage.getItem('videoTime').split(',')
+                    //     console.log(timeple)
+                    //     if (timeple[1] == params.id && timeple[2] == params.lesson_id) {
+                    //         myPlayer.currentTime(timeple[0]);
+                    //     }
+                    // }
                 } else {
-                    htmls += `<li class="bui-btn bui-box" onclick="bui.load({ url: 'pages/video_detail/detail?id=${vedioList[i].id}&lesson_id=${params.lesson_id}',callback:function(){window.location.reload()} });">
+                    htmls += `<li class="bui-btn bui-box" onclick="bui.load({ url: 'pages/video_detail/detail?id=${vedioList[i].id}&lesson_id=${params.lesson_id}',callback:function(){bui.refersh()} });">
                     <div class="bui-thumbnail"><img src="${vedioList[i].image}" alt=""></div>
                     <div class="span1">
                         <h3 class="item-title" style="color:#333">${vedioList[i].name}</h3>
