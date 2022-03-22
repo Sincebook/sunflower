@@ -121,7 +121,7 @@ window.evt_upload_complete = function (evt)
             watchStatus = true
           } else {
             errorTimes++ 
-            if(errorTimes == 2) {
+            if(errorTimes == 3) {
                 watchStatus = false
                 errorTimes = 0
             }
