@@ -169,7 +169,6 @@ loader.define(function (require, exports, module, global) {
                     document.getElementById('name').innerText = vedioList[i].name
                     document.getElementById('description').innerText = vedioList[i].description
                     var playTime = 0;
-
                     var myPlayer = videojs('my-video', {
                         controls: true,
                         poster: '',
@@ -246,7 +245,7 @@ loader.define(function (require, exports, module, global) {
                         })
                     });
                     myPlayer.controlBar.progressControl.disable();
-                    myPlayer.landscapeFullscreen();
+                    // myPlayer.landscapeFullscreen();
                     // if (localStorage.getItem('videoTime')) {
                     //     console.log('123')
                     //     let timeple = localStorage.getItem('videoTime').split(',')
