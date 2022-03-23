@@ -163,7 +163,7 @@ loader.define(function (require, exports, module, global) {
                 if (vedioList[i].id == params.id && hasvideo) {
                     hasvideo = false
                     document.getElementById('videoDetail').innerHTML =
-                        `<video id="my-video"  x5-video-orientation="landscape" class="video-js vjs-big-play-centered" controls preload="auto" data-setup="{}" poster="${vedioList[i].image}">
+                        `<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" poster="${vedioList[i].image}">
                      <source src="${vedioList[i].url}" type="video/mp4"> 
                 </video>`
                     document.getElementById('name').innerText = vedioList[i].name
@@ -239,6 +239,7 @@ loader.define(function (require, exports, module, global) {
                             bui.alert('该视频播放异常')
                         });
                         this.on("fullscreenchange", function (item) {
+                            window.orientation = -90
                             // console.log(item,'123123')
                             // this.requestFullScreen(-90);
                             // document.getElementById('my-video').requestFullScreen(-90);
