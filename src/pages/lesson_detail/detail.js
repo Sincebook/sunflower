@@ -79,7 +79,9 @@ loader.define(function () {
                
                 if (index < videos.length) {
                     getVideoDuration(videos[index].url).then(res => {
-
+                        if (!videoIds.includes(Number(videos[index].id))) {
+                            upStudy++
+                        }
                         // console.log(videos[index].url, index);
                         let process = 0
                         let temples = videoPosStorage.get('ProVideo')
@@ -106,6 +108,13 @@ loader.define(function () {
                         index++;
                         if (index == videos.length) {
                             html += `<div style="background:rgba(100,100,0,0.1);text-align:center;font-size:12px;padding:10px">课程总时长：${timeLong(Alltime)}，已学习：${timeLong(studyTime2)}，当前进度：${parseInt(studyTime2/Alltime*100)}%</div>`
+                            if (upStudy == 0) {
+                                finishStudy({
+                                    mission_id: params.mis_id
+                                }).then(res => {
+                                    console.log(res)
+                                })
+                            }
                         }
                         document.getElementById("videoList").innerHTML = html
                         setVideo(index);
@@ -158,13 +167,7 @@ loader.define(function () {
                 </div>
                 </li>`;
             }
-            if (upStudy == 0) {
-                finishStudy({
-                    mission_id: params.mis_id
-                }).then(res => {
-                    console.log(res)
-                })
-            }
+            
             // var videoList = document.getElementById("videoList");
             var coursewareList = document.getElementById("coursewareList");
             // videoList.innerHTML = html;
