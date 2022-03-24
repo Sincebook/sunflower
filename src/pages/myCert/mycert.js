@@ -23,7 +23,7 @@ loader.define(function () {
                     td+=` <tr>
                     <td>${e.name}</td>
                     <td>${element.classesName}</td>
-                    <td>${e.type == '1'? '视频课程':'学习课件'}</td>
+                    <td>${e.type == '1'? '视频':'课件'}</td>
                     </tr>`
                 })
                 let imgStudy = ''
@@ -56,6 +56,7 @@ loader.define(function () {
                        ${td}
                     </table>
                     <br>
+                    学习照片:
                     <table border="1" style="text-align: center;">
                             <tr>${imgStudy}
                             </tr>
