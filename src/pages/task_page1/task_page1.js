@@ -39,7 +39,7 @@ loader.define(function() {
                         <div class="color_yellow">${status}</div>
                         <i class="icon-accordion"></i>
                     </dt>
-                    <dd id="${res.data[i].lesson.id}" data-misid="${res.data[i].mission.id}">
+                    <dd id="${res.data[i].lesson.id}" data-misid="${res.data[i].mission.id}" data-status="${res.data[i].misUsersStatus.status}">
                     <ul class="bui-list bui-list-thumbnail"></ul>
                     <li class="bui-btn bui-box">
                     <div class="bui-thumbnail bui-sub"><img src="${res.data[i].lesson.image}"></div>
@@ -63,7 +63,7 @@ loader.define(function() {
                     let toExam = accordionList.querySelectorAll('.toExam');
                     for (let i = 0; i < childAccordionList.length; i++) {
                         childAccordionList[i].onclick = function() {
-                            bui.load({ url: "pages/lesson_detail/detail.html", param: { id: this.id, mis_id: this.dataset.misid } });
+                            bui.load({ url: "pages/lesson_detail/detail.html", param: { id: this.id, mis_id: this.dataset.misid, mis_status: this.dataset.status } });
                         }
                         toExam[i].onclick = function(e) {
                             e.stopPropagation();

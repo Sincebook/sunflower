@@ -37,10 +37,7 @@ loader.define(function () {
     var tab = null;
     pageview.init = function () {
         var params = router.getPageParams();
-        console.log(videoPosStorage.get('ProVideo'))
-        // getClasseLesson({id: params.id}).then(res => {
-        //     console.log(res)
-        // })
+        const { mis_status } = params
         console.log(params)
         tab = bui.tab({
             id: "#tabLesson",
@@ -98,8 +95,8 @@ loader.define(function () {
                         <div class="tags">
                             <span class="tag-item" style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1; overflow: hidden;color:#666">${videos[index].description}</span>
                         </div>
-                        <small style="border-radius:5px;background:#eee;padding:3px;color:${videoIds.includes(Number(videos[index].id)) ? 'green' : 'red'};">${videoIds.includes(Number(videos[index].id)) ? '已完成' : '未完成'}</small><br>
-                        <span class="item-text">视频时长:${timeLong(res)} - 已观看:${timeLong(process)}</span>
+                        <small style="border-radius:5px;background:#eee;padding:3px;color:${mis_status>1?'green':videoIds.includes(Number(videos[index].id)) ? 'green' : 'red'};">${mis_status>1?'已完成':videoIds.includes(Number(videos[index].id)) ? '已完成' : '未完成'}</small><br>
+                        <span class="item-text">视频时长:${timeLong(res)} - 已观看:${timeLong(mis_status>1?res:process)}</span>
                     </div>
                     </li>`;
                         
@@ -107,7 +104,7 @@ loader.define(function () {
                         studyTime2 += process
                         index++;
                         if (index == videos.length) {
-                            html += `<div style="background:rgba(100,100,0,0.1);text-align:center;font-size:12px;padding:10px">课程总时长：${timeLong(Alltime)}，已学习：${timeLong(studyTime2)}，当前进度：${parseInt(studyTime2/Alltime*100)}%</div>`
+                            html += `<div style="background:rgba(100,100,0,0.1);text-align:center;font-size:12px;padding:10px">课程总时长：${timeLong(Alltime)}，已学习：${timeLong(mis_status>1?Alltime:studyTime2)}，当前进度：${parseInt(mis_status>1?100:studyTime2/Alltime*100)}%</div>`
                             if (upStudy == 0) {
                                 finishStudy({
                                     mission_id: params.mis_id
