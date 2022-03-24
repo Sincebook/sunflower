@@ -23,7 +23,7 @@ loader.define(function () {
                     td+=` <tr>
                     <td>${e.name}</td>
                     <td>${element.classesName}</td>
-                    <td>${e.type == '1'? '普通课程':'优质课程'}</td>
+                    <td>${e.type == '1'? '视频课程':'学习课件'}</td>
                     </tr>`
                 })
                 let imgStudy = ''
@@ -42,8 +42,8 @@ loader.define(function () {
                     <div style="font-size: 8px;">
                     姓名：${element.usersName}<br>
                     身份证号：${element.usersIdcard}<br>
-                    单位名称：${element.usersName}<br>
-                    培训内容：${element.usersCompanyName}<br>
+                    单位名称：${element.usersCompanyName}<br>
+                    培训内容：${element.lessonName}<br>
                     培训类型：${element.classesName}<br>
                     考试成绩：${element.score}<br><br>
                     学习内容:
