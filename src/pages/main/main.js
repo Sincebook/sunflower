@@ -17,6 +17,8 @@ loader.define(function(require, exports, module) {
 
         } else if (res.code === '907_001') {
             bui.load({ url: "pages/login/login.html", replace: true });
+        } else if (res.code === '907_002') {
+            bui.load({ url: "pages/login/login.html", replace: true });
         }
     })
     var pageview = {},
