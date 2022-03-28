@@ -256,7 +256,7 @@ loader.define(function (require, exports, module, global) {
                     //     }
                     // }
                 } else {
-                    htmls += `<li class="bui-btn bui-box" onclick="bui.load({ url: 'pages/video_detail/detail?id=${vedioList[i].id}&lesson_id=${params.lesson_id}',callback:function(){bui.refersh()} });">
+                    htmls += `<li class="bui-btn bui-box" onclick="bui.load({ url: 'pages/video_detail/detail?id=${vedioList[i].id}&lesson_id=${params.lesson_id}',callback:function(){window.location.reload();} });">
                     <div class="bui-thumbnail"><img src="${vedioList[i].image}" alt=""></div>
                     <div class="span1">
                         <h3 class="item-title" style="color:#333">${vedioList[i].name}</h3>
