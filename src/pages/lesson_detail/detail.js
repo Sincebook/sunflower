@@ -23,16 +23,6 @@ loader.define(function () {
             };
         });
     }
-
-    function timeLong(_data) {
-        // let h = parseInt(_data / 3600)
-        let m = parseInt(_data / 60)
-        let s = _data - m * 60
-
-        m < 10 ? m = `0${m}` : ''
-        s < 10 ? s = `0${s}` : ''
-        return `${m}:${s}`
-    }
     var pageview = {};
     var tab = null;
     pageview.init = function () {
@@ -47,7 +37,6 @@ loader.define(function () {
         }).then(res => {
             let finishVideo = videoStorage.get('finishVideo');
             let finishPPT = pptStorage.get('finishPPT');
-            // console.log(finishVideo)
             // console.log(finishVideo, finishPPT)
             let videoIds = []
             let pptIds = []
@@ -73,7 +62,7 @@ loader.define(function () {
             let studyTime2 = 0;
             function setVideo(index) {
                 // console.log(index)
-               
+
                 if (index < videos.length) {
                     getVideoDuration(videos[index].url).then(res => {
                         if (!videoIds.includes(Number(videos[index].id))) {
@@ -95,16 +84,28 @@ loader.define(function () {
                         <div class="tags">
                             <span class="tag-item" style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1; overflow: hidden;color:#666">${videos[index].description}</span>
                         </div>
-                        <small style="border-radius:5px;background:#eee;padding:3px;color:${mis_status>1?'green':videoIds.includes(Number(videos[index].id)) ? 'green' : 'red'};">${mis_status>1?'已完成':videoIds.includes(Number(videos[index].id)) ? '已完成' : '未完成'}</small><br>
-                        <span class="item-text">视频时长:${timeLong(res)} - 已观看:${timeLong(mis_status>1?res:process)}</span>
+                        <small style="border-radius:5px;background:#eee;padding:3px;color:${mis_status > 1 ? 'green' : videoIds.includes(Number(videos[index].id)) ? 'green' : 'red'};">${mis_status > 1 ? '已完成' : videoIds.includes(Number(videos[index].id)) ? '已完成' : '未完成'}</small><br>
+                        <span class="item-text">视频时长:${timeLong(res)} - 已观看:${timeLong(mis_status > 1 ? res : process)}</span>
                     </div>
                     </li>`;
-                        
+
                         Alltime += res
                         studyTime2 += process
                         index++;
                         if (index == videos.length) {
-                            html += `<div style="background:rgba(100,100,0,0.1);text-align:center;font-size:12px;padding:10px">课程总时长：${timeLong(Alltime)}，已学习：${timeLong(mis_status>1?Alltime:studyTime2)}，当前进度：${parseInt(mis_status>1?100:studyTime2/Alltime*100)}%</div>`
+                            html += `<div style="background:rgba(100,100,0,0.1);text-align:center;font-size:12px;padding:10px">课程总时长：${timeLong(Alltime)}，已学习：${timeLong(mis_status > 1 ? Alltime : studyTime2)}，当前进度：${parseInt(mis_status > 1 ? 100 : studyTime2 / Alltime * 100)}%</div>`
+                            // let temp = true
+                            // for (let i in videoMis.get('mis')) {
+                            //     if (videoMis.get('mis')[i].mis_id == params.mis_id) {
+                            //         temp = false
+                            //     }
+                            // }
+                            videoMis.set('mis', {
+                                'mis_id': params.mis_id,
+                                'Alltime': Alltime,
+                                'studyTime': studyTime2
+                            }, 'mis_id')
+                            console.log(videoMis.get('mis'))
                             if (upStudy == 0) {
                                 finishStudy({
                                     mission_id: params.mis_id
@@ -164,7 +165,7 @@ loader.define(function () {
                 </div>
                 </li>`;
             }
-            
+
             // var videoList = document.getElementById("videoList");
             var coursewareList = document.getElementById("coursewareList");
             // videoList.innerHTML = html;

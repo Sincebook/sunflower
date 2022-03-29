@@ -34,6 +34,14 @@ loader.define(function() {
                         let temp = res.data[i].misUsersStatus.status
                         let status =  temp == 1 ? '进行中' : temp == 2 ? '待考试' : res.data[i].userScore > res.data[i].mission.score ? '考核通过':'考核未通过'
                         let testStatus = res.data[i].userScore == null ? '未参加考试' : '分数：' + res.data[i].userScore;
+                        let studyTime = 0;
+                        let Alltime = 0;
+                        for (let j in videoMis.get('mis')) {
+                            if (res.data[i].mission.id == videoMis.get('mis')[j].mis_id) {
+                                studyTime = videoMis.get('mis')[j].studyTime
+                                Alltime = videoMis.get('mis')[j].Alltime
+                            }
+                        }
                         html += `<dt class="bui-btn bui-box" id="${res.data[i].mission.id}">
                         <div class="span1">${res.data[i].mission.name}</div>
                         <div class="color_yellow">${status}</div>
@@ -44,9 +52,10 @@ loader.define(function() {
                     <li class="bui-btn bui-box">
                     <div class="bui-thumbnail bui-sub"><img src="${res.data[i].lesson.image}"></div>
                     <div class="span1">
-                        <h3 class="item-title">${res.data[i].lesson.name}</h3>
+                        <h4 class="item-title">${res.data[i].lesson.name}</h4>
                         <p class="item-text">完成期限：${getTime(res.data[i].mission.beginTime)} - ${getTime(res.data[i].mission.endTime)}</p>
                         <p class="item-text">考核分数：大于${res.data[i].mission.score}分</p>
+                        <p class="item-text">${Alltime == 0 ?'尚未开始任务':'课程总时长：'+timeLong(Alltime)} ${Alltime == 0 ?'':'- 已学习：'+timeLong(studyTime)}</p>
                         <small style="border-radius:5px;background:#eee;padding:3px;color:${temp > 1?'green':'red'};">${temp > 1 ?'课程已完成':'未完成'}</small><br>
                     </div>
                     </li>

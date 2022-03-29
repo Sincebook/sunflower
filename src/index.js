@@ -39,6 +39,8 @@ bui.ready(function() {
 var videoStorage = bui.storage({size:99})
 var videoPosStorage = bui.storage({size:99})
 var pptStorage = bui.storage({size:99})
+var videoTimeLong = bui.storage({size:99})
+var videoMis = bui.storage({size:99})
 function getTime(data) {
     var _data = data;
     //如果是13位正常，如果是10位则需要转化为毫秒
@@ -57,4 +59,13 @@ function getTime(data) {
     const Min = time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes();;
     const S = time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds();;
     return `${Y}-${Mon}-${Day} ${H}:${Min}:${S}`
+}
+function timeLong(_data) {
+    // let h = parseInt(_data / 3600)
+    let m = parseInt(_data / 60)
+    let s = _data - m * 60
+
+    m < 10 ? m = `0${m}` : ''
+    s < 10 ? s = `0${s}` : ''
+    return `${m}:${s}`
 }
