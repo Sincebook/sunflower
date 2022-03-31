@@ -44,16 +44,23 @@
                     </div>
                 </div>
             </li>
-      			<li class="bui-btn bui-box clearactive">
-      				<label class="bui-label">验证码:</label>
-      				<div class="span1">
-      					<input id="code" type="text" b-model="page.code" class="bui-input" value="" placeholder="请输入验证码" maxlength="4">
-      				</div>
-      				<div class="bui-btn primary-reverse mini ring" b-click="page.sendQrCode" id="btnSend">发送验证码</div>
-      			</li>
-    		</ul>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="company">所属公司:</label>
+                <div class="span1">
+                    <input class="bui-input" id="password" type="text" b-model="page.company" placeholder="请公司全称">
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label">验证码:</label>
+                <div class="span1">
+                    <input id="code" type="text" b-model="page.code" class="bui-input" value="" placeholder="请输入验证码"
+                        maxlength="4">
+                </div>
+                <div class="bui-btn primary-reverse mini ring" b-click="page.sendQrCode" id="btnSend">发送验证码</div>
+            </li>
+        </ul>
         <div class="container-xy">
-          <div class="bui-btn round primary" b-click="page.register">注册</div>
+            <div class="bui-btn round primary" b-click="page.register">注册</div>
         </div>
     </main>
 

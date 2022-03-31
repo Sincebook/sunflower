@@ -15,7 +15,9 @@ loader.define(function () {
                 password: '',
                 code: '',
                 name:'',
-                idcard:''
+                idcard:'',
+                company:'',
+                type:''
             },
             methods: {
                 sendQrCode:function (e)  {
@@ -46,15 +48,17 @@ loader.define(function () {
                         password,
                         code,
                         name,
-                        idcard
+                        idcard,
+                        company
                     } = this
-                    if (phone && password && code && name && idcard) {
+                    if (phone && password && code && name && idcard && company) {
                         userRegister({
                             name,
                             idcard,
                             phone,
                             password,
-                            code
+                            code,
+                            company
                         }).then(res => {
                             console.log(res)
                             if (res.code === '0') {
