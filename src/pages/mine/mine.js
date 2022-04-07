@@ -23,7 +23,7 @@ loader.define(function() {
             bui.load({ url: 'pages/myCert/mycert.html' })
         })
         document.getElementById('btn-custom').addEventListener('click', () => {
-            bui.alert('客服微信：ww99c270364c2839c4')
+            bui.alert('请关注公众号【舵正行】')
         })
         document.getElementById('btn-myMessage').addEventListener('click', () => {
             bui.load({ url: 'pages/myMessage/message.html' })
