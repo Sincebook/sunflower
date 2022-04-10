@@ -192,7 +192,7 @@ loader.define(function (require, exports, module, global) {
 
                             playTime++;
                             localStorage.setItem('videoTime', `${playTime},${params.id},${params.lesson_id}`)
-                            if (playTime % 10 == 0) {
+                            if (playTime % 100 == 0) {
                                 if (!watchStatus) {
                                     this.pause();
                                     bui.alert('请本人观看', function () {
@@ -206,7 +206,7 @@ loader.define(function (require, exports, module, global) {
                                 var file = dataURLtoFile(canvas.toDataURL("image/png"), '123.png')
                                 startUpload(file)
                             }
-                            if (playTime % 60 == 0 && addImgStatus) {
+                            if (playTime % 600 == 0 && addImgStatus) {
                                 canvas.width = 500;
                                 canvas.height = 500;
                                 canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
