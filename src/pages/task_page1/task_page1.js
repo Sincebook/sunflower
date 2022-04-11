@@ -26,6 +26,15 @@ loader.define(function() {
             }
 
             let accordionList = document.querySelector('#accordion');
+            var uiLoading = bui.loading({
+                
+                width: 40,
+                height: 40,
+                callback: function (argument) {
+                    console.log("clickloading")
+                }
+            });
+            uiLoading.show();
             viewCurrentTask().then(res => {
                 console.log(res);
                 if (res.code === '0') {
@@ -67,6 +76,7 @@ loader.define(function() {
                 </li>
             </dd>`
                     }
+                    uiLoading.stop();
                     accordionList.innerHTML = html;
                     let childAccordionList = accordionList.querySelectorAll('dd');
                     let toExam = accordionList.querySelectorAll('.toExam');

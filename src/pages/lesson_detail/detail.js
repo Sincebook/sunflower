@@ -60,11 +60,20 @@ loader.define(function () {
             var upStudy = 0;
             let Alltime = 0;
             let studyTime2 = 0;
+            var uiLoading = bui.loading({
+                
+                width: 40,
+                height: 40,
+                callback: function (argument) {
+                    console.log("clickloading")
+                }
+            });
+            uiLoading.show();
             function setVideo(index) {
                 // console.log(index)
 
                 if (index < videos.length) {
-                    getVideoDuration(videos[index].url).then(res => {
+                    
                         if (!videoIds.includes(Number(videos[index].id))) {
                             upStudy++
                         }
@@ -85,11 +94,11 @@ loader.define(function () {
                             <span class="tag-item" style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1; overflow: hidden;color:#666">${videos[index].description}</span>
                         </div>
                         <small style="border-radius:5px;background:#eee;padding:3px;color:${mis_status > 1 ? 'green' : videoIds.includes(Number(videos[index].id)) ? 'green' : 'red'};">${mis_status > 1 ? '已完成' : videoIds.includes(Number(videos[index].id)) ? '已完成' : '未完成'}</small><br>
-                        <span class="item-text">视频时长:${timeLong(res)} - 已观看:${timeLong(mis_status > 1 ? res : process)}</span>
+                        <span class="item-text">视频时长:${timeLong(videos[index].time)} - 已观看:${timeLong(mis_status > 1 ? videos[index].time : process)}</span>
                     </div>
                     </li>`;
 
-                        Alltime += res
+                        Alltime += videos[index].time
                         studyTime2 += process
                         index++;
                         if (index == videos.length) {
@@ -117,13 +126,11 @@ loader.define(function () {
                         document.getElementById("videoList").innerHTML = html
                         setVideo(index);
 
-
-                    });
-
                 }
 
             }
             setVideo(0);
+            uiLoading.stop();
             // function setVideo() {
             //     for (let index = 0; index < videos.length; index++) {
             //         if (!videoIds.includes(Number(videos[index].id))) {
