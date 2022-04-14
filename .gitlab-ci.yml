@@ -14,8 +14,6 @@ variables:
 
 build:
   stage: build
-  tags:
-     - for-build
   only:
     - master
     - dev01
