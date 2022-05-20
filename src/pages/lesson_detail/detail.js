@@ -103,6 +103,12 @@ loader.define(function () {
                         index++;
                         if (index == videos.length) {
                             html += `<div style="background:rgba(100,100,0,0.1);text-align:center;font-size:12px;padding:10px">课程总时长：${timeLong(Alltime)}，已学习：${timeLong(mis_status > 1 ? Alltime : studyTime2)}，当前进度：${parseInt(mis_status > 1 ? 100 : studyTime2 / Alltime * 100)}%</div>`
+                            addProgress({
+                                'mission_id': params.mis_id,
+                                'progress': parseInt(mis_status > 1 ? 100 : studyTime2 / Alltime * 100)
+                            }).then(res => {
+                                console.log(res)
+                            })
                             // let temp = true
                             // for (let i in videoMis.get('mis')) {
                             //     if (videoMis.get('mis')[i].mis_id == params.mis_id) {

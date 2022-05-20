@@ -15,3 +15,6 @@ function getClasseLesson(params) {
 function addStudyImg(params) {
     return post('/api/studyImg/add', params)
 }
+function addProgress(params) {
+    return post('/api/misUsers/progress', params)
+}
