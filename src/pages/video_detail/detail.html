@@ -1,0 +1,196 @@
+<style>
+    .vjs-paused .vjs-big-play-button,
+    .backClick .vjs-paused.vjs-has-started .vjs-big-play-button {
+        display: block;
+    }
+
+    .video-js .vjs-big-play-button {
+        font-size: 2.5em;
+        line-height: 2.3em;
+        height: 2.5em;
+        width: 2.5em;
+        -webkit-border-radius: 2.5em;
+        -moz-border-radius: 2.5em;
+        border-radius: 2.5em;
+        background-color: #73859f;
+        background-color: rgba(115, 133, 159, .5);
+        border-width: 0.15em;
+        margin-top: -1.25em;
+        margin-left: -1.75em;
+    }
+
+    .video-js .vjs-playing .vjs-tech {
+        pointer-events: auto;
+    }
+
+    /* 中间的播放箭头 */
+    .vjs-big-play-button .vjs-icon-placeholder {
+        font-size: 1.63em;
+    }
+
+    /* 加载圆圈 */
+    .vjs-loading-spinner {
+        font-size: 2.5em;
+        width: 2em;
+        height: 2em;
+        border-radius: 1em;
+        margin-top: -1em;
+        margin-left: -1.5em;
+    }
+
+    #videoDetail {
+        margin: 0 auto;
+        width: 100%;
+        height: 35%;
+        /* position: fixed; */
+    }
+
+    #my-video {
+        width: 100%;
+        height: 100%;
+    }
+
+    .videoBack {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: 3;
+        border-color: transparent;
+    }
+
+    .backClick {
+        background-color: transparent;
+        color: #fff;
+        border: none;
+        font-size: medium;
+    }
+
+    #name {
+        font-weight: bolder;
+        padding-right: 8px;
+        padding-top: 6px;
+        padding-left: 8px;
+        border-bottom: 3px;
+        border-color: aliceblue;
+    }
+
+    #section {
+        padding-left: 8px;
+        padding-right: 8px;
+        border-top: 4px solid #f8f9f9;
+        border-bottom: 4px solid #f8f9f9;
+    }
+
+    .comment {
+        font-size: 14px;
+        font-weight: bold;
+        padding-left: 40px;
+        border-bottom: 4px solid #f8f9f9;
+    }
+
+    #circle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    #circle img {
+        width: 100%;
+    }
+    #caiji {
+        position: absolute; top: 0px; right:0px; z-index: 8;
+    }
+</style>
+<script>
+
+</script>
+<div class="bui-page">
+    <main>
+        <div class="videoBack">
+            <a class="bui-btn" style="background-color: transparent; border: none;" onclick="bui.back(function(){window.location.reload()});">
+                <i class="icon-back backClick"></i>
+            </a>
+        </div>
+        <div id="caiji">
+            <video id="video" class="pic" style="width:80px;height: 80px;"></video>
+        </div>
+        <div id="videoDetail">
+            
+        </div>
+        <canvas id="canvas" style="display:none;"></canvas>
+        <h2 id="name" style="color: #000;background: white;padding: 10px;">loading</h2>
+        <div id="section" style="color: #555;background: white;padding: 10px;">
+            <h3>视频简介</h3>
+            <p id="description">
+            </p>
+        </div>
+        <!-- <div style="padding-left:8px;">
+            <h3></h3>
+            <ul class="bui-list activity" id="scrollList">
+                <li>
+                    <div class="bui-box all">
+                        <div id="circle" style="float: left;">
+                            <img src="../../images/applogo.png" alt="">
+                        </div>
+                        <div style="padding-left: 4px;">
+                            <h3 class="item-title status-title">风之神</h3>
+                            <p class="item-text" >
+                                <time>2016-01-15</time>
+                                <time>14:35</time>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        真的不错
+                    </div>                 
+                </li>
+                <li>
+                    <div class="bui-box">
+                        <div id="circle" style="float: left;">
+                            <img src="../../images/applogo.png" alt="">
+                        </div>
+                        <div style="padding-left: 4px;">
+                            <h3 class="item-title status-title">风之神</h3>
+                            <p class="item-text" >
+                                <time>2016-01-15</time>
+                                <time>14:35</time>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        真的不错
+                    </div>                 
+                </li>
+                <li>
+                    <div class="bui-box all">
+                        <div id="circle" style="float: left;">
+                            <img src="../../images/applogo.png" alt="">
+                        </div>
+                        <div style="padding-left: 4px;">
+                            <h3 class="item-title status-title">风之神</h3>
+                            <p class="item-text" >
+                                <time>2016-01-15</time>
+                                <time>14:35</time>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        真的不错
+                    </div>                 
+                </li>
+            </ul>
+        </div> -->
+        <!-- 底部消息 -->
+        <ul class="bui-list" id="videoLists">123333</ul>
+
+    </main>
+    <!-- <footer style="padding: 8px;">
+        <div class="chatbar">
+            <div class="bui-input">
+                <input type="text" id="chatInput" placeholder="写下你的心得体会" style="border-bottom: 1px solid #73859f;"></input><span id="btnSend" class="bui-btn mini primary round">发送</span>
+            </div>
+        </div>
+    </footer> -->
+
+</div>

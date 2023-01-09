@@ -1,0 +1,67 @@
+<div class="bui-page register-page">
+    <header class="bui-bar">
+        <div class="bui-bar">
+            <div class="bui-bar-left">
+                <a class="bui-btn btn-back"><i class="icon-back"></i></a>
+            </div>
+            <div class="bui-bar-main">注册</div>
+            <div class="bui-bar-right">
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="section-title">请填写信息</div>
+        <ul class="bui-list">
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="phonenumber">姓名:</label>
+                <div class="span1">
+                    <div class="bui-input user-input">
+                        <input id="phone" type="text" b-model="page.name" value="" placeholder="请输入您的真实姓名">
+                    </div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="phonenumber">身份证号:</label>
+                <div class="span1">
+                    <div class="bui-input user-idcard">
+                        <input id="phone" type="text" b-model="page.idcard" value="" placeholder="请输入您的身份证号">
+                    </div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="phonenumber">手机号:</label>
+                <div class="span1">
+                    <div class="bui-input user-phone">
+                        <input id="phone" type="number" b-model="page.phone" value="" placeholder="请输入手机号">
+                    </div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="password">密码:</label>
+                <div class="span1">
+                    <div id="passwordInput" class="bui-input">
+                        <input id="password" type="password" b-model="page.password" placeholder="请输入密码">
+                    </div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="company">所属公司:</label>
+                <div class="span1">
+                    <input class="bui-input" id="password" type="text" b-model="page.company" placeholder="请公司全称">
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label">验证码:</label>
+                <div class="span1">
+                    <input id="code" type="text" b-model="page.code" class="bui-input" value="" placeholder="请输入验证码"
+                        maxlength="4">
+                </div>
+                <div class="bui-btn primary-reverse mini ring" b-click="page.sendQrCode" id="btnSend">发送验证码</div>
+            </li>
+        </ul>
+        <div class="container-xy">
+            <div class="bui-btn round primary" b-click="page.register">注册</div>
+        </div>
+    </main>
+
+</div>

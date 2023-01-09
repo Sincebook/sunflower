@@ -8,7 +8,7 @@ stages:
   - deploy
 
 variables:
-  IMAGE_REPO_PREFIX:        lotus_frontend  # $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG
+  IMAGE_REPO_PREFIX:        sunflower_users  # $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG
   IMAGE_VER:                $CI_COMMIT_SHORT_SHA
   CONTAINER_NAME_PREFIX:    $IMAGE_REPO_PREFIX
 

@@ -1,0 +1,114 @@
+<style>
+    .login-page .logo h1 {
+        font-size: .70rem;
+        padding-left: .3rem;
+    }
+
+    .logo {
+        height: 2rem;
+        margin: 1.2rem auto 1rem auto;
+        text-align: center;
+    }
+
+    .logo img {
+        height: 1rem;
+    }
+
+    .login-form {
+        padding-left: .6rem;
+        padding-right: .6rem;
+    }
+
+    .login-form .bui-list {
+        border-top: none;
+        margin-bottom: .7rem;
+    }
+
+    .login-form>.bui-btn {
+        margin-bottom: .3rem;
+    }
+
+    .login-form .bui-btn-text {
+        margin-bottom: .2rem;
+    }
+
+    .bui-list>[class*=bui-btn]:last-child {}
+
+    .login-form .bui-label {
+        width: 0.5rem;
+        margin-right: .2rem;
+    }
+
+    .login-form .icon-face,
+    .login-form .icon-lock {
+        font-size: 0.48rem;
+    }
+
+    .login-form .bui-input {
+        height: .6rem;
+        background: none;
+    }
+
+    .login-form .bui-btn-text {
+        text-align: center;
+        color: #666666;
+        font-size: 0.3rem;
+    }
+
+    .copyright {
+        font-size: 0.17rem;
+        color: #999999;
+        width: 100%;
+        text-align: center;
+        background-color: #ffffff;
+        padding-bottom: 0.25rem;
+    }
+
+    .icon-eye:before {
+        content: "\e680"
+    }
+
+    .icon-eye.active:before {
+        content: "\e67f"
+    }
+</style>
+<div class="bui-page login-page" style="background-color: #ffffff;color: #333;">
+    <main>
+        <div class="logo bui-box-center">
+            <img src="../../images/41a8e6d8f33404647735df1760ac0e6.png" style="width: 50px;" alt="">
+            <h1>道平安</h1>
+        </div>
+        <div class="login-form">
+            <ul class="bui-list">
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="user"><i class="icon-face"></i></label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="phone" type="text" placeholder="手机号">
+                        </div>
+                    </div>
+                </li>
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="password"><i class="icon-lock"></i></label>
+                    <div class="span1">
+                        <div class="bui-input password-input">
+                            <input id="password" type="password" placeholder="密码">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="bui-btn round primary" id="btnl">登录</div>
+            <br>
+            <div class="bui-btn-text" id="btnr" style="float: left;">立即注册</div>
+            <div class="bui-btn-text" id="btnp" style="float: right;">忘记密码</div>
+        </div>
+        
+    </main>
+    <footer>
+        <svg viewBox="0 0 1185 800" xmlns="http://www.w3.org/2000/svg" style="display: flex;bottom:0">
+            <path
+            d="M-14 856.098c41-1.9 87 10.1 124.9 17 16.5 3 32.8 7.2 49 11.8 23.7 6.8 47.2 14.5 71.1 20.6 49.7 6.1 99.9 9.3 149.7 14.8 59.9 6.6 119.7 13.7 180 13.9 58.3.2 116.6 1.1 174.9 2.1 105.9 1.7 212 2.7 317.7-4.7 20-2.4 40-5.2 59.9-8.4 8.7-2 17.3-3.6 26-4.8-3-18.3-5.7-32.8-6.2-35.9-9.8-53.5-30.3-165.5-101.9-172.6-26.4-2.6-50.2 13.5-73.9 25.1-58 28.3-126.8 31.1-190.4 18.2-52.2-10.6-101.6-31-148.9-54.3-43.6-21.5-73.5-58.6-107.6-92-38.8-38.1-97.4-87.9-157.5-77.5-38.5 6.7-66.8 36.5-102.8 49.2-37 13.1-76.4 21.9-115.2 28.2-48.3 7.9-98.1 12.7-147.2 12.3 0 0-11.8 128.6-21.6 236.1 6.4.2 13.1.4 20 .9z"
+            fill="#6af"></path>
+ </svg>
+    </footer>
+</div>

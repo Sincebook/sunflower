@@ -1,0 +1,56 @@
+<div class="bui-page bui-box-vertical">
+    <header>
+       <div class="bui-bar">
+        <div class="bui-bar-left">
+            <a class="bui-btn" onclick="bui.back();"><i class="icon-back"></i></a>
+        </div>
+        <div class="bui-bar-main">课程详情</div>
+        <div class="bui-bar-right">
+            <!-- 右边按钮 -->
+        </div>
+       </div>
+    </header>
+    <main>
+        <div id="tabLesson" class="bui-tab">
+            <div class="bui-tab-head">
+                <ul class="bui-nav">
+                    <li class="bui-btn active">视频</li>
+                    <li class="bui-btn">课件</li>
+                </ul>
+            </div>
+            <div class="bui-scroll">
+                <div class="bui-scroll-main">
+                    <div class="bui-tab-main">
+                         <!-- 列表控件结构 -->
+                        <ul >
+                            <li>
+                                <div>
+                                    <ul class="bui-list" id="videoList"></ul>
+                                </div>
+                                
+                            </li>
+                            <li style="display:none;">
+                                <div>
+                                    <ul class="bui-list" id="coursewareList"></ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bui-scroll-foot"></div>
+                </div>
+                    
+            </div>
+        </div>
+    </main>
+    <footer>
+        <!-- 底部内容 -->
+    </footer>
+</div>
+<style>
+    .bui-list .span1 .item-text {
+        margin-bottom: .2rem;
+    }
+    .bui-list .span1 .item-text:last-child {
+        margin-bottom: 0;
+    }
+</style>
